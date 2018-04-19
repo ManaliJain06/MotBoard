@@ -1,0 +1,123 @@
+.balloon{
+  transform: rotate(45deg)
+}
+.megrim{
+  font-family: 'Megrim', cursive;
+}
+.blackColor{
+  color:#424242;
+}
+
+.cardbox{
+    transition: 0.3s;
+    width: 100%;
+    height:auto;
+    border-radius: 10px;
+}
+
+.cardbox:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.Questrial{
+  font-family: 'Questrial', sans-serif;
+}
+.ybutton{
+  padding-top:20px;
+  padding-bottom:20px;
+  margin-bottom:20px;
+  padding-left:10px;
+  padding-right:10px;
+  width:100%;
+  border-radius: 40px;
+  background-color:#fff176;
+  border:#fff176 1px solid;
+  transition:0.3s;
+  height:auto
+}
+
+.ybutton:hover{
+  border:#fff176 1px solid;
+  background-color:#ffffff;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.Imagecontainer {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+.Imagecontainer-right {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+}
+#mainNav {
+  background-color: white;
+}
+#mainNav .navbar-toggler {
+  font-size: 12px;
+  right: 0;
+  padding: 13px;
+  text-transform: uppercase;
+  color: white;
+  border: 0;
+  background-color: #fed136;
+  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+#mainNav .navbar-brand {
+  font-family: 'Megrim', cursive;
+  font-size:70px;
+}
+
+#mainNav .navbar-brand.active, #mainNav .navbar-brand:active, #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
+  color: #fed136;
+}
+
+#mainNav .navbar-nav .nav-item .nav-link {
+  font-size: 90%;
+  font-weight: 400;
+  padding: 0.75em 0;
+  letter-spacing: 1px;
+  color: #424242;
+  font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
+  color: #fed136;
+}
+@media (min-width: 992px) {
+  #mainNav {
+    -webkit-transition: padding-top 0.3s, padding-bottom 0.3s;
+    -moz-transition: padding-top 0.3s, padding-bottom 0.3s;
+    transition: padding-top 0.3s, padding-bottom 0.3s;
+    border: none;
+    background-color: transparent;
+  }
+  #mainNav .navbar-brand {
+    font-size: 70px;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+  #mainNav .navbar-nav .nav-item .nav-link {
+    padding: 1.1em 1em !important;
+  }
+  #mainNav.navbar-shrink {
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: white;
+    opacity:0.7;
+    box-shadow: 0px 0.5px 5px #888888;
+  }
+  #mainNav.navbar-shrink .navbar-brand {
+    font-size: 40px;
+    opacity:0.8;
+  }
+
+}
+
+#whyMotbaord{
+  height:500px;
+  width:100%;
+  background-color: #fbe9e7;
+}
