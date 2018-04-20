@@ -1,5 +1,6 @@
 .balloon{
-  transform: rotate(45deg)
+  transform: rotate(45deg);
+  opacity: 0.5;
 }
 .megrim{
   font-family: 'Megrim', cursive;
@@ -8,6 +9,35 @@
   color:#424242;
 }
 
+.indexZ{
+  z-index:-1;
+}
+.alignCenter{
+  text-align:center
+}
+
+.cardbackColor{
+  background-color:#d7ccc8
+}
+.icon{
+  font-size:100px;
+  color:#d7ccc8;
+}
+
+.inspired{
+  font-size:70px;
+  color:rgba(0,0,0,0.1);
+}
+.cardboxWidth{
+  width: 18rem;
+}
+.footercss{
+  height:70px;
+  width:100%;
+  background-color:#424242;
+  color:white;
+  margin-top:20px
+}
 .cardbox{
     transition: 0.3s;
     width: 100%;
