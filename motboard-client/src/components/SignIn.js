@@ -13,13 +13,17 @@ class SignIn extends Component{
           <div>
           <div className="row justify-content-center">
             <div className="col-md-6 cardbox">
-              <input className="inputfield" placeholder="username"/><br/>
-              <input className="inputfield" placeholder="username"/><br/>
+              <input type="email" className="inputfield" placeholder="Email"/><br/>
+              <input type= "password" className="inputfield" placeholder="Password"/><br/>
               <div className="row justify-content-center">
-                <button className="ybutton">SIGN IN</button>
+                <button className="ybutton"onClick={() => {
+                    this.props.history.push("/signIn");
+                }}>SIGN IN</button>
               </div>
               <div className="row justify-content-center">
-                <button className="ybuttonSecondary" >or SIGN UP</button>
+                <button className="ybuttonSecondary" onClick={() => {
+                    this.props.history.push("/signUp");
+                }}>or SIGN UP</button>
               </div>
             </div>
           </div>

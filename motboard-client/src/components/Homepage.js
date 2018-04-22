@@ -22,29 +22,70 @@ class Homepage extends Component{
           <div className="row">
             <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
               <div className="container">
-                <a className="navbar-brand js-scroll-trigger" href="#page-top">
-                  <span className="megrim large blackColor">MOtBOARD</span>
+                <a className="navbar-brand js-scroll-trigger" onClick={() => {
+                    // this.setActive('hotels');
+                    this.props.history.push("/");
+                }}>
+                  <span className="megrim large blackColor pointer">MOtBOARD</span>
                 </a>
                 <div className="collapse navbar-collapse" id="navbarResponsive">
                   <ul className="navbar-nav text-uppercase ml-auto">
                     <li className="nav-item">
-                      <a className="nav-link js-scroll-trigger">boards</a>
+                      <a className="nav-link js-scroll-trigger pointer" onClick={() => {
+                          // this.setActive('hotels');
+                          this.props.history.push("/Boards");
+                      }}>boards</a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link js-scroll-trigger">About</a>
+                      <a className="nav-link js-scroll-trigger pointer" onClick={() => {
+                          // this.setActive('hotels');
+                          this.props.history.push("/About");
+                      }}>About</a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link js-scroll-trigger">team</a>
+                      <a className="nav-link js-scroll-trigger pointer" onClick={() => {
+                          // this.setActive('hotels');
+                          this.props.history.push("/Team");
+                      }}>Team</a>
                     </li>
                   </ul>
                 </div>
               </div>
             </nav>
           </div>
-          {
-            this.props.signup ? <SignIn/> : <SignUp/>
-          }
-        <BalloonPage/>
+          {/*{*/}
+            {/*this.props.signup ? <SignIn/> : <SignUp/>*/}
+          {/*}*/}
+          <Route exact path="/" render={() => (
+              <div>
+                  <BalloonPage/>
+              </div>
+          )}/>
+          <Route exact path="/Boards" render={() => (
+              <div>
+                  <Board/>
+              </div>
+          )}/>
+          <Route exact path="/About" render={() => (
+              <div>
+                  <About/>
+              </div>
+          )}/>
+          <Route exact path="/Team" render={() => (
+              <div>
+                  <Team/>
+              </div>
+          )}/>
+          <Route exact path="/signUp" render={() => (
+              <div>
+                  <SignUp/>
+              </div>
+          )}/>
+          <Route exact path="/signIn" render={() => (
+              <div>
+                  <SignIn/>
+              </div>
+          )}/>
         </div>
         )
     }

@@ -13,13 +13,19 @@ class Homepage extends Component{
           <div>
           <div className="row justify-content-center">
             <div className="col-md-6 cardbox">
-              <input className="inputfield" placeholder="username"/><br/>
-              <input className="inputfield" placeholder="username"/><br/>
+              <input className="inputfield" placeholder="First Name"/><br/>
+              <input className="inputfield" placeholder="Last Name"/><br/>
+                <input type = "email" className="inputfield" placeholder="Email"/><br/>
+                <input type = "password" className="inputfield" placeholder="Password"/><br/>
               <div className="row justify-content-center">
-                <button className="ybutton">SIGN UP</button>
+                <button className="ybutton"onClick={() => {
+                    this.props.history.push("/signUp");
+                }}>SIGN UP</button>
               </div>
               <div className="row justify-content-center">
-                <button className="ybuttonSecondary" >or SIGN IN</button>
+                <button className="ybuttonSecondary" onClick={() => {
+                    this.props.history.push("/signIn");
+                }}>or SIGN IN</button>
               </div>
             </div>
           </div>
