@@ -3,6 +3,8 @@ import {Route, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import '../css/landingPage.css';
 import balloon from '../Images/balloon.jpg';
+import SignUp from './SignUp';
+import SignIn from './SignIn';
 
 class BalloonPage extends Component{
     constructor(props){
@@ -16,9 +18,13 @@ class BalloonPage extends Component{
                 </div>
                 <div className="col-lg-3 mt-5 pt-5">
                     <div className="mt-5 pt-5">
-                        <button className="ybutton mt-5">SIGN UP</button>
+                        <button className="ybutton mt-5" onClick={() => {
+                            this.props.history.push("/signUp");
+                        }}>SIGN UP</button>
                         <br/>
-                            <button className="ybutton">SIGN IN</button>
+                        <button className="ybutton" onClick={() => {
+                            this.props.history.push("/signIn");
+                        }}>SIGN IN</button>
                     </div>
                 </div>
             </div>
@@ -31,8 +37,8 @@ class BalloonPage extends Component{
                     <br/>
                 </div>
                 <div className="row justify-content-center">
-                    <div className="card cardbox mr-5 Questrial cardboxWidth">
-                        <div className=" justify-content-center p-5 ">
+                    <div className="card cardboxBottom mr-5 Questrial cardboxWidth">
+                        <div className="row justify-content-center p-5 ">
                             <i className="material-icons icon">share</i>
                         </div>
                         <div className="card-body cardbackColor">
@@ -42,7 +48,7 @@ class BalloonPage extends Component{
                         </div>
                     </div>
 
-                    <div className="card cardbox mr-5 Questrial cardboxWidth">
+                    <div className="card cardboxBottom mr-5 Questrial cardboxWidth">
                         <div className="row justify-content-center p-5 ">
                             <i className="material-icons icon">collections</i>
                         </div>
@@ -53,7 +59,7 @@ class BalloonPage extends Component{
                         </div>
                     </div>
 
-                    <div className="card cardbox Questrial cardboxWidth">
+                    <div className="card cardboxBottom Questrial cardboxWidth">
                         <div className="row justify-content-center p-5 ">
                             <i className="material-icons icon">palette</i>
                         </div>
@@ -74,4 +80,4 @@ class BalloonPage extends Component{
     }
     }
 
-    export default withRouter(BalloonPage);
+export default withRouter(BalloonPage);

@@ -8,7 +8,9 @@
 .blackColor{
   color:#424242;
 }
-
+.pointer{
+  cursor: pointer;
+}
 .indexZ{
   z-index:-1;
 }
@@ -38,11 +40,12 @@
   color:white;
   margin-top:20px
 }
-.cardbox{
-    transition: 0.3s;
-    width: 100%;
-    height:auto;
-    border-radius: 10px;
+.cardboxBottom{
+  transition: 0.3s;
+  width: 30%;
+  height:auto;
+  border-radius: 10px;
+  font-size: 15px;
 }
 
 .cardbox:hover{
@@ -80,6 +83,16 @@
     position: absolute;
     bottom: 8px;
     right: 16px;
+}
+.TeamContainer{
+  font-size: 20px;
+  color: darkgrey;
+  font-weight: bold;
+  text-shadow: #fed136;
+}
+.TeamText{
+  font-size: 15px;
+  color: black;
 }
 #mainNav {
   background-color: white;
