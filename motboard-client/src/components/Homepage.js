@@ -11,6 +11,7 @@ import '../css/landingPage.css';
 import { findDOMNode } from 'react-dom';
 import $ from 'jquery';
 import MotBoardImages_Arrange from "./MotBoardImages_Arrange";
+import Motboards_List from "./Motboards_List";
 
 class Homepage extends Component{
     constructor(props){
@@ -54,7 +55,7 @@ class Homepage extends Component{
                   <BalloonPage/>
               </div>
           )}/>
-          <Route exact path="/Boards" render={() => (
+          <Route exact path="/images" render={() => (
               <div>
                   <Board/>
               </div>
@@ -84,6 +85,11 @@ class Homepage extends Component{
                   <SignIn/>
               </div>
           )}/>
+              <Route exact path="/Boards" render={() => (
+                  <div>
+                      <Motboards_List/>
+                  </div>
+              )}/>
         </div>
         )
     }
