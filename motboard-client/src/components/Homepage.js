@@ -10,6 +10,7 @@ import SignIn from './SignIn';
 import '../css/landingPage.css';
 import { findDOMNode } from 'react-dom';
 import $ from 'jquery';
+import MotBoardImages_Arrange from "./MotBoardImages_Arrange";
 
 class Homepage extends Component{
     constructor(props){
@@ -20,7 +21,7 @@ class Homepage extends Component{
         return (
           <div>
           <div className="row">
-            <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <nav className="navbar navbar-expand-lg navbar-dark fixed-top mb-5" id="mainNav">
               <div className="container">
                 <a className="navbar-brand js-scroll-trigger" onClick={() => {
                     // this.setActive('hotels');
@@ -64,6 +65,11 @@ class Homepage extends Component{
           <Route exact path="/Boards" render={() => (
               <div>
                   <Board/>
+              </div>
+          )}/>
+          <Route exact path="/Arrange" render={() => (
+              <div>
+                  <MotBoardImages_Arrange/>
               </div>
           )}/>
           <Route exact path="/About" render={() => (
