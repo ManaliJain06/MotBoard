@@ -20,40 +20,32 @@ class Homepage extends Component{
     render(){
         return (
           <div>
-          <div className="row">
+          <header>
             <nav className="navbar navbar-expand-lg navbar-dark fixed-top mb-5" id="mainNav">
-              <div className="container">
-                <a className="navbar-brand js-scroll-trigger" onClick={() => {
-                    // this.setActive('hotels');
+                <a className="navbar-brand d-flex align-items-center " onClick={() => {
                     this.props.history.push("/");
                 }}>
-                  <span className="megrim large blackColor pointer">MOtBOARD</span>
+                  <span className="megrim white pt-3 pl-5 pointer motboardlogo">MOtBOARD</span>
                 </a>
-                <div className="collapse navbar-collapse" id="navbarResponsive">
                   <ul className="navbar-nav text-uppercase ml-auto">
                     <li className="nav-item">
-                      <a className="nav-link js-scroll-trigger pointer" onClick={() => {
-                          // this.setActive('hotels');
+                      <a className="nav-link" style={{'font-size':'1.4em'}} onClick={() => {
                           this.props.history.push("/Boards");
                       }}>boards</a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link js-scroll-trigger pointer" onClick={() => {
-                          // this.setActive('hotels');
+                      <a className="nav-link" style={{'font-size':'1.4em'}} onClick={() => {
                           this.props.history.push("/About");
                       }}>About</a>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link js-scroll-trigger pointer" onClick={() => {
-                          // this.setActive('hotels');
+                      <a className="nav-link js-scroll-trigger pointer" style={{'font-size':'1.4em'}} onClick={() => {
                           this.props.history.push("/Team");
                       }}>Team</a>
                     </li>
                   </ul>
-                </div>
-              </div>
             </nav>
-          </div>
+          </header>
           {/*{*/}
             {/*this.props.signup ? <SignIn/> : <SignUp/>*/}
           {/*}*/}
