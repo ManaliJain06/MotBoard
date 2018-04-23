@@ -3,13 +3,14 @@ import {GridList, GridTile} from 'material-ui/GridList';
 import RGL, { WidthProvider } from "react-grid-layout";
 import '../css/arrange-motbaordImages.css';
 import _ from "lodash";
+import {withRouter} from "react-router-dom";
 const ReactGridLayout = WidthProvider(RGL);
 
 //const originalLayout = getFromLS("layout") || [];
 /**
  * This layout demonstrates how to sync to localstorage.
  */
-class LocalStorageLayout extends React.PureComponent {
+class Arrange extends React.PureComponent {
     static defaultProps = {
         className: "layout",
         images:[
@@ -108,4 +109,4 @@ class LocalStorageLayout extends React.PureComponent {
     }
 }
 
-    export default LocalStorageLayout;
+export default withRouter(Arrange);
