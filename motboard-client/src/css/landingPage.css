@@ -2,11 +2,19 @@
   transform: rotate(45deg);
   opacity: 0.5;
 }
+.motboardlogo{
+  text-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+  font-size:40px;
+}
 .megrim{
   font-family: 'Megrim', cursive;
 }
 .blackColor{
   color:#424242;
+}
+
+.white{
+    color:#ffffff;
 }
 .pointer{
   cursor: pointer;
@@ -19,19 +27,29 @@
 }
 
 .cardbackColor{
-  background-color:#d7ccc8
+  background-color:#ffffff;
 }
 .icon{
   font-size:100px;
-  color:#d7ccc8;
+  color:#FFF176;
 }
 
 .inspired{
-  font-size:70px;
+  font-size:30px;
+  color:rgba(0,0,0,0.1);
+}
+
+.inspired-text{
+  font-size:60px;
   color:rgba(0,0,0,0.1);
 }
 .cardboxWidth{
   width: 18rem;
+}
+
+#myVideo {
+  position: fixed;
+  z-index: -10;
 }
 .footercss{
   height:70px;
@@ -74,16 +92,7 @@
   background-color:#ffffff;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
-.Imagecontainer {
-    position: relative;
-    text-align: center;
-    color: white;
-}
-.Imagecontainer-right {
-    position: absolute;
-    bottom: 8px;
-    right: 16px;
-}
+
 .TeamContainer{
   font-size: 20px;
   color: darkgrey;
@@ -127,6 +136,7 @@
 
 #mainNav .navbar-nav .nav-item .nav-link.active, #mainNav .navbar-nav .nav-item .nav-link:hover {
   color: #fed136;
+  cursor: pointer;
 }
 @media (min-width: 992px) {
   #mainNav {
@@ -162,5 +172,5 @@
 #whyMotbaord{
   height:500px;
   width:100%;
-  background-color: #fbe9e7;
+  background-color: #ffffff;
 }

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Route, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-
+import moodboard1 from '../Images/moodboard1.png';
+import passion from '../Images/passion.jpg';
 class About extends Component{
     constructor(props){
         super(props);
@@ -9,74 +10,45 @@ class About extends Component{
     render(){
         return (
             <div>
-                <div className="row">
-                    <div className="Questrial col-lg-9">
-                        <div className="row justify-content-center">
-                            <div className="col-md-9 cardbox">
+                <div class="container pt-5 mt-5" style={{"padding":"25px"}}>
+                    <div class="row">
+                        <div class="col-md-7" >
+                            <img src={moodboard1} />
+                        </div>
+                        <div class="col-md-4 " style={{"padding":"30px","height":"auto"}}>
+                            <div class="container Questrial">
+                                <p>Our Wikipedia quotes <strong>Mood Board</strong> as:</p>
+                                <blockquote cite="https://en.wikipedia.org/wiki/Mood_board">
+                                    an arrangement of images, materials, pieces of text, etc., intended to evoke or project a particular style or concept.
+                                    <hr/><small>"we put together a mood board with key images and words that best convey the essence of the brand"</small>
+                                </blockquote>
 
                             </div>
                         </div>
                     </div>
-                    <div className="col-lg-3 mt-5 pt-5">
-                        <div className="mt-5 pt-5">
-                            <button className="ybutton mt-5" onClick={() => {
-                                this.props.history.push("/signUp");
-                            }}>SIGN UP</button>
-                            <br/>
-                            <button className="ybutton" onClick={() => {
-                                this.props.history.push("/signIn");
-                            }}>SIGN IN</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="whyMotbaord" className="container indexZ">
-                    <div className="row justify-content-end ">
-                        <div className="mr-5 Questrial inspired">
-                            Stay Inspired!
-                        </div>
-                        <br/>
-                    </div>
-                    <div className="row justify-content-center">
-                        <div className="card cardboxBottom mr-5 Questrial cardboxWidth">
-                            <div className="row justify-content-center p-5 ">
-                                <i className="material-icons icon">share</i>
-                            </div>
-                            <div className="card-body cardbackColor">
-                                <hr/>
-                                <p className="card-text alignCenter">Share your MotBoards and help your
-                                    fellow creative people draw some inspiration from.</p>
+                    <div className="row">
+                        <div className="col-md-6 " style={{"padding": "30px", "height": "auto"}}>
+                            <div className="container Questrial">
+                                <p>we, at Motboard quote <strong>Mood Board</strong> as:</p>
+                                <blockquote cite="https://en.wikipedia.org/wiki/Mood_board">
+                                    an inspiration world
+                                    <hr/>
+                                    <small>"A rainbow place where anyone loves to get lost."
+                                    </small>
+                                </blockquote>
+                                <div className="row justify-content-end ">
+                                    <div className="mr-5 mb-3 Questrial" style={{'font-size':'70px','color':'rgba(0,0,0,0.1)'}}>
+                                        Passion led us here.
+                                    </div>
+                                    <br/>
+                                </div>
                             </div>
                         </div>
-
-                        <div className="card cardboxBottom mr-5 Questrial cardboxWidth">
-                            <div className="row justify-content-center p-5 ">
-                                <i className="material-icons icon">collections</i>
-                            </div>
-                            <div className="card-body cardbackColor">
-                                <hr/>
-                                <p className="card-text alignCenter">Collect your MotBoards and access
-                                    them whenever you need some inspiration.</p>
-                            </div>
-                        </div>
-
-                        <div className="card cardboxBottom Questrial cardboxWidth">
-                            <div className="row justify-content-center p-5 ">
-                                <i className="material-icons icon">palette</i>
-                            </div>
-                            <div className="card-body cardbackColor">
-                                <hr/>
-                                <p className="card-text alignCenter">GET INSPIRED</p>
-                            </div>
+                        <div className="col-md-6">
+                            <img src={passion}/>
                         </div>
                     </div>
                 </div>
-
-                <footer>
-                    <div className="row justify-content-center footercss">
-                        <div className="row mt-3">CMPE 280 Project - SPRING 2018</div>
-                    </div>
-                </footer>
             </div>
         )
     }
