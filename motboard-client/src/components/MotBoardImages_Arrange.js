@@ -9,23 +9,6 @@ const ReactGridLayout = WidthProvider(RGL);
 /**
  * This layout demonstrates how to sync to localstorage.
  */
-
-const styles = {
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-    },
-    gridList: {
-        width: 'auto',
-        height: 'auto',
-    },
-};
-
-const iconStyles = {
-    marginRight: 24,
-};
-
 class LocalStorageLayout extends React.PureComponent {
     static defaultProps = {
         className: "layout",
@@ -68,8 +51,8 @@ class LocalStorageLayout extends React.PureComponent {
             },
 
         ],
-        cols: 12,
-        rowHeight: 50,
+        cols: 10,
+        rowHeight: 100,
         onLayoutChange: function () {
         },
         // This turns off compaction so you can place items wherever.
@@ -96,12 +79,12 @@ class LocalStorageLayout extends React.PureComponent {
     generateLayout() {
         const p = this.props;
         return _.map(new Array(this.props.images.length), function (item, i) {
-            const y = _.result(p, "y") || Math.ceil(4) + 1;
+            const y = _.result(p, "y") || Math.ceil(8) + 1;
             return {
                 x: (i * 2) % 12,
                 y: Math.floor(i / 6) * y,
                 w: 2,
-                h: y,
+                h: 2,
                 i: i.toString()
             };
         });
@@ -116,7 +99,7 @@ class LocalStorageLayout extends React.PureComponent {
             <ReactGridLayout
                 layout={this.state.layout}
                 onLayoutChange={this.onLayoutChange}
-                rowHeight={30}
+                rowHeight={100}
                 {...this.props}
             >
                 {this.generateDOM()}

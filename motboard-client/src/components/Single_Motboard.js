@@ -3,6 +3,8 @@ import {Route, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {GridList, GridTile} from 'material-ui/GridList';
 import '../css/single-motboard.css';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
 
 const styles = {
     root: {
@@ -19,6 +21,11 @@ const styles = {
 const iconStyles = {
     marginRight: 24,
 };
+const customContentStyle = {
+    width: '50%',
+    maxWidth: '20',
+};
+
 const tilesData = [
     {
         url: 'https://images.unsplash.com/photo-1519407710298-222d42b8cdc3?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6785fcbdf1abe767250b836e81178808&auto=format&fit=crop&w=1053&q=80',
@@ -60,13 +67,33 @@ const tilesData = [
 
 
 ];
-
+const image ={
+    'url':'null',
+}
 class Single_Motboard extends Component{
     constructor(props){
         super(props);
     }
+    state = {
+        open: false,
+    };
 
+    handleClose = () => {
+        this.setState({open: false});
+    };
+    getFullImage = (imageURL) => {
+        console.log(imageURL);
+        image.url=imageURL;
+        this.setState({open: true});
+    }
     render(){
+        const actions = [
+            <FlatButton
+                label="Cancel"
+                primary={true}
+                onClick={this.handleClose}
+            />,
+        ];
         return (
             <div>
                 <div className="row justify-content-center">
@@ -80,14 +107,13 @@ class Single_Motboard extends Component{
                             >
                                 {tilesData.map((tile) => (
                                     <GridTile
+                                        onClick={(event)=>{this.getFullImage(tile.url)}}
                                         key={tile.img}
                                         title={
-
                                             <div>
                                                 <input type={"text"}
                                                       placeholder={"Add Comment"}
                                                       class={'motboard-single-image-comment'}
-
                                         />
                                             </div>}
                                         // subtitle={<span>by <b>{tile.author}</b></span>}
@@ -98,6 +124,17 @@ class Single_Motboard extends Component{
                                     </GridTile>
                                 ))}
                             </GridList>
+                            <Dialog
+                                actions={actions}
+                                modal={true}
+                                open={this.state.open}
+                                onRequestClose={this.handleClose}
+                                contentStyle={customContentStyle}
+                                autoScrollBodyContent={false}
+                            >
+                                <img src={image.url} height={document.body.clientHeight/3} width={'auto'}/>
+                                {console.log(document.body.clientHeight)}
+                            </Dialog>
                         </div>
                     </div>
                 </div>

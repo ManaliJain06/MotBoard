@@ -3,7 +3,7 @@ import './App.css';
 import {BrowserRouter} from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Homepage from './components/Homepage';
-import MotBoardImages_Arrange from './components/MotBoardImages_Arrange';
+import Single_Motboard from './components/Single_Motboard';
 class App extends Component {
   render() {
     return (
@@ -11,7 +11,7 @@ class App extends Component {
               <MuiThemeProvider>
               <BrowserRouter>
                   {/*<Homepage/>*/}
-                  <MotBoardImages_Arrange/>
+                  <Single_Motboard/>
               </BrowserRouter>
               </MuiThemeProvider>
           </div>
