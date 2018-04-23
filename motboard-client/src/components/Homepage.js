@@ -21,12 +21,12 @@ class Homepage extends Component{
     render(){
         return (
           <div>
-          <header>
-            <nav className="navbar navbar-expand-lg navbar-dark fixed-top mb-5" id="mainNav">
+          <header >
+            <nav style={{'background-color':'#ffffff'}} className="navbar navbar-expand-lg navbar-dark fixed-top mb-5" id="mainNav">
                 <a className="navbar-brand d-flex align-items-center " onClick={() => {
                     this.props.history.push("/");
                 }}>
-                  <span className="megrim white pt-3 pl-5 pointer motboardlogo">MOtBOARD</span>
+                  <span className="megrim blackColor pt-3 pl-5 pointer motboardlogo">MOtBOARD</span>
                 </a>
                   <ul className="navbar-nav text-uppercase ml-auto">
                     <li className="nav-item">
@@ -47,6 +47,7 @@ class Homepage extends Component{
                   </ul>
             </nav>
           </header>
+              <div className="pt-5 mt-5">
           {/*{*/}
             {/*this.props.signup ? <SignIn/> : <SignUp/>*/}
           {/*}*/}
@@ -90,6 +91,7 @@ class Homepage extends Component{
                       <Motboards_List/>
                   </div>
               )}/>
+              </div>
         </div>
         )
     }
