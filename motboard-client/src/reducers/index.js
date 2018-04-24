@@ -1,22 +1,12 @@
 import {combineReducers} from 'redux';
 import loginReducer from './loginReducer';
-// import carsReducer from './carsReducer';
-// import hotelsReducer from './hotelsReducer';
-// import flightsReducer from './flightsReducer';
-// import flightFilteredData from './filter-flight-data';
-// import carFilteredData from './filter-car-data';
-// import hotelFilteredData from './filter-hotel-data';
-// import bookingReducer from './bookingReducer';
+import signUpReducer from './signupReducer';
+
+
 
 const allReducers = combineReducers({
-    loginData: loginReducer
-    // carsData : carsReducer,
-    // hotelsData : hotelsReducer,
-    // flightsData : flightsReducer,
-    // flightFilteredData:flightFilteredData,
-    // carFilteredData:carFilteredData,
-    // hotelFilteredData:hotelFilteredData,
-    // bookingSelected: bookingReducer
+    loginData: loginReducer,
+    signUpData:signUpReducer
 });
 
 export default allReducers;

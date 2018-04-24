@@ -1,16 +1,13 @@
 const loginState = {
-    'isLogged' : false,
-    'loginData' : ''
-}
+    'isLoggedin' : false,
+    'username' : ''
+};
 
 export default function (state=loginState,action){
 
     switch (action.type) {
-        case "LOGIN_DATA":
-            console.log("at reducer",action.user);
-            const newState  = Object.assign({}, state, { isLogged: action.flag , loginData: action.user});
-            console.log("new sate",newState);
-            return newState;
+        case "SIGNUP_SUCCESSFULL":
+            return action.payload;
         default :
             return state
     }
