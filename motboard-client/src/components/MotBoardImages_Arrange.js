@@ -76,8 +76,8 @@ class Arrange extends React.PureComponent {
     generateDOM() {
         return _.map(this.props.images, function (item,i) {
             return (
-                <div key={i} className="container arrange_image_card m-5" style={{"height":"100%","width":"100%","background-color":"white"}}>
-                    <img src={item.url}   alt="Mountain View" style={{'height': '100%', 'width': '100%'}}/>
+                <div key={i} className="container arrange_image_card m-5" style={{"height":"100%","width":"auto","background-color":"white"}}>
+                    <img src={item.url} class="imgArrange"  alt="Mountain View" style={{'height': '100%', 'width': 'auto'}}/>
                 </div>
             );
         });
