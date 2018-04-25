@@ -1,10 +1,12 @@
 import React from "react";
 import {GridList, GridTile} from 'material-ui/GridList';
-import RGL, { WidthProvider } from "react-grid-layout";
+import RGL from "react-grid-layout";
 import '../css/arrange-motbaordImages.css';
 import _ from "lodash";
 import {withRouter} from "react-router-dom";
-const ReactGridLayout = WidthProvider(RGL);
+import {Responsive, WidthProvider} from "react-grid-layout";
+
+const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 //const originalLayout = getFromLS("layout") || [];
 /**
@@ -13,6 +15,7 @@ const ReactGridLayout = WidthProvider(RGL);
 class Arrange extends React.PureComponent {
     static defaultProps = {
         className: "layout",
+        rowHeight: 30,
         images:[
             {
                 url: 'https://images.unsplash.com/photo-1519407710298-222d42b8cdc3?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6785fcbdf1abe767250b836e81178808&auto=format&fit=crop&w=1053&q=80',
@@ -52,61 +55,116 @@ class Arrange extends React.PureComponent {
             },
 
         ],
-        cols: 10,
-        rowHeight: 100,
         onLayoutChange: function () {
         },
-        // This turns off compaction so you can place items wherever.
-        verticalCompact: true,
-        preventCollision: true
+        cols: {lg: 12, md: 10, sm: 6, xs: 4, xxs: 2},
+        initialLayout: generateLayout()
     };
 
-    constructor(props) {
-        super(props);
-        const layout = this.generateLayout();
-        this.state = {layout};
+    state = {
+        currentBreakpoint: "lg",
+        compactType: "horizontal",
+        mounted: false,
+        layouts: {lg: this.props.initialLayout}
+    };
+
+
+    componentDidMount() {
+        this.setState({mounted: true});
     }
 
     generateDOM() {
         return _.map(this.props.images, function (item,i) {
             return (
-                <div key={i} className="arrange_image_card m-5">
-                        <img src={item.url} alt="Mountain View" height={300} width={'auto'}/>
+                <div key={i} className="container arrange_image_card m-5" style={{"height":"100%","width":"100%","background-color":"white"}}>
+                    <img src={item.url}   alt="Mountain View" style={{'height': '100%', 'width': '100%'}}/>
                 </div>
             );
         });
     }
 
-    generateLayout() {
-        const p = this.props;
-        return _.map(new Array(this.props.images.length), function (item, i) {
-            const y = _.result(p, "y") || Math.ceil(8) + 1;
-            return {
-                x: (i * 2) % 12,
-                y: Math.floor(i / 6) * y,
-                w: 2,
-                h: 2,
-                i: i.toString()
-            };
+    onBreakpointChange = breakpoint => {
+        this.setState({
+            currentBreakpoint: breakpoint
         });
-    }
+    };
 
-    onLayoutChange(layout) {
-        this.props.onLayoutChange(layout);
-    }
+    onCompactTypeChange = () => {
+        const {compactType: oldCompactType} = this.state;
+        const compactType =
+            oldCompactType === "horizontal"
+                ? "vertical"
+                : oldCompactType === "vertical" ? null : "horizontal";
+        this.setState({compactType});
+    };
+
+    onLayoutChange = (layout, layouts) => {
+        this.props.onLayoutChange(layout, layouts);
+    };
+
+
+    onNewLayout = () => {
+        this.setState({
+            layouts: {lg: generateLayout()}
+        });
+    };
+
+    // constructor(props) {
+    //     super(props);
+    //     const layout = ()=>this.generateLayout();
+    // console.log(layout);
+    //     this.state = {layout};
+    // }
+
 
     render() {
         return (
-            <ReactGridLayout
-                layout={this.state.layout}
-                onLayoutChange={this.onLayoutChange}
-                rowHeight={100}
-                {...this.props}
-            >
-                {this.generateDOM()}
-            </ReactGridLayout>
+            <div>
+                <div>
+                    Current Breakpoint: {this.state.currentBreakpoint} ({
+                    this.props.cols[this.state.currentBreakpoint]
+                }{" "}
+                    columns)
+                </div>
+                <div>
+                    Compaction type:{" "}
+                    {_.capitalize(this.state.compactType) || "No Compaction"}
+                </div>
+                <button onClick={this.onNewLayout}>Generate New Layout</button>
+                <button onClick={this.onCompactTypeChange}>
+                    Change Compaction Type
+                </button>
+                <ResponsiveReactGridLayout
+                    {...this.props}
+                    layouts={this.state.layouts}
+                    onBreakpointChange={this.onBreakpointChange}
+                    onLayoutChange={this.onLayoutChange}
+                    // WidthProvider option
+                    measureBeforeMount={false}
+                    // I like to have it animate on mount. If you don't, delete `useCSSTransforms` (it's default `true`)
+                    // and set `measureBeforeMount={true}`.
+                    useCSSTransforms={this.state.mounted}
+                    compactType={this.state.compactType}
+                    preventCollision={!this.state.compactType}
+                >
+                    {this.generateDOM()}
+                </ResponsiveReactGridLayout>
+            </div>
         );
     }
+}
+
+function generateLayout() {
+    return _.map(_.range(0, 25), function(item, i) {
+        var y = Math.ceil( 7) + 1;
+        return {
+            x: (_.random(0, 5) * 2) % 12,
+            y: Math.floor(i / 6) * y,
+            w: 3,
+            h: y,
+            i: i.toString()
+        };
+    });
 }
 
 export default withRouter(Arrange);
