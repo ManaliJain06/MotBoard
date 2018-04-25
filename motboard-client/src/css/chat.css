@@ -1,0 +1,10 @@
+.chat-sticky {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: right;
+    margin-right:20px;
+    margin-bottom:20px;
+}

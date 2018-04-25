@@ -14,28 +14,30 @@
 }
 
 @media screen and (max-width: 768px) {
-    img {
+    .imgArrange {
         width: 32%;
     }
 }
 @media screen and (max-width: 500px) {
-    img {
+    .imgArrange  {
         margin-top: 4%;
         width: 48%;
     }
 }
 @media screen and (max-width: 300px) {
-    img {
+    .imgArrange  {
         width: 100%;
     }
 }
 
-img{
+.imgArrange {
     border:2px solid #fff;
-    -moz-box-shadow: 10px 10px 5px #ccc;
-    -webkit-box-shadow: 10px 10px 5px #ccc;
-    box-shadow: 10px 10px 5px #ccc;
-    -moz-border-radius:25px;
-    -webkit-border-radius:25px;
-    border-radius:25px;
+    -moz-box-shadow: 0px 2px 4px #ccc;
+    -webkit-box-shadow: 0px 2px 4px #ccc;
+    box-shadow: 0px 2px 4px #ccc;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    overflow: hidden;
+    object-fit: cover;
 }
