@@ -11,15 +11,18 @@
 .ybutton{
   padding-top:20px;
   padding-bottom:20px;
-  margin-bottom:20px;
+  margin-bottom:10px;
+  margin-top:10px;
   padding-left:10px;
   padding-right:10px;
-  width:70%;
+  width:50%;
   border-radius: 40px;
   background-color:#fff176;
   border:#fff176 1px solid;
   transition:0.3s;
-  height:auto
+  height:auto;
+  color:#424242;
+  font-size: 20px;
 }
 
 .ybutton:hover{
@@ -34,7 +37,8 @@
   background-color:#ffffff;
   border:#ffffff 1px solid;
   transition:0.3s;
-  height:auto
+  height:auto;
+  font-size: 15px;
 }
 
 .ybuttonSecondary:hover{
@@ -43,8 +47,8 @@
 }
 
 .inputfield{
-  padding-top:20px;
-  padding-bottom:20px;
+  padding-top:10px;
+  padding-bottom:10px;
   margin-bottom:20px;
   padding-left:10px;
   padding-right:10px;

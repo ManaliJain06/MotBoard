@@ -8,10 +8,24 @@ import BalloonPage from './BalloonPage';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
 import '../css/landingPage.css';
+import '../css/animate.css';
 import { findDOMNode } from 'react-dom';
 import $ from 'jquery';
 import MotBoardImages_Arrange from "./MotBoardImages_Arrange";
 import Motboards_List from "./Motboards_List";
+import Radium, {StyleRoot} from 'radium';
+import { slideInRight,slideInLeft } from 'react-animations';
+
+const styles = {
+    slideInRight: {
+        animation: 'x 0.5s',
+        animationName: Radium.keyframes(slideInRight, 'slideInRight'),
+    },
+    slideInLeft: {
+        animation: 'x 0.5s',
+        animationName: Radium.keyframes(slideInLeft, 'slideInLeft'),
+    }
+}
 
 class Homepage extends Component{
     constructor(props){
@@ -47,20 +61,24 @@ class Homepage extends Component{
                   </ul>
             </nav>
           </header>
-
               <div className="pt-5 mt-5">
           {/*{*/}
             {/*this.props.signup ? <SignIn/> : <SignUp/>*/}
           {/*}*/}
           <Route exact path="/" render={() => (
-              <div>
+
+              <StyleRoot>
+                  <div className="pt-5 slideInLeft mt-5" style={styles.slideInLeft}>
                   <BalloonPage/>
               </div>
+              </StyleRoot>
           )}/>
           <Route exact path="/images" render={() => (
-              <div>
+              <StyleRoot>
+                  <div className="pt-5 slideInRight mt-5" style={styles.slideInRight}>
                   <Board/>
               </div>
+              </StyleRoot>
           )}/>
           <Route exact path="/Arrange" render={() => (
               <div>
@@ -68,14 +86,18 @@ class Homepage extends Component{
               </div>
           )}/>
           <Route exact path="/About" render={() => (
-              <div>
+              <StyleRoot>
+                  <div className="pt-5 slideInRight mt-5" style={styles.slideInRight}>
                   <About/>
               </div>
+              </StyleRoot>
           )}/>
           <Route exact path="/Team" render={() => (
-              <div>
+              <StyleRoot>
+                  <div className="pt-5 slideInRight mt-5" style={styles.slideInRight}>
                   <Team/>
               </div>
+              </StyleRoot>
           )}/>
           <Route exact path="/signUp" render={() => (
               <div>
@@ -88,9 +110,11 @@ class Homepage extends Component{
               </div>
           )}/>
               <Route exact path="/Boards" render={() => (
-                  <div>
+                  <StyleRoot>
+                      <div className="pt-5 slideInRight mt-5" style={styles.slideInRight}>
                       <Motboards_List/>
                   </div>
+                  </StyleRoot>
               )}/>
               </div>
         </div>
