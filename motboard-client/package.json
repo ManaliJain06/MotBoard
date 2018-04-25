@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "bower": "^1.8.4",
     "jquery": "^3.3.1",
     "material-ui": "^0.20.0",
     "react": "^16.3.2",
@@ -13,7 +14,9 @@
     "react-router": "~4.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
