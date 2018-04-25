@@ -4,6 +4,16 @@ import {connect} from 'react-redux';
 import manvi from '../Images/manvi.png';
 import sanjay from '../Images/sanjay.jpg';
 import manali from '../Images/manali.jpg';
+import Radium, {StyleRoot} from 'radium';
+import { fadeInLeft } from 'react-animations';
+
+
+const styles = {
+    fadeInLeft: {
+        animation: 'x 1s',
+        animationName: Radium.keyframes(fadeInLeft, 'bounce'),
+    }
+}
 
 class Team extends Component{
     constructor(props){
@@ -11,13 +21,17 @@ class Team extends Component{
     }
     render(){
         return (
-            <div className="container" style={{"padding-top":"60px", "padding-bottom":"55px"}}>
+            <div className="container" style={{"padding-top":"20px", "padding-bottom":"55px"}}>
                 <div>
                     <div id="whyMotbaord" className="container indexZ">
                         <div className="row justify-content-end ">
-                            <div className="mr-5 mb-3 Questrial inspired">
-                                The brains behind MotBoard.
-                            </div>
+                            <StyleRoot>
+                                <div className="fadeInLeft" style={styles.fadeInLeft}>
+                                    <p className="mr-5 mb-3 Questrial inspired" style={{'text-align':'center','font-size':'40px'}}>
+                                        The brains behind MotBoard.
+                                    </p>
+                                </div>
+                            </StyleRoot>
                             <br/>
                         </div>
                         <div className="row justify-content-center">

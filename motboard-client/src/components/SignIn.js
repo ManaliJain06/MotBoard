@@ -3,7 +3,7 @@ import {Route, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import '../css/signup.css';
 import {signinAction} from '../actions';
-
+import signin from '../Images/signin.jpg';
 
 
 class SignIn extends Component {
@@ -25,7 +25,11 @@ class SignIn extends Component {
         return (
             <div>
                 <div className="row justify-content-center">
-                    <div className="col-md-6 cardbox">
+                    <div className="col-md-6 indexZ" >
+                        <img src={signin} alt="hello" style={{'height':'40vw','object-fit':'contain','margin-right':'20px'}} className={"indexZ"}/>
+                    </div>
+                    <div className="col-md-4 cardbox">
+                        <h4 className='Questrial' style={{'margin-bottom':'10px','text-align':'center'}}>SIGN IN</h4>
                         <input type="email" className="inputfield" placeholder="Email"
                                value={this.state.userdata.username}
                                onChange={(event) => {

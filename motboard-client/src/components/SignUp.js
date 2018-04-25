@@ -3,7 +3,7 @@ import {Route, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import '../css/signup.css';
 import {signupAction} from '../actions';
-
+import signup from '../Images/test.jpg';
 
 class Homepage extends Component {
     constructor(props) {
@@ -28,7 +28,10 @@ class Homepage extends Component {
         return (
             <div>
                 <div className="row justify-content-center">
-                    <div className="col-md-6 cardbox">
+                    <div className="col-md-6 indexZ" >
+                        <img src={signup} alt="hello" style={{'height':'40vw','object-fit':'contain','margin-left':'50px'}} className={"indexZ"}/>
+                    </div>
+                    <div className="col-md-4 cardbox">
                         <input className="inputfield" placeholder="First Name"
                                value={this.state.userdata.firstname}
                                onChange={(event) => {

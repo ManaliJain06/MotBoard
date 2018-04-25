@@ -8,8 +8,6 @@ import inspire from '../Images/inspire.jpg';
 import collect from '../Images/collect.jpg';
 import share from '../Images/share.jpg';
 import inspired from '../Images/inspired.gif';
-import sunrise from '../Images/sunrise.mp4';
-import mountain from '../Images/mountain.mp4';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
 import Featured_Motboards_List from "./Featured_Motboards_List";
@@ -22,7 +20,7 @@ class BalloonPage extends Component {
     }
 
     componentDidMount() {
-        var terms = ["logo design ideas", "favourite website design", "mobile app design ideas"];
+        var terms = ["logo designs", "favourite colors", "favourite textures"];
 
         function rotateTerm() {
             var ct = $("#rotate").data("term") || 0;
@@ -65,7 +63,7 @@ class BalloonPage extends Component {
 
                 <section className="jumbotron Questrial" style={{"background": "transparent"}}>
                     <div className="container" style={{"padding": "50px;"}}>
-                        <p style={{"text-align":"right","font-size": "25px"}}>Share your <span id="rotate" style={{"text-shadow": "black 0px 0px 2px"}}>this</span></p>
+
                         <h1 style={{
                             "color": "#424242",
                             "padding-top": "30px",
@@ -73,9 +71,7 @@ class BalloonPage extends Component {
                             "font-size": "6em"
                         }}>Get that Inspiration.
                         </h1>
-                        <p style={{"color": "black", "text-align": "right"}}>
-                            Browse through the mood boards from different designers.
-                        </p>
+                        <p style={{"text-align":"right","font-size": "25px"}}>Share your <span id="rotate" style={{"text-shadow": "black 0px 0px 0.1px"}}>this</span></p>
                     </div>
                 </section>
 

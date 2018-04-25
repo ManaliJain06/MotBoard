@@ -36,8 +36,9 @@
 }
 
 .inspired{
-  font-size:30px;
-  color:rgba(0,0,0,0.1);
+  font-size:200px;
+  color:rgba(0,0,0,0.2);
+  text-align:center;
 }
 
 .inspired-text{
