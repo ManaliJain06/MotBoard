@@ -1,0 +1,5 @@
+.bandw:hover{
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    transition: 0.5s ease-in-out;
+}

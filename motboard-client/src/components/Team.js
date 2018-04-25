@@ -6,7 +6,7 @@ import sanjay from '../Images/sanjay.jpg';
 import manali from '../Images/manali.jpg';
 import Radium, {StyleRoot} from 'radium';
 import { fadeInLeft } from 'react-animations';
-
+import '../css/team.css';
 
 const styles = {
     fadeInLeft: {
@@ -21,7 +21,7 @@ class Team extends Component{
     }
     render(){
         return (
-            <div className="container" style={{"padding-top":"20px", "padding-bottom":"55px"}}>
+            <div className="container" style={{"padding-bottom":"55px"}}>
                 <div>
                     <div id="whyMotbaord" className="container indexZ">
                         <div className="row justify-content-end ">
@@ -37,7 +37,7 @@ class Team extends Component{
                         <div className="row justify-content-center">
 
                             <div className="card cardboxBottom mr-5 Questrial cardboxWidth" style={{"width": "30rem","border":"none"}}>
-                                <img className="card-img-top" style={{"border-radius": "50%"}} src={manali} alt="Card image cap"/>
+                                <img className="card-img-top bandw" style={{"border-radius": "50%"}} src={manali} alt="Card image cap"/>
                                 <div className="card-body">
                                     <h5 className="card-title" style={{"text-align":"center","font-size":"30px","color":"#DBB747"}}>Manali</h5>
                                     <p className="card-text" style={{"text-align":"center"}}>I am a web UI Enthusiast. I am Passionate about coding.
@@ -46,7 +46,7 @@ class Team extends Component{
                             </div>
 
                             <div className="card cardboxBottom ml-5 mr-5 Questrial cardboxWidth" style={{"width": "30rem","border":"none"}}>
-                                <img className="card-img-top" style={{"border-radius": "50%"}} src={manvi} alt="Card image cap"/>
+                                <img className="card-img-top bandw" style={{"border-radius": "50%"}} src={manvi} alt="Card image cap"/>
                                 <div className="card-body">
                                     <h5 className="card-title" style={{"text-align":"center","font-size":"30px","color":"#DBB747"}}>Manvitha</h5>
                                     <p className="card-text" style={{"text-align":"center"}}>I am a digital nomad passionate about web development.I am always inspired by random things like the precision of spider web, beautiful sunrise and motivational quotes.</p>
@@ -54,7 +54,7 @@ class Team extends Component{
                             </div>
 
                             <div className="card cardboxBottom ml-5 mr-5 Questrial cardboxWidth" style={{"width": "30rem","border":"none"}}>
-                                <img className="card-img-top" style={{"border-radius": "50%"}} src={sanjay} alt="Card image cap"/>
+                                <img className="card-img-top bandw" style={{"border-radius": "50%"}} src={sanjay} alt="Card image cap"/>
                                 <div className="card-body">
                                     <h5 className="card-title" style={{"text-align":"center","font-size":"30px","color":"#DBB747"}}>Sanjay</h5>
                                     <p className="card-text" style={{"text-align":"center"}}>Go ahead, get inspired. Think left and think right and think low and think high and of course, think diagonal! </p>

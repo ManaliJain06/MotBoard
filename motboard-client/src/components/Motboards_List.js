@@ -5,7 +5,9 @@ import {GridList, GridTile} from 'material-ui/GridList';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import '../css/single-motboard.css';
 import Fav from 'material-ui/svg-icons/action/favorite-border';
+import FavFilled from 'material-ui/svg-icons/action/favorite';
 import {red500, fullWhite, blue500} from 'material-ui/styles/colors';
+import Checkbox from 'material-ui/Checkbox';
 
 const styles = {
     root: {
@@ -17,6 +19,19 @@ const styles = {
         width: 'auto',
         height: 'auto',
     },
+    block: {
+        maxWidth: 250,
+    },
+    checkbox: {
+        marginBottom: 16,
+        fontSize: '30px',
+        iconSize: '30px',
+    },
+    icon:{
+        fill: 'white',
+        width: 30,
+        height: 30,
+    }
 };
 
 const iconStyles = {
@@ -77,7 +92,17 @@ class Motboards_List extends Component{
     constructor(props){
         super(props);
     }
+    state = {
+        checked: false,
+    }
 
+    updateCheck() {
+        this.setState((oldState) => {
+            return {
+                checked: !oldState.checked,
+            };
+        });
+    }
     render(){
         return (
             <div>
@@ -99,8 +124,14 @@ class Motboards_List extends Component{
                                             </div>
                                         }
                                         actionIcon={<div>
-                                            <Fav style={iconStyles} color={fullWhite}/>
-                                            <span>{tile.likes}</span>
+                                            <Checkbox
+                                                labelStyle={{color: 'white'}}
+                                                iconStyle={styles.icon}
+                                                checkedIcon={<FavFilled />}
+                                                uncheckedIcon={<Fav/>}
+                                                label={tile.likes}
+                                                style={styles.checkbox}
+                                            />
                                         </div>}
                                         actionPosition={'right'}
                                         // subtitle={<span>by <b>{tile.author}</b></span>}
