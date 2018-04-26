@@ -94,7 +94,7 @@ class Motboards_List extends Component{
     }
     state = {
         checked: false,
-    }
+    };
 
     updateCheck() {
         this.setState((oldState) => {

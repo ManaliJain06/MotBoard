@@ -26,17 +26,20 @@ router.post('/motboard', type2, function (req, res, next) {
             //var get the motboard name while inserting the all images
             coll.findOne({username: 'sanjay'}, function (err, user) {
                 var temp;
+                var images;
                 if (user) {
                     for (var i = 0; i < user.motboards.length; i++) {
-                        if (user.motboards[i].name === "second") {
+                        if (user.motboards[i].name === "first") {
                             if (user.motboards[i].images.length === 0)
                                 user.motboards[i].images.push(imagesArray);
                             else {
                                 for (var k = 0; k < imagesArray.length; k++)
                                     user.motboards[i].images[0].push(imagesArray[k]);
                                 temp = user.motboards;
+                                images = user.motboards[i].images;
                                 break;
                             }
+                            images = user.motboards[i].images;
                             temp = user.motboards;
                         }
                     }
@@ -46,7 +49,9 @@ router.post('/motboard', type2, function (req, res, next) {
                             'motboards': temp
                         }
                     });
-                    res.status(200).send("got the motboard");
+                    res.status(201).json({
+                        images: images[0]
+                    })
                 }
                 else {
                     res.status(400).send("No output");

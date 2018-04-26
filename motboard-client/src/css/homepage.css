@@ -1,0 +1,47 @@
+.header {
+    font-size: 19px;
+    margin-right: 32%;
+    color: #222222;
+    font-weight: bold;
+    font-family: inherit;
+
+}
+
+.subheader {
+    margin-right: 42%;
+    font-size: 13px;
+    color: lightslategrey;
+}
+
+
+.uploadFile1{
+    width: 1000px;
+    height: 250px;
+    background: rgba(150,225,150,0.5);
+    vertical-align: middle;
+    text-align: center;
+    padding: 0 20%;
+    margin-top: -334px;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 400px;
+    opacity: 0;
+}
+
+.uploadFile{
+    width: inherit;
+    height: inherit;
+    background: rgba(150,225,150,0.5);
+    opacity: 0;
+    cursor: pointer;
+}
+.uploadbox {
+    border: 2px dashed #cccccc;
+    width: 600px;
+    height: 150px;
+    cursor: pointer;
+    display: table;
+}
+.uploadbox:hover{
+    border: 2px dashed #0090ff;
+}
