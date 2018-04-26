@@ -10,6 +10,7 @@ router.post('/login', function (req, res, next) {
             var coll = mongo.collection('users');
             coll.findOne({username: req.body.userdata.username, password: req.body.userdata.password}, function (err, user) {
                 if (user) {
+
                     res.status(200).send("login Success");
                 } else {
                     res.status(400).send("login failure");

@@ -11,6 +11,7 @@ var motboard = require('./routes/motboard');
 var routes = require('./routes/index');
 var login = require('./routes/login');
 var users = require('./routes/users');
+let getImages=require('./routes/getImages');
 var insertImage=require('./routes/insertImage');
 var mongoSessionURL = "mongodb://localhost:27017/sessions";
 var expressSessions = require("express-session");
@@ -79,7 +80,7 @@ app.post('/signup', users);
 app.post('/motboard',createmotboard);
 app.post('/makePublic',makePublic);
 app.post('/insertImage',insertImage);
-
+app.post('/getImages',getImages);
 
 
 

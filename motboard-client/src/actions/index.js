@@ -43,6 +43,17 @@ function signupError(response) {
     };
 }
 
+function receivedImages(response) {
+
+return{
+    type:'RECEIVED_IMAGES',
+    payload:response.data
+};
+
+
+
+}
+
 
 export function signupAction(userdata) {
     return (dispatch) => {
@@ -61,6 +72,42 @@ export function signinAction(userdata) {
             dispatch(signIn(response,userdata))
         }).catch(error => {
             dispatch(signinError(error))
+        });
+    }
+}
+
+export function getImages(value) {
+  alert("inside images");
+    let motBoardName={
+        "motBoardName":value
+    };
+    return (dispatch) => {
+        const request = axios.post(`${ROOT_URL}/getImages`,motBoardName, {withCredentials: true}
+       , {headers: {
+                'accept': 'application/json',
+                'Accept-Language': 'en-US,en;q=0.8'
+       }}).then(response => {
+           dispatch(receivedImages(response));
+        }).catch(error => {
+            console.log("send error");
+        });
+    }
+}
+
+export function sendFiles(payload) {
+    return (dispatch) => {
+        alert("sanjay");
+        console.log(payload);
+        const request = axios.post(`${ROOT_URL}/motboard`,payload, {withCredentials: true}
+            ,{headers: {
+                'accept': 'application/json',
+                'Accept-Language': 'en-US,en;q=0.8',
+                'Content-Type': payload.get('mypic').type,
+            }}
+        ).then(response => {
+      dispatch(receivedImages(response));
+        }).catch(error => {
+            console.log("send error");
         });
     }
 }
