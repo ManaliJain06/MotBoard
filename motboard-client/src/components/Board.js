@@ -7,6 +7,8 @@ class Board extends Component{
         super(props);
     }
     render(){
+
+        console.log("inside borad");
         return (
             <div>
                 <SingleMotboard/>

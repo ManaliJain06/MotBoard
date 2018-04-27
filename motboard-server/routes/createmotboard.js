@@ -10,7 +10,10 @@ var storage2 = multer.diskStorage({
         cb(null, './public/images')
     },
     filename: function (req, file, cb) {
-        imagesArray.push(file.originalname);
+        var temp={};
+        temp.description="";
+        temp.url='http://localhost:3300/images/'+file.originalname;
+        imagesArray.push(temp);
         cb(null, file.originalname);
     }
 });
