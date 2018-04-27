@@ -40,7 +40,6 @@ class Homepage extends Component {
                             <div className="col-md-6 indexZ" >
                                 <img src={signup} alt="hello" style={{'opacity':'0.7','height':'40vw','object-fit':'contain','transform':'rotateY(180deg)'}} className={"indexZ"}/>
                             </div>
-
                             <div className="col-md-4 cardbox">
                                 <input className="inputfield" placeholder="First Name"
                                        value={this.state.userdata.firstname}
