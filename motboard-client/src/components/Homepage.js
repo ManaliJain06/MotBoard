@@ -16,6 +16,7 @@ import MotBoardImages_Arrange from "./MotBoardImages_Arrange";
 import Motboards_List from "./Motboards_List";
 import Radium, {StyleRoot} from 'radium';
 import {slideInRight, slideInLeft} from 'react-animations';
+import VoiceTest from "./VoiceTest";
 
 
 const styles = {
@@ -116,6 +117,11 @@ class Homepage extends Component {
                     <Route exact path="/upload" render={() => (
                         <div>
                             <Upload/>
+                        </div>
+                    )}/>
+                    <Route exact path="/upload" render={() => (
+                        <div>
+                            <VoiceTest/>
                         </div>
                     )}/>
                     <Route exact path="/Boards" render={() => (

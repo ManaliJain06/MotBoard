@@ -37,14 +37,11 @@ class BalloonPage extends Component {
             <div className="row">
                 <div className="col-lg-7 ml-5" id="myVideo">
                     <img src={colors}/>
-                    {/*<video autoPlay muted loop id="myVideo">*/}
-                    {/*<source src={mountain} type="video/mp4"/>*/}
-                    {/*</video>*/}
                 </div>
             </div>
             <div class="row justify-content-end">
-                <div className="col-lg-5 mt-5 pt-5">
-                    <div className="mt-5 pt-5">
+                <div className="col-lg-5">
+                    <div className="mt-5">
                         <button className="ybutton Questrial mt-5" style={{"font-size": "1.5em"}} onClick={() => {
                             this.props.history.push("/signUp");
                         }}>SIGN UP
@@ -68,8 +65,8 @@ class BalloonPage extends Component {
                             "color": "#424242",
                             "padding-top": "30px",
                             "text-align": "right",
-                            "font-size": "6em"
-                        }}>Get that Inspiration.
+                            "font-size": "4em"
+                        }}>Just the right Caffeine you need.
                         </h1>
                         <p style={{"text-align":"right","font-size": "25px"}}>Share your <span id="rotate" style={{"text-shadow": "black 0px 0px 0.1px"}}>this</span></p>
                     </div>
