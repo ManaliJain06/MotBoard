@@ -4,19 +4,19 @@ export const signup = (data) => {
     const emailPattern = /^[\w.]*@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
     const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z@]{8,}$/;
 
-    if(data.firstName ==='' || data.lastName ==='' || data.email ==='' || data.password ===''){
+    if(data.firstname ==='' || data.lastname ==='' || data.username ==='' || data.password ===''){
         msg = "All fields are mandatory. Please fill all details";
         return msg;
     }
-    if (!(namePattern.test(data.firstName))) {
+    if (!(namePattern.test(data.firstname))) {
         msg = "Enter correct First Name";
         return msg;
     }
-    if(!(namePattern.test(data.lastName))){
+    if(!(namePattern.test(data.lastname))){
         msg = "Enter correct Last Name";
         return msg;
     }
-    if (!(emailPattern.test(data.email))) {
+    if (!(emailPattern.test(data.username))) {
         msg = "Enter correct Email Address";
         return msg;
     }
@@ -33,15 +33,15 @@ export const signup = (data) => {
 
 export const login = (data) => {
     let msg = "";
-    const emailPattern = /^[\w.]*@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-
-    if( data.email ==='' || data.password ===''){
-        msg = "All fields are mandatory. Please fill all details";
-        return msg;
-    }
-    if (!(emailPattern.test(data.email))) {
-        msg = "Enter correct email";
-        return msg;
-    }
+    // const emailPattern = /^[\w.]*@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    //
+    // if( data.username ==='' || data.password ===''){
+    //     msg = "All fields are mandatory. Please fill all details";
+    //     return msg;
+    // }
+    // if (!(emailPattern.test(data.username))) {
+    //     msg = "Enter correct email";
+    //     return msg;
+    // }
     return msg;
 };

@@ -14,7 +14,7 @@ router.post('/signup', function (req, res, next) {
             var coll = mongo.collection('users');
             coll.findOne({username: req.body.userdata.username}, function (err, user) {
                 if (user) {
-                    res.send("401", "User already exist");
+                    res.status(401).send("User already exist");
                 } else {
                     var motboards = [];
                     coll.insert({
@@ -25,10 +25,10 @@ router.post('/signup', function (req, res, next) {
                         motboards: motboards
                     }, function (err, newuser) {
                         if (newuser) {
-                            res.status(200).send("user saved successfully");
+                            res.status(201).json({'user':newuser,'msg':"sigunup success"});
                         }
                         else {
-                            res.status(401).send("Failed Inserting User");
+                            res.status(400).send("Error occured");
                         }
                     })
                 }

@@ -5,7 +5,7 @@ import imagesReducer from './imagesReducer';
 
 
 const allReducers = combineReducers({
-    loginData: loginReducer,
+    loginStateData: loginReducer,
     signUpData:signUpReducer,
     imageData:imagesReducer
 });

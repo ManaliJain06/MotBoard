@@ -176,3 +176,31 @@
   width:100%;
   background-color: #ffffff;
 }
+
+.banner{
+  position:fixed;
+  display: block;
+  height: 50px;
+  width: 100%;
+  background-color: #fff176;
+  color: aliceblue;
+  /*text-align: /center;*/
+  text-decoration-style: solid;
+  text-shadow: #00B7FF;
+  padding: 0px;
+  size: 31px;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+ul.userMenu li {
+  position: relative;
+  display: inline-block;
+  float: left;
+  padding: 0px 5px 0px 5px;
+}
+ul.userMenu {
+  float:right;
+  color:black;
+  padding-right: 2%;
+}

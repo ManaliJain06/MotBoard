@@ -12,7 +12,8 @@ router.post('/login', function (req, res, next) {
                 if (user) {
                     //session initialiaze
                     req.session.user=req.body.userdata.username;
-                    res.status(200).send("login Success");
+                    // res.status(200).send();
+                    res.status(200).json({'user':user,'msg':"login success"});
                 } else {
                     res.status(400).send("login failure");
                 }

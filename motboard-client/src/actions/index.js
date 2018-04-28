@@ -1,45 +1,33 @@
 import axios from 'axios';
-// import swal from 'sweetalert';
 const ROOT_URL = 'http://localhost:3300';
 
-function signUp(response) {
-    // swal("Successfully Account Created");
-    alert("signup successful");
+function signUp(user, flag) {
     return {
-        type: 'SIGNUP_SUCCESSFULL',
-        payload: response.status
+        type: 'SIGNIN_SUCCESSFUL',
+        user,
+        flag
     };
 }
 
-function signIn(response,userdata) {
-    //swal("Login Successful");
-    alert("signed Successfully");
-    let state = {
-        isLoggedin: true,
-        username:userdata.username
-    };
+function signIn(user,flag) {
     return {
-        type: 'SIGNUP_SUCCESSFULL',
-        payload: state
+        type: 'SIGNIN_SUCCESSFUL',
+        user,
+        flag
     };
 }
 
-function signinError(response) {
-    //  swal("Login Failed");
-    let state = {
-        isLoggedin: false
+function signinError() {
+    return {
+        type: 'SIGNIN_FAILED',
     };
+}
+
+
+function signupError(msg) {
     return {
         type: 'SIGNUP_FAILED',
-        payload: state
-    };
-}
-
-
-function signupError(response) {
-    return {
-        type: 'SIGNUP_FAILED',
-        payload: "400"
+        msg: msg
     };
 }
 
@@ -57,10 +45,15 @@ return{
 
 export function signupAction(userdata) {
     return (dispatch) => {
-        const request = axios.post(`${ROOT_URL}/signup`, {userdata: userdata}, {withCredentials: true}).then(response => {
-            dispatch(signUp(response))
+        const request = axios.post(`${ROOT_URL}/signup`, {userdata: userdata}, {withCredentials: true})
+            .then(response => {
+                if(response.status === 201){
+                    dispatch(signUp(response.data.user,true))
+                } else if(response.status === 401){
+                    dispatch(signupError("User already exist"))
+                }
         }).catch(error => {
-            dispatch(signupError(error))
+            dispatch(signupError("Error Occured"))
         });
     }
 }
@@ -68,10 +61,15 @@ export function signupAction(userdata) {
 
 export function signinAction(userdata) {
     return (dispatch) => {
-        const request = axios.post(`${ROOT_URL}/login`, {userdata: userdata}, {withCredentials: true}).then(response => {
-            dispatch(signIn(response,userdata))
+        const request = axios.post(`${ROOT_URL}/login`, {userdata: userdata}, {withCredentials: true})
+            .then(response => {
+                if(response.status === 200){
+                    dispatch(signIn(response.data.user,true))
+                } else{
+                    dispatch(signinError())
+                }
         }).catch(error => {
-            dispatch(signinError(error))
+            dispatch(signinError())
         });
     }
 }
@@ -93,10 +91,6 @@ export function getImagesArrange(value) {
         });
     }
 }
-
-
-
-
 
 export function getImages(value) {
   alert("inside images");

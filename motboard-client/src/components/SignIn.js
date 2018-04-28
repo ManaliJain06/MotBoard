@@ -6,6 +6,7 @@ import {signinAction} from '../actions';
 import signin from '../Images/signin.jpg';
 import Radium, {StyleRoot} from 'radium';
 import {pulse} from 'react-animations';
+import * as validation from '../validation/LoginValidation';
 const styles = {
     pulse: {
         animation: 'x 0.5s ease-in-out',
@@ -20,15 +21,57 @@ class SignIn extends Component {
             userdata: {
                 "username": "",
                 "password": ""
-            }
+            },
+            messageDivLogin: ''
         }
+        this.signInResponse = this.signInResponse.bind(this);
+        this.signInActionCall = this.signInActionCall.bind(this);
     }
 
 
     handleSignInSubmit() {
-        this.props.signinAction(this.state.userdata);
+        var valid = validation.login(this.state.userdata);
+        if(valid === ''){
+            // var x = function()
+            this.signInActionCall(this.signInResponse);
+        }else{
+            this.setState({
+                ...this.state,
+                messageDivLogin: valid
+            });
+        }
+
     }
+
+    signInResponse(){
+        let state = this.props.loginStateProp;
+        if( state.isLogged === true){
+            this.props.history.push("/home");
+        } else if(state.isLogged === false && state.error === true){
+            this.setState({
+                ...this.state,
+                messageDivLogin: "The user is not found. The reason is either " +
+                "you have not signed up or entered incorrect credentials"
+            });
+        }
+    }
+
+    signInActionCall(callback){
+        this.props.signinAction(this.state.userdata);
+        setTimeout(callback,1000);
+    }
+
     render() {
+        let messageDivLogin =null;
+        if(this.state.messageDivLogin !== ''){
+            messageDivLogin = <div className="clearfix">
+                <div className="alert alert-danger text-center" role="alert">
+                    {this.state.messageDivLogin}
+                </div>
+            </div>;
+        } else{
+            messageDivLogin = <div></div>;
+        }
         return (
             <div>
                 <StyleRoot>
@@ -38,6 +81,7 @@ class SignIn extends Component {
                                 <img src={signin} alt="hello" style={{'height':'40vw','object-fit':'contain','margin-right':'20px'}} className={"indexZ"}/>
                             </div>
                             <div className="col-md-4 cardbox">
+                                {messageDivLogin}
                                 <h4 className='Questrial' style={{'margin-bottom':'10px','text-align':'center'}}>SIGN IN</h4>
                                 <input type="email" className="inputfield" placeholder="Email"
                                        value={this.state.userdata.username}
@@ -63,7 +107,6 @@ class SignIn extends Component {
                                 /><br/>
                                 <div className="row justify-content-center">
                                     <button className="ybutton" onClick={() => {
-                                        this.props.history.push("/signIn");
                                         this.handleSignInSubmit();
                                     }}>SIGN IN
                                     </button>
@@ -82,5 +125,10 @@ class SignIn extends Component {
         )
     }
 }
-
-export default withRouter(connect(null,{signinAction})(SignIn));
+function mapStateToProps(state) {
+    console.log("state App", state)
+    return{
+        loginStateProp : state.loginStateData,
+    };
+}
+export default withRouter(connect(mapStateToProps,{signinAction})(SignIn));

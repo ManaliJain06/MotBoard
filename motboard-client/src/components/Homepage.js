@@ -17,7 +17,7 @@ import Motboards_List from "./Motboards_List";
 import Radium, {StyleRoot} from 'radium';
 import {slideInRight, slideInLeft} from 'react-animations';
 import VoiceTest from "./VoiceTest";
-
+import UserHomePage from './UserHomePage';
 
 const styles = {
     slideInRight: {
@@ -130,6 +130,11 @@ class Homepage extends Component {
                                 <Motboards_List/>
                             </div>
                         </StyleRoot>
+                    )}/>
+                    <Route exact path="/home" render={()=>(
+                        <div>
+                            <UserHomePage/>
+                        </div>
                     )}/>
                 </div>
             </div>
