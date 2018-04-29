@@ -11,6 +11,7 @@ class ColorsGenerator extends Component{
             RandomColor3:'#80deea',
             RandomColor4:'#e6ee9c',
             RandomColor5:'#c2185b',
+            RandomColor6:'#b2dfdb',
         }
     }
 
@@ -22,12 +23,14 @@ class ColorsGenerator extends Component{
         var color3 = '#';
         var color4 = '#';
         var color5 = '#';
+        var color6 = '#';
         for (var i = 0; i < 6; i++) {
             color1 += letters[Math.floor(Math.random() * 16)];
             color2 += letters[Math.floor(Math.random() * 16)];
             color3 += letters[Math.floor(Math.random() * 16)];
             color4 += letters[Math.floor(Math.random() * 16)];
             color5 += letters[Math.floor(Math.random() * 16)];
+            color6 += letters[Math.floor(Math.random() * 16)];
         }
         this.setState({
             'RandomColor1':color1,
@@ -35,6 +38,7 @@ class ColorsGenerator extends Component{
             'RandomColor3':color3,
             'RandomColor4':color4,
             'RandomColor5':color5,
+            'RandomColor6':color6,
         });
     }
 
@@ -54,6 +58,7 @@ class ColorsGenerator extends Component{
                 <div className="col-md-2 onecolumn Questrial" style={{'background-color': this.state.RandomColor3}}>{this.state.RandomColor3}</div>
                 <div className="col-md-2 onecolumn Questrial" style={{'background-color': this.state.RandomColor4}}>{this.state.RandomColor4}</div>
                 <div className="col-md-2 onecolumn Questrial" style={{'background-color': this.state.RandomColor5}}>{this.state.RandomColor5}</div>
+                <div className="col-md-2 onecolumn Questrial" style={{'background-color': this.state.RandomColor6}}>{this.state.RandomColor6}</div>
             </div>
             </div>
         )
