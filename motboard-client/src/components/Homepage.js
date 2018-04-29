@@ -18,6 +18,7 @@ import Radium, {StyleRoot} from 'radium';
 import {slideInRight, slideInLeft} from 'react-animations';
 import VoiceTest from "./VoiceTest";
 import UserHomePage from './UserHomePage';
+import ColorsGenerator from './ColorsGenerator';
 
 const styles = {
     slideInRight: {
@@ -51,6 +52,11 @@ class Homepage extends Component {
                                 <a className="nav-link" style={{'font-size': '1.4em'}} onClick={() => {
                                     this.props.history.push("/Boards");
                                 }}>boards</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" style={{'font-size': '1.4em'}} onClick={() => {
+                                    this.props.history.push("/ColorsGenerator");
+                                }}>colors</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" style={{'font-size': '1.4em'}} onClick={() => {
@@ -88,6 +94,11 @@ class Homepage extends Component {
                     <Route exact path="/Arrange" render={() => (
                         <div>
                             <MotBoardImages_Arrange/>
+                        </div>
+                    )}/>
+                    <Route exact path="/ColorsGenerator" render={() => (
+                        <div>
+                            <ColorsGenerator/>
                         </div>
                     )}/>
                     <Route exact path="/About" render={() => (
