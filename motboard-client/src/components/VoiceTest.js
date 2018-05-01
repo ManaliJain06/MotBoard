@@ -6,7 +6,26 @@ import Artyom from 'artyom.js';
 
 const artyom = new Artyom();
 
-//artyom.say("Hello. I'm MS ! I can help you choose colors");
+
+// Start the commands !
+artyom.initialize({
+    lang: "en-US", // GreatBritain english
+    continuous: false, // Listen forever
+    soundex: true,// Use the soundex algorithm to increase accuracy
+    debug: true, // Show messages in the console
+    executionKeyword: "Do it now",
+    listen: true, // Start to listen commands !
+
+    // If providen, you can only trigger a command if you say its name
+    // e.g to trigger Good Morning, you need to say "Jarvis Good Morning"
+    name: "Rainbow"
+}).then(() => {
+    console.log("Artyom has been succesfully initialized");
+}).catch((err) => {
+    console.error("Artyom couldn't be initialized: ", err);
+});
+
+artyom.say("Hello. My name is Rainbow ! I can help you choose colors");
 
 artyom.on(['Good morning','Good afternoon']).then((i) => {
     switch (i) {
@@ -57,23 +76,6 @@ artyom.addCommands([
     },
 ]);
 
-// Start the commands !
-artyom.initialize({
-    lang: "hi-IN", // GreatBritain english
-    continuous: false, // Listen forever
-    soundex: true,// Use the soundex algorithm to increase accuracy
-    debug: true, // Show messages in the console
-    executionKeyword: "Do it now",
-    listen: true, // Start to listen commands !
-
-    // If providen, you can only trigger a command if you say its name
-    // e.g to trigger Good Morning, you need to say "Jarvis Good Morning"
-    name: "MS"
-}).then(() => {
-    console.log("Artyom has been succesfully initialized");
-}).catch((err) => {
-    console.error("Artyom couldn't be initialized: ", err);
-});
 
 
 class VoiceTest extends Component{

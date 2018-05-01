@@ -8,6 +8,8 @@ import signin from '../Images/signin.jpg';
 import Radium, {StyleRoot} from 'radium';
 import {pulse} from 'react-animations';
 import * as validation from '../validation/LoginValidation';
+import $ from 'jquery';
+import {jQuery} from 'jquery';
 const styles = {
     pulse: {
         animation: 'x 0.5s ease-in-out',
@@ -29,6 +31,20 @@ class SignIn extends Component {
         this.signInActionCall = this.signInActionCall.bind(this);
     }
 
+    activateSmiley =()=> {
+        // var ct = $("#rotate").data("term") || 0;
+        // $("#rotate").data("term", ct == terms.length - 1 ? 0 : ct + 1).text(terms[ct]).fadeIn()
+        //
+        console.log('activated smiley');
+        // $(".lefthand").addClass("smileyLefthand");
+        // $(".righthand").addClass("smileyRighthand");
+        //$(".lefthand").hide();
+        $(".righthand").hide();
+    }
+
+    DeactivateSmiley =()=> {
+        console.log('Deactivated smiley');
+    }
 
     handleSignInSubmit() {
         var valid = validation.login(this.state.userdata);
@@ -80,22 +96,22 @@ class SignIn extends Component {
                         <div className="row justify-content-center">
                             <div className="col-md-6 indexZ" style={{'height':'40vw','object-fit':'contain','margin-right':'20px','margin-top':'20px'}} >
                                 {/*<img src={signin} alt="hello" style={{'height':'40vw','object-fit':'contain','margin-right':'20px'}} className={"indexZ"}/>*/}
-                                <div>
-                                    <form>
-                                    <p>
-                                        <input id="happy" type="radio" name="smiley" value="Happy" checked="checked"/>
-                                        <label for="Happy">:)</label>
-                                    </p>
-                                    <p>
-                                        <input id="normal" type="radio" name="smiley" value="Normal"/>
-                                        <label for="Normal">:|</label>
-                                    </p>
-                                    <p>
-                                        <input id="angry" type="radio" name="smiley" value="Angry"/>
-                                        <label for="Angry">:(</label>
-                                    </p>
-                                    </form>
-                                </div>
+                                {/*<div>*/}
+                                    {/*<form>*/}
+                                    {/*<p>*/}
+                                        {/*<input id="happy" type="radio" name="smiley" value="Happy" checked="checked"/>*/}
+                                        {/*<label for="Happy">:)</label>*/}
+                                    {/*</p>*/}
+                                    {/*<p>*/}
+                                        {/*<input id="normal" type="radio" name="smiley" value="Normal"/>*/}
+                                        {/*<label for="Normal">:|</label>*/}
+                                    {/*</p>*/}
+                                    {/*<p>*/}
+                                        {/*<input id="angry" type="radio" name="smiley" value="Angry"/>*/}
+                                        {/*<label for="Angry">:(</label>*/}
+                                    {/*</p>*/}
+                                    {/*</form>*/}
+                                {/*</div>*/}
                                 <div className="smiley">
                                     <div className="eyes">
                                         <div className="eye"></div>
@@ -120,7 +136,7 @@ class SignIn extends Component {
                                            });
                                        }}
                                 /><br/>
-                                <input type="password" className="inputfield" placeholder="Password"
+                                <input type="password" className="inputfield" placeholder="Password" id={"happy"}
                                        value={this.state.userdata.password}
                                        onChange={(event) => {
                                            this.setState({
@@ -130,6 +146,8 @@ class SignIn extends Component {
                                                }
                                            });
                                        }}
+                                       onFocus={this.activateSmiley}
+                                       onBlur={this.DeactivateSmiley}
                                 /><br/>
                                 <div className="row justify-content-center">
                                     <button className="ybutton" onClick={() => {
