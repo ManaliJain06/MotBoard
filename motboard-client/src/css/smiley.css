@@ -169,11 +169,12 @@
     position: absolute;
     content: "";
     transform:rotate(330deg) translateY(-20px) translateX(-130px);
-    box-shadow: rgb(0, 0, 0,0.1) 0px 20px 10px 1px;
+    box-shadow: rgba(0, 0, 0,0.1) 0px 20px 10px 1px;
     z-index:10;
 }
-.smiley.happy .lefthand,
-#happy[type=radio]:checked ~ .smiley .lefthand
+/*.smiley.happy .lefthand,
+#happy[type=password]:checked ~ .smiley .lefthand*/
+.smileyLefthand
 {
     animation: move-lefthand 2s;
     animation-delay: 2s;
@@ -192,8 +193,9 @@
     }
 }
 
-.smiley.happy .righthand,
-#happy[type=radio]:checked ~ .smiley .righthand
+/*.smiley.happy .righthand,
+#happy[type=radio]:checked ~ .smiley .righthand*/
+.smileyRighthand
 {
     animation: move-righthand 2s;
     animation-delay: 2s;
