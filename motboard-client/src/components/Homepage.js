@@ -8,6 +8,7 @@ import Upload from './uploadImages';
 import BalloonPage from './BalloonPage';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
+import Blogs from './Blogs';
 import '../css/landingPage.css';
 import '../css/animate.css';
 import {findDOMNode} from 'react-dom';
@@ -15,7 +16,7 @@ import $ from 'jquery';
 import MotBoardImages_Arrange from "./MotBoardImages_Arrange";
 import Motboards_List from "./Motboards_List";
 import Radium, {StyleRoot} from 'radium';
-import {slideInRight, slideInLeft} from 'react-animations';
+import {slideInRight, slideInLeft, fadeInUp} from 'react-animations';
 import VoiceTest from "./VoiceTest";
 import UserHomePage from './UserHomePage';
 import ColorsGenerator from './ColorsGenerator';
@@ -28,6 +29,10 @@ const styles = {
     slideInLeft: {
         animation: 'x 0.5s',
         animationName: Radium.keyframes(slideInLeft, 'slideInLeft'),
+    },
+    fadeInUp: {
+        animation: 'x 0.8s',
+        animationName: Radium.keyframes(fadeInUp, 'fadeInUp'),
     }
 }
 
@@ -64,6 +69,11 @@ class Homepage extends Component {
                                 }}>About</a>
                             </li>
                             <li className="nav-item">
+                                <a className="nav-link" style={{'font-size': '1.4em'}} onClick={() => {
+                                    this.props.history.push("/blogs");
+                                }}>blogs</a>
+                            </li>
+                            <li className="nav-item">
                                 <a className="nav-link js-scroll-trigger pointer" style={{'font-size': '1.4em'}}
                                    onClick={() => {
                                        this.props.history.push("/Team");
@@ -79,14 +89,14 @@ class Homepage extends Component {
                     <Route exact path="/" render={() => (
 
                         <StyleRoot>
-                            <div className="pt-5 slideInLeft mt-5" style={styles.slideInLeft}>
+                            <div className=" slideInLeft mt-5" style={styles.slideInLeft}>
                                 <BalloonPage/>
                             </div>
                         </StyleRoot>
                     )}/>
                     <Route exact path="/images" render={() => (
                         <StyleRoot>
-                            <div className="pt-5 slideInRight mt-5" style={styles.slideInRight}>
+                            <div className=" slideInRight mt-5" style={styles.slideInRight}>
                                 <Board/>
                             </div>
                         </StyleRoot>
@@ -97,20 +107,22 @@ class Homepage extends Component {
                         </div>
                     )}/>
                     <Route exact path="/ColorsGenerator" render={() => (
-                        <div>
+                        <StyleRoot>
+                        <div className=" fadeInUp" style={styles.fadeInUp}>
                             <ColorsGenerator/>
                         </div>
+                        </StyleRoot>
                     )}/>
                     <Route exact path="/About" render={() => (
                         <StyleRoot>
-                            <div className="pt-5 slideInRight mt-5" style={styles.slideInRight}>
+                            <div className=" slideInRight mt-5" style={styles.slideInRight}>
                                 <About/>
                             </div>
                         </StyleRoot>
                     )}/>
                     <Route exact path="/Team" render={() => (
                         <StyleRoot>
-                            <div className="pt-5 slideInRight mt-5" style={styles.slideInRight}>
+                            <div className=" slideInRight mt-5" style={styles.slideInRight}>
                                 <Team/>
                             </div>
                         </StyleRoot>
@@ -135,9 +147,14 @@ class Homepage extends Component {
                             <VoiceTest/>
                         </div>
                     )}/>
+                    <Route exact path="/blogs" render={() => (
+                        <div>
+                            <Blogs/>
+                        </div>
+                    )}/>
                     <Route exact path="/Boards" render={() => (
                         <StyleRoot>
-                            <div className="pt-5 slideInRight mt-5" style={styles.slideInRight}>
+                            <div className=" slideInRight mt-5" style={styles.slideInRight}>
                                 <Motboards_List/>
                             </div>
                         </StyleRoot>
