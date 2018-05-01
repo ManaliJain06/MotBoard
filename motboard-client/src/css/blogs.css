@@ -1,0 +1,25 @@
+.amatic{
+    font-family: 'Amatic SC', cursive;
+}
+
+.blogfont{
+    color: white;
+    font-size:90px;
+    margin-top: 100px;
+    margin-left: 400px;
+
+}
+.fullscreen-bg__video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    Z-index:-1;
+}

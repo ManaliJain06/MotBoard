@@ -1,76 +1,24 @@
 import React, {Component} from 'react';
 import {Route, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
-import '../css/landingPage.css';
-import balloon from '../Images/balloon.jpg';
-import colors from '../Images/homepage.jpg';
-import inspire from '../Images/inspire.jpg';
-import collect from '../Images/collect.jpg';
-import share from '../Images/share.jpg';
-import inspired from '../Images/inspired.gif';
-import SignUp from './SignUp';
-import SignIn from './SignIn';
-import Featured_Motboards_List from "./Featured_Motboards_List";
-import $ from 'jquery';
-import {jQuery} from 'jquery';
+import '../css/blogs.css'
 
-class BalloonPage extends Component {
-    constructor(props) {
+class Blogs extends Component{
+    constructor(props){
         super(props);
     }
-
-    componentDidMount() {
-        var terms = ["logo designs", "favourite colors", "favourite textures"];
-
-        function rotateTerm() {
-            var ct = $("#rotate").data("term") || 0;
-            $("#rotate").data("term", ct == terms.length - 1 ? 0 : ct + 1).text(terms[ct]).fadeIn()
-                .delay(1300).fadeOut(200, rotateTerm);
-        }
-
-        $(rotateTerm);
-    }
-
-
-    render() {
-        return <div>
-            <div className="row mb-5 ml-5">
-                <div className="col-lg-7 pb-5" id="myVideo">
-                    <img src={colors}/>
+    render(){
+        return (
+            <div>
+                <div>
+                    <video loop muted autoPlay className="fullscreen-bg__video">
+                        <source src="http://portal.codeitwithme.com/master_images/droplets.mp4" type="video/mp4"/>
+                    </video>
                 </div>
-            </div>
-            <div class="row justify-content-end mt-5">
-                <div className="col-lg-5 mt-5">
-                    <div className="mt-5">
-                        <button className="ybutton Questrial mt-5" style={{"font-size": "1.5em"}} onClick={() => {
-                            this.props.history.push("/signUp");
-                        }}>SIGN UP
-                        </button>
-                        <br/>
-                        <button className="ybutton Questrial" style={{"font-size": "1.5em"}} onClick={() => {
-                            this.props.history.push("/signIn");
-                        }}>SIGN IN
-                        </button>
-                    </div>
+                <div className="row Justify-content-center"
+                     style={{"padding-top": "70px", "padding-bottom": "70px", "margin-top": "100px"}}>
+                    <div className={"blogfont amatic"} > Share Your <b>MotBoard</b> Stories</div>
                 </div>
-            </div>
-
-
-            <main role="main">
-
-                <section className="jumbotron Questrial" style={{"background": "transparent"}}>
-                    <div className="container" style={{"padding": "50px;"}}>
-
-                        <h1 style={{
-                            "color": "#424242",
-                            "padding-top": "30px",
-                            "text-align": "right",
-                            "font-size": "4em"
-                        }}>Just the right Caffeine you need.
-                        </h1>
-                        <p style={{"text-align":"right","font-size": "25px"}}>Share your <span id="rotate" style={{"text-shadow": "black 0px 0px 0.1px"}}>this</span></p>
-                    </div>
-                </section>
 
                 <div style={{"background-color": "#fff"}}>
                     <div className="container"
@@ -87,7 +35,7 @@ class BalloonPage extends Component {
 
                                     <div className="card cardboxBottom mr-5 Questrial cardboxWidth"
                                          style={{"width": "30rem"}}>
-                                        <img className="card-img-top" src={collect} alt="Card image cap"/>
+                                        <img className="card-img-top" src={'...'} alt="Card image cap"/>
                                         <div className="card-body">
                                             <h5 className="card-title" style={{
                                                 "text-align": "center",
@@ -102,7 +50,7 @@ class BalloonPage extends Component {
 
                                     <div className="card cardboxBottom mr-5 Questrial cardboxWidth"
                                          style={{"width": "30rem"}}>
-                                        <img className="card-img-top" src={share} alt="Card image cap"/>
+                                        <img className="card-img-top" src={'...'} alt="Card image cap"/>
                                         <div className="card-body">
                                             <h5 className="card-title" style={{
                                                 "text-align": "center",
@@ -117,7 +65,7 @@ class BalloonPage extends Component {
 
                                     <div className="card cardboxBottom mr-5 Questrial cardboxWidth"
                                          style={{"width": "30rem"}}>
-                                        <img className="card-img-top" src={inspire} alt="Card image cap"/>
+                                        <img className="card-img-top" src={'...'} alt="Card image cap"/>
                                         <div className="card-body">
                                             <h5 className="card-title" style={{
                                                 "text-align": "center",
@@ -136,34 +84,10 @@ class BalloonPage extends Component {
                     </div>
 
 
-                    <div className="album py-5 bg-light">
-                        <div className="container">
-                            <div className="row justify-content-end">
-                                <div className="mr-5 Questrial inspired-text">
-                                    Popular MotBoards
-                                </div>
-                            </div>
-                            <Featured_Motboards_List/>
-                        </div>
-                    </div>
-
-                    <div className="container" style={{"padding": "25px"}}>
-                        <div className="row justify-content-center">
-                            <img src={inspired} alt="Card image cap"></img>
-                        </div>
-                    </div>
                 </div>
-
-            </main>
-
-
-            <footer>
-                <div className="row justify-content-center footercss">
-                    <div className="row mt-5">CMPE 280 Project - SPRING 2018</div>
-                </div>
-            </footer>
-        </div>
+            </div>
+        )
     }
 }
 
-export default withRouter(BalloonPage);
+export default withRouter(Blogs);
