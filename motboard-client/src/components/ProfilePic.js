@@ -1,20 +1,67 @@
 import React from 'react';
 import Avatar from 'material-ui/Avatar';
-import FileFolder from 'material-ui/svg-icons/file/folder';
-import FontIcon from 'material-ui/FontIcon';
-import List from 'material-ui/List/List';
-import ListItem from 'material-ui/List/ListItem';
 import colors from '../Images/colors.jpg';
-import UserDropDownMenu from './UserDropDownMenu';
+import {Route, withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
+class ProfilePic extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            openMenu: false
+        }
+    }
 
+    handleOpenDropDown = (event) => {
+        // This prevents ghost click.
+        event.preventDefault();
+        this.setState({
+            openMenu: true,
+            anchorEl: event.currentTarget
+        });
+    };
 
-const style = {margin: 5};
+    handleCloseDropDown = () => {
+        this.setState({
+            openMenu: false
+        });
+    };
 
-const ProfilePic = () => (
+    render(){
+        const image = this.props.loginStateProp.userData.profileURL;
+        return (
+            <div>
+                <Avatar src={image} className="pointer" onClick={this.handleOpenDropDown}/>
+                <Popover
+                    open={this.state.openMenu}
+                    anchorEl={this.state.anchorEl}
+                    anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+                    targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                    onRequestClose={this.handleCloseDropDown}
+                    animation={PopoverAnimationVertical}>
+                    <Menu>
+                        <MenuItem primaryText="My Motboards" onClick={() => {
+                            this.props.history.push("/home");
+                        }}/>
+                        <MenuItem primaryText="My Account" onClick={() => {
+                            this.props.history.push("/myAccount");
+                        }}/>
+                        <MenuItem primaryText="Sign out" onClick={() => {
+                            this.props.history.push("/myAccount");
+                        }}/>
+                    </Menu>
+                </Popover>
+            </div>
+        )
+    }
+}
 
-        <Avatar src={colors} onClick={
-            <UserDropDownMenu/>
-        }/>
+function mapStateToProps(state) {
+    return{
+        loginStateProp : state.loginStateData,
+    };
+}
+export default withRouter(connect(mapStateToProps,null)(ProfilePic));
 
-);
-export default ProfilePic;

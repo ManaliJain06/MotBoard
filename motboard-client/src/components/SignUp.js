@@ -22,7 +22,8 @@ class SignUp extends Component {
                 "username": "",
                 "password": "",
                 "firstname": "",
-                "lastname": ""
+                "lastname": "",
+                "profileImage" : ""
             },
             messageSignUp: ''
         }

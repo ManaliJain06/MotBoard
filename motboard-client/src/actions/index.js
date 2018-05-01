@@ -24,7 +24,13 @@ function signinError() {
 }
 
 
-function signupError(msg) {
+function signupError(response) {
+    let msg = "";
+    if(response.status === 401){
+       msg = "User already exists in the system";
+    } else{
+        msg = "Error Occured";
+    }
     return {
         type: 'SIGNUP_FAILED',
         msg: msg
@@ -32,28 +38,45 @@ function signupError(msg) {
 }
 
 function receivedImages(response) {
-
-return{
-    type:'RECEIVED_IMAGES',
-    payload:response.data
-};
-
-
-
+    return{
+        type:'RECEIVED_IMAGES',
+        payload:response.data
+    };
 }
 
+function updateUserProfile(res){
+    if(res.status === 201){
+        return {
+            type: 'UPDATE_USER_PROFILE_PiC',
+            response: res
+        } ;
+    } else if(res.status === 500){
+        return {
+            type: 'UPDATE_USER_PROFILE_PIC_ERROR',
+        };
+    }
+}
+
+function updateUser(res){
+    if(res.status === 201){
+        return{
+            type: 'UPDATE_USER_PROFILE',
+            user: res.data.user
+        };
+    } else if(res.status === 400){
+        return {
+            type: 'UPDATE_USER_PROFILE_ERROR',
+        };
+    }
+}
 
 export function signupAction(userdata) {
     return (dispatch) => {
         const request = axios.post(`${ROOT_URL}/signup`, {userdata: userdata}, {withCredentials: true})
             .then(response => {
-                if(response.status === 201){
-                    dispatch(signUp(response.data.user,true))
-                } else if(response.status === 401){
-                    dispatch(signupError("User already exist"))
-                }
+                dispatch(signUp(response.data.user,true));
         }).catch(error => {
-            dispatch(signupError("Error Occured"))
+            dispatch(signupError(error.response));
         });
     }
 }
@@ -64,14 +87,45 @@ export function signinAction(userdata) {
         const request = axios.post(`${ROOT_URL}/login`, {userdata: userdata}, {withCredentials: true})
             .then(response => {
                 if(response.status === 200){
-                    dispatch(signIn(response.data.user,true))
+                    dispatch(signIn(response.data.user,true));
                 } else{
-                    dispatch(signinError())
+                    dispatch(signinError());
                 }
         }).catch(error => {
-            dispatch(signinError())
+            dispatch(signinError());
         });
     }
+}
+
+export function updateUserProfilePicAction(payload){
+    return (dispatch) => {
+        fetch(`http://localhost:3300/updateUserProfilePic`, {
+            method: 'POST',
+            body: payload
+        }).then(response =>
+            response.json().then(data => ({
+                    fileURL: data.fileURL,
+                    status: response.status
+                })
+            ).then(res => {
+                console.log("hjhjhjhjhjkkjhjhkj",res);
+                dispatch(updateUserProfile(res))
+                // return res;
+            }))
+    }
+}
+
+export function updateUserData(payload){
+
+    return (dispatch) => {
+        const request = axios.post(`${ROOT_URL}/updateUserData`, {userdata: payload}, {withCredentials: true})
+            .then(response => {
+                    dispatch(updateUser(response))
+            }).catch(error => {
+                dispatch(updateUser("Error Occured"))
+            });
+    }
+
 }
 
 export function getImagesArrange(value) {
