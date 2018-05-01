@@ -72,7 +72,7 @@ class Homepage extends Component {
                         </ul>
                     </nav>
                 </header>
-                <div className="pt-5 mt-5">
+                <div className="pt-5">
                     {/*{*/}
                     {/*this.props.signup ? <SignIn/> : <SignUp/>*/}
                     {/*}*/}

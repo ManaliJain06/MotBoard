@@ -94,6 +94,20 @@ class Motboards_List extends Component{
     }
     state = {
         checked: false,
+        pagination:[
+            {
+                pageNo : 1,
+                ActiveStatus:'page-item active'
+            },
+            {
+                pageNo : 2,
+                ActiveStatus:'page-item'
+            },
+            {
+                pageNo : 3,
+                ActiveStatus:'page-item'
+            }
+        ]
     };
 
     updateCheck() {
@@ -143,6 +157,26 @@ class Motboards_List extends Component{
                                     </GridTile>
                                 ))}
                             </GridList>
+                            <div className="container row justify-content-center">
+                                <nav aria-label="...">
+                                    <ul className="pagination">
+                                        <li className="page-item disabled">
+                                            <span className="page-link">Previous</span>
+                                        </li>
+                                        {
+                                            this.state.pagination.map((page,index) => (
+                                                <div>
+                                                    <li className={page.ActiveStatus}><a className="page-link" href="#">{index+1}</a></li>
+                                                </div>
+                                            ))
+                                        }
+                                        <li className="page-item">
+                                            <a className="page-link" href="#">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+
                         </div>
                     </div>
                 </div>

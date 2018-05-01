@@ -47,8 +47,8 @@ class ColorsGenerator extends Component{
         return (
             <div>
                 <div class="row justify-content-center mb-5">
-                    <button className="generateColorButton Questrial" onClick={() => {
-                        this.generateColors();
+                    <button className="generateColorButton Questrial mt-5" onClick={() => {
+                        this.generateColor();
                     }}>Show me some magic
                     </button>
                 </div>
