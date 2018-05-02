@@ -1,10 +1,13 @@
 .chat-sticky {
     position: fixed;
-    left: 0;
+    right: 0;
     bottom: 0;
-    width: 100%;
+    width: 25%;
     color: white;
     text-align: right;
     margin-right:20px;
     margin-bottom:20px;
+}
+.chat-bg{
+    background-image:url( 'http://blog.visme.co/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-037.jpg');
 }
