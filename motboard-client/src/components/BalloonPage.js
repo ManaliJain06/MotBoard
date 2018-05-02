@@ -13,30 +13,20 @@ import SignIn from './SignIn';
 import Featured_Motboards_List from "./Featured_Motboards_List";
 import $ from 'jquery';
 import {jQuery} from 'jquery';
+import Anime from "./Anime";
 
 class BalloonPage extends Component {
     constructor(props) {
         super(props);
     }
 
-    componentDidMount() {
-        var terms = ["logo designs", "favourite colors", "favourite textures"];
-
-        function rotateTerm() {
-            var ct = $("#rotate").data("term") || 0;
-            $("#rotate").data("term", ct == terms.length - 1 ? 0 : ct + 1).text(terms[ct]).fadeIn()
-                .delay(1300).fadeOut(200, rotateTerm);
-        }
-
-        $(rotateTerm);
-    }
-
 
     render() {
         return <div>
-            <div className="row mb-5 ml-5">
-                <div className="col-lg-7 pb-5" id="myVideo">
-                    <img src={colors}/>
+            <div className="row mb-5">
+                <div className="col-lg-12 pb-5" id="myVideo">
+                    {/*<img src={colors}/>*/}
+                    <Anime/>
                 </div>
             </div>
             <div class="row justify-content-end mt-5">
@@ -62,14 +52,13 @@ class BalloonPage extends Component {
                     <div className="container" style={{"padding": "50px;"}}>
 
                         <h1 style={{
-                            "color": "#424242",
+                            "color": 'transparent',
                             "padding-top": "30px",
                             "text-align": "right",
-                            "font-size": "4em"
-                        }}>Just the right Caffeine you need.
+                            "font-size": "3em"
+                        }}>Create and Share Your MoodBoards.
                         </h1>
-                        <p style={{"text-align":"right","font-size": "25px"}}>Share your <span id="rotate" style={{"text-shadow": "black 0px 0px 0.1px"}}>this</span></p>
-                    </div>
+                                            </div>
                 </section>
 
                 <div style={{"background-color": "#fff"}}>
