@@ -3,15 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "artyom.js": "^1.0.6",
     "axios": "^0.18.0",
+    "bower": "^1.8.4",
     "jquery": "^3.3.1",
+    "material-ui": "^0.20.0",
+    "radium": "^0.24.0",
     "react": "^16.3.2",
+    "react-animations": "^1.0.0",
     "react-dom": "^16.3.2",
+    "react-grid-layout": "^0.16.6",
     "react-redux": "^5.0.7",
     "react-router": "~4.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
