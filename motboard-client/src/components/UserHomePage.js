@@ -11,16 +11,15 @@ class UserHomePage extends Component{
     }
 
     render(){
-        // let userState = this.props.loginStateProp;
-        // if(userState.isLogged === false){
-        //     this.props.history.push("/signIn");
-        //{userState.firstName}
-        // }
+        let userState = this.props.loginStateProp;
+        if(userState.isLogged === false){
+            this.props.history.push("/signIn");
+        }
         return(
             <div className ="banner">
                 <div className="row">
                     <div className="col-sm-3" style={{"padding-left": "40px"}}>
-                       <span className="megrim blackColor pt-3 pl-5">Hello Manali</span>
+                       <span className="megrim blackColor pt-3 pl-5">Hello {userState.firstName}</span>
                     </div>
                     <div className="col-sm-9">
                        <ul className="text-uppercase userMenu">
