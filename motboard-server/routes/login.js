@@ -3,7 +3,6 @@ var router = express.Router();
 var mongo = require("./mongo");
 var mongoURL = "mongodb://localhost:27017/motboard";
 router.post('/login', function (req, res, next) {
-
     try {
         mongo.connect(mongoURL, function () {
             console.log('Connected to mongo at: ' + mongoURL);

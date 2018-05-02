@@ -19,6 +19,7 @@ import Radium, {StyleRoot} from 'radium';
 import {slideInRight, slideInLeft, fadeInUp} from 'react-animations';
 import VoiceTest from "./VoiceTest";
 import UserHomePage from './UserHomePage';
+import UpdateUser from './UpdateUser';
 import ColorsGenerator from './ColorsGenerator';
 
 const styles = {
@@ -161,7 +162,22 @@ class Homepage extends Component {
                     )}/>
                     <Route exact path="/home" render={()=>(
                         <div>
+                            <React.Fragment>
                             <UserHomePage/>
+                                <div className="content">
+                                    <Motboards_List/>
+                                </div>
+                            </React.Fragment>
+                        </div>
+                    )}/>
+                    <Route exact path="/myAccount" render={()=>(
+                        <div>
+                            <React.Fragment>
+                                <UserHomePage/>
+                                <div className="content">
+                                    <UpdateUser/>
+                                </div>
+                            </React.Fragment>
                         </div>
                     )}/>
                 </div>

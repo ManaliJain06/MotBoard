@@ -4,6 +4,7 @@ import '../css/landingPage.css';
 import {Route, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import ProfilePic from './ProfilePic';
+import UpdateUser from './UpdateUser';
 class UserHomePage extends Component{
     constructor(props){
         super(props);
@@ -13,7 +14,6 @@ class UserHomePage extends Component{
         let userState = this.props.loginStateProp;
         if(userState.isLogged === false){
             this.props.history.push("/signIn");
-
         }
         return(
             <div className ="banner">
@@ -24,18 +24,16 @@ class UserHomePage extends Component{
                     <div className="col-sm-9">
                        <ul className="text-uppercase userMenu">
                            <li>
-                               <button className="Questrial">Arrange Images</button>
+                               <button className="uButton Questrial">Arrange Images</button>
                            </li>
                            <li>
-                               <button className="Questrial">Publish Publicly</button>
+                               <button className="uButton Questrial">Publish Publicly</button>
                            </li>
                            <li >
-                                <ProfilePic/>
+                                <ProfilePic />
                            </li>
                        </ul>
                     </div>
-                </div>
-                <div className="pt-5 mt-5">
                 </div>
             </div>
         )
