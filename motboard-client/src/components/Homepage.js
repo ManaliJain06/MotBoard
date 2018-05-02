@@ -21,6 +21,7 @@ import VoiceTest from "./VoiceTest";
 import UserHomePage from './UserHomePage';
 import UpdateUser from './UpdateUser';
 import ColorsGenerator from './ColorsGenerator';
+import Chat from './Chat';
 
 const styles = {
     slideInRight: {
@@ -180,6 +181,9 @@ class Homepage extends Component {
                             </React.Fragment>
                         </div>
                     )}/>
+                </div>
+                <div className="fixed-bottom chat-sticky">
+                    <Chat />
                 </div>
             </div>
         )
