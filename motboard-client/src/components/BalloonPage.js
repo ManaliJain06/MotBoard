@@ -58,7 +58,7 @@ class BalloonPage extends Component {
                             "font-size": "3em"
                         }}>Create and Share Your MoodBoards.
                         </h1>
-                                            </div>
+                    </div>
                 </section>
 
                 <div style={{"background-color": "#fff"}}>
