@@ -52,7 +52,7 @@ class Homepage extends Component {
         let userState = this.props.loginStateProp;
         return (
             <div>
-                <header>
+                <div>
                     <nav style={{'background-color': '#ffffff'}}
                          className="navbar navbar-expand-lg navbar-dark fixed-top mb-5" id="mainNav">
                         <a className="navbar-brand d-flex align-items-center " onClick={() => {
@@ -92,7 +92,7 @@ class Homepage extends Component {
                             {userState.isLogged ? <ProfilePic/>: '' }
                         </ul>
                     </nav>
-                </header>
+                </div>
                 <div className="pt-5">
                     <Route exact path="/" render={() => (
 

@@ -8,6 +8,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
+import video from '../Images/droplets.mp4';
 const style = {
     marginRight: 20,
 
@@ -29,9 +30,11 @@ class Blogs extends Component{
         var blogJSONtoSend ={
             'text': this.refs.blogContent.getValue()
         }
-        //TODO: Call to backend here
+        //TODO: Call to backend here - to post the blogs
     };
-
+    componentWillMount(){
+        //TODO: Call to backend here - to retrieve the blogs
+    }
     constructor(props){
         super(props);
         this.state={
@@ -73,8 +76,8 @@ class Blogs extends Component{
         ];
         return <div>
             <div>
-                <video className="fullscreen-bg__video" loop muted autoPlay>
-                    <source src="http://portal.codeitwithme.com/master_images/droplets.mp4" type="video/mp4"/>
+                <video className="fullscreen-bg__video" muted autoPlay loop>
+                    <source src={video} type="video/mp4"/>
                 </video>
             </div>
             <div className="row Justify-content-center"
@@ -84,7 +87,7 @@ class Blogs extends Component{
 
             <div style={{"background-color": "#fff"}}>
                 <div className="container"
-                     style={{"padding-top": "55px", "padding-bottom": "70px", "margin-top": "100px"}}>
+                     style={{"padding-top": "45px", "padding-bottom": "70px", "margin-top": "100px"}}>
                     <div>
                         <div id="whyMotbaord" className="container indexZ">
 
