@@ -42,7 +42,7 @@
 }
 
 .inspired-text{
-  font-size:60px;
+  font-size:5em;
   color:rgba(0,0,0,0.1);
 }
 .cardboxWidth{
@@ -52,6 +52,7 @@
 #myVideo {
   position: fixed;
   z-index: -10;
+  filter: opacity(0.3);
 }
 .footercss{
   height:70px;
@@ -175,7 +176,7 @@
 }
 
 #whyMotbaord{
-  height:500px;
+  height:auto;
   width:100%;
   background-color: #ffffff;
 }
