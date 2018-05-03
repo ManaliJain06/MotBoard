@@ -8,7 +8,18 @@ function signUp(user, flag) {
         flag
     };
 }
-
+function signupError(response) {
+    let msg = "";
+    if(response.status === 401){
+        msg = "User already exists in the system";
+    } else{
+        msg = "Error Occured";
+    }
+    return {
+        type: 'SIGNUP_FAILED',
+        msg: msg
+    };
+}
 function signIn(user,flag) {
     return {
         type: 'SIGNIN_SUCCESSFUL',
@@ -16,24 +27,20 @@ function signIn(user,flag) {
         flag
     };
 }
-
 function signinError() {
     return {
         type: 'SIGNIN_FAILED',
     };
 }
-
-
-function signupError(response) {
-    let msg = "";
-    if(response.status === 401){
-       msg = "User already exists in the system";
-    } else{
-        msg = "Error Occured";
-    }
+function signOut(){
     return {
-        type: 'SIGNUP_FAILED',
-        msg: msg
+        type: 'SIGNOUT_SUCCESSFUL',
+    };
+}
+
+function signOutError(){
+    return {
+        type: 'SIGNOUT_ERROR',
     };
 }
 
@@ -94,6 +101,17 @@ export function signinAction(userdata) {
         }).catch(error => {
             dispatch(signinError());
         });
+    }
+}
+
+export function signOutAction(userdata) {
+    return (dispatch) => {
+        const request = axios.post(`${ROOT_URL}/signout`, {userdata: userdata}, {withCredentials: true})
+            .then(response => {
+                    dispatch(signOut());
+            }).catch(error => {
+                dispatch(signOutError());
+            });
     }
 }
 

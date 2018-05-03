@@ -6,7 +6,8 @@ const loginState = {
     'msg': '',
     'profileURL': '',
     'profileURLError': false,
-    'updateError': ''
+    'updateError': '',
+    'signOutError': ''
 };
 
 export default function (state=loginState,action){
@@ -46,10 +47,18 @@ export default function (state=loginState,action){
             const updateUserError = Object.assign({}, state, {updateError:true});
             return updateUserError;
 
+        case "SIGNOUT_SUCCESSFUL":
+            const signOutObject =  Object.assign({},state, {isLogged:false,
+                firstName: '', userData: '', error:false, msg: '',profileURL: '',
+                profileURLError: false,updateError: '',signOutError:false});
+            return signOutObject;
+
+        case "SIGNOUT_ERROR":
+            return Object.assign({},state, {signOutError:true});
+
         default :
             return state;
     }
-
 }
 
 

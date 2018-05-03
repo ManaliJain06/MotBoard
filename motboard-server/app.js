@@ -84,5 +84,5 @@ app.post('/insertImage',insertImage);
 app.post('/getImages',getImages);
 app.post('/updateUserProfilePic',updateUserProfile.updateUserProfilePic);
 app.post('/updateUserData',updateUserProfile.updateUserInfo)
-
+app.post('/signout', updateUserProfile.signout);
 module.exports = app;

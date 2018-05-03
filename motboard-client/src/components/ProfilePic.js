@@ -3,6 +3,7 @@ import Avatar from 'material-ui/Avatar';
 import colors from '../Images/colors.jpg';
 import {Route, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {signOutAction} from '../actions/index';
 import Popover, {PopoverAnimationVertical} from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
@@ -12,6 +13,8 @@ class ProfilePic extends React.Component{
         this.state = {
             openMenu: false
         }
+        this.signOutResponse = this.signOutResponse.bind(this);
+        this.signOutActionCall = this.signOutActionCall.bind(this);
     }
 
     handleOpenDropDown = (event) => {
@@ -29,8 +32,25 @@ class ProfilePic extends React.Component{
         });
     };
 
+    handleSignOut = () => {
+        this.signOutActionCall(this.signOutResponse);
+    }
+
+    signOutResponse(){
+        let state = this.props.loginStateProp;
+        if( state.signOutError === true){
+           alert("Logout error occured. Please logout again");
+        } else if( state.signOutError === ''){
+            this.props.history.push("/");
+        }
+    }
+
+    signOutActionCall(callback){
+        this.props.signOutAction();
+        setTimeout(callback,1000);
+    }
     render(){
-        const image = this.props.loginStateProp.userData.profileURL;
+        const image = this.props.loginStateProp.userData.profileImage;
         return (
             <div>
                 <Avatar src={image} className="pointer" onClick={this.handleOpenDropDown}/>
@@ -40,7 +60,8 @@ class ProfilePic extends React.Component{
                     anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
                     targetOrigin={{horizontal: 'left', vertical: 'top'}}
                     onRequestClose={this.handleCloseDropDown}
-                    animation={PopoverAnimationVertical}>
+                    animation={PopoverAnimationVertical}
+                    useLayerForClickAway={true}>
                     <Menu>
                         <MenuItem primaryText="My Motboards" onClick={() => {
                             this.props.history.push("/home");
@@ -49,7 +70,7 @@ class ProfilePic extends React.Component{
                             this.props.history.push("/myAccount");
                         }}/>
                         <MenuItem primaryText="Sign out" onClick={() => {
-                            this.props.history.push("/myAccount");
+                            this.handleSignOut();
                         }}/>
                     </Menu>
                 </Popover>
@@ -63,5 +84,5 @@ function mapStateToProps(state) {
         loginStateProp : state.loginStateData,
     };
 }
-export default withRouter(connect(mapStateToProps,null)(ProfilePic));
+export default withRouter(connect(mapStateToProps,{signOutAction})(ProfilePic));
 
