@@ -261,3 +261,10 @@ ul.userMenu {
   opacity:0;
   margin: -20px 0 -20px -40px;
 }
+
+.userGreeting{
+  font-size: 18px;
+  padding-top: 23px;
+  padding-left: 10px;
+  color: purple;
+}

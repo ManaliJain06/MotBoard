@@ -21,6 +21,7 @@ import VoiceTest from "./VoiceTest";
 import UserHomePage from './UserHomePage';
 import UpdateUser from './UpdateUser';
 import ColorsGenerator from './ColorsGenerator';
+import ProfilePic from './ProfilePic';
 import Chat from './Chat';
 
 const styles = {
@@ -41,9 +42,14 @@ const styles = {
 class Homepage extends Component {
     constructor(props) {
         super(props);
+        let userState = this.props.loginStateProp;
+        this.state={
+            "userstate":userState.isLogged
+        };
     }
 
     render() {
+        let userState = this.props.loginStateProp;
         return (
             <div>
                 <header>
@@ -52,7 +58,9 @@ class Homepage extends Component {
                         <a className="navbar-brand d-flex align-items-center " onClick={() => {
                             this.props.history.push("/");
                         }}>
-                            <span className="megrim blackColor pt-3 pl-5 pointer motboardlogo">MOtBOARD</span>
+                            <span className="megrim blackColor pt-3 pl-5 pointer motboardlogo">MOtBOARD
+                            {userState.isLogged ? <span className="megrim userGreeting">Hello {userState.firstName}</span>: ''}
+                            </span>
                         </a>
                         <ul className="navbar-nav text-uppercase ml-auto">
                             <li className="nav-item">
@@ -81,13 +89,11 @@ class Homepage extends Component {
                                        this.props.history.push("/Team");
                                    }}>Team</a>
                             </li>
+                            {userState.isLogged ? <ProfilePic/>: '' }
                         </ul>
                     </nav>
                 </header>
                 <div className="pt-5">
-                    {/*{*/}
-                    {/*this.props.signup ? <SignIn/> : <SignUp/>*/}
-                    {/*}*/}
                     <Route exact path="/" render={() => (
 
                         <StyleRoot>
@@ -164,7 +170,7 @@ class Homepage extends Component {
                     <Route exact path="/home" render={()=>(
                         <div>
                             <React.Fragment>
-                            <UserHomePage/>
+                            {/*<UserHomePage/>*/}
                                 <div className="content">
                                     <Motboards_List/>
                                 </div>
@@ -174,7 +180,7 @@ class Homepage extends Component {
                     <Route exact path="/myAccount" render={()=>(
                         <div>
                             <React.Fragment>
-                                <UserHomePage/>
+                                {/*<UserHomePage/>*/}
                                 <div className="content">
                                     <UpdateUser/>
                                 </div>
@@ -190,4 +196,10 @@ class Homepage extends Component {
     }
 }
 
-export default withRouter(Homepage);
+function mapStateToProps(state) {
+    return{
+        loginStateProp : state.loginStateData,
+    };
+}
+export default withRouter(connect(mapStateToProps,null)(Homepage));
+

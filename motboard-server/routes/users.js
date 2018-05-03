@@ -22,10 +22,11 @@ router.post('/signup', function (req, res, next) {
                         password: req.body.userdata.password,
                         firstname: req.body.userdata.firstname,
                         lastname: req.body.userdata.lastname,
+                        profileImage: req.body.userdata.profileImage,
                         motboards: motboards
                     }, function (err, newuser) {
                         if (newuser) {
-                            res.status(201).json({'user':newuser,'msg':"sigunup success"});
+                            res.status(201).json({'user':newuser.ops[0],'msg':"sigunup success"});
                         }
                         else {
                             res.status(400).send("Error occured");

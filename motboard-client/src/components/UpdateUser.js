@@ -16,7 +16,7 @@ class UpdateUser extends Component{
                 lastname: (userData)? userData.lastname : '',
                 username: (userData)? userData.username : '',
                 password: (userData)? userData.password : '',
-                profileImage : (userData)? userData.profileURL : '',
+                profileImage : (userData)? userData.profileImage : '',
             },
             messageDivUpdate: ''
         }
@@ -48,7 +48,7 @@ class UpdateUser extends Component{
                 // ...this.state,
                 userdata:{
                     ...this.state.userdata,
-                    profileImage : this.props.loginStateProp.profileURL
+                    profileImage : this.props.loginStateProp.profileImage
                 }
             });
         }
@@ -92,12 +92,18 @@ class UpdateUser extends Component{
                     lastname: state.userData.lastname,
                     username: state.userData.username,
                     password: state.userData.password,
-                    profileImage : state.userData.profileURL
+                    profileImage : state.userData.profileImage
                 }
             });
         }
     }
     render(){
+
+        let userState = this.props.loginStateProp;
+        if(userState.isLogged === false){
+            this.props.history.push("/signIn");
+        }
+
         let messageDivUpdate =null;
         if(this.state.messageDivUpdate !== ''){
             messageDivUpdate = <div className="clearfix">

@@ -83,9 +83,6 @@ const ListOfMotBoards = [
         description:'',
         likes:12,
     },
-
-
-
 ];
 
 class Motboards_List extends Component{

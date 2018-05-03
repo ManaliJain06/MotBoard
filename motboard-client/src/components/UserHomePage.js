@@ -1,4 +1,3 @@
-// check the prop is logged in, in the render otherwise push signup
 import React, {Component} from 'react';
 import '../css/landingPage.css';
 import {Route, withRouter} from 'react-router-dom';
