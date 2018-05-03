@@ -23,7 +23,7 @@ class BalloonPage extends Component {
 
     render() {
         return <div>
-            <div className="row mb-5">
+            <div className="row">
                 <div className="col-lg-12 pb-5" id="myVideo">
                     {/*<img src={colors}/>*/}
                     <Anime/>
@@ -49,14 +49,16 @@ class BalloonPage extends Component {
             <main role="main">
 
                 <section className="jumbotron Questrial" style={{"background": "transparent"}}>
-                    <div className="container" style={{"padding": "50px;"}}>
+                    <div className="container" style={{"padding": "100px;"}}>
 
                         <h1 style={{
-                            "color": 'transparent',
+                            "color": '#424242',
                             "padding-top": "30px",
-                            "text-align": "right",
-                            "font-size": "3em"
-                        }}>Create and Share Your MoodBoards.
+                            "text-align": "center",
+                            "font-size": "7em",
+                            'text-transform':"uppercase",
+                            'text-shadow': '0px 1px 2px rgba(0,0,0,0.2)',
+                        }}>Create and Share Your <b>MoodBoards</b>.
                         </h1>
                     </div>
                 </section>
