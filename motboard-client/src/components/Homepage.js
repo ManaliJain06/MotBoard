@@ -150,7 +150,7 @@ class Homepage extends Component {
                             <Upload/>
                         </div>
                     )}/>
-                    <Route exact path="/upload" render={() => (
+                    <Route exact path="/voice" render={() => (
                         <div>
                             <VoiceTest/>
                         </div>

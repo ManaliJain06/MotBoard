@@ -6,6 +6,8 @@ import ActionHome from 'material-ui/svg-icons/action/home';
 import '../css/single-motboard.css';
 import Fav from 'material-ui/svg-icons/action/favorite-border';
 import FavFilled from 'material-ui/svg-icons/action/favorite';
+import Bookmark from 'material-ui/svg-icons/action/bookmark-border';
+import BookmarkFilled from 'material-ui/svg-icons/action/bookmark';
 import {red500, fullWhite, blue500} from 'material-ui/styles/colors';
 import Checkbox from 'material-ui/Checkbox';
 
@@ -23,8 +25,8 @@ const styles = {
         maxWidth: 250,
     },
     checkbox: {
-        marginBottom: 16,
-        fontSize: '30px',
+        marginBottom: 5,
+        fontSize: '20px',
         iconSize: '30px',
     },
     icon:{
@@ -136,13 +138,25 @@ class Motboards_List extends Component{
                                         }
                                         actionIcon={<div>
                                             <Checkbox
+                                                labelStyle={{color: 'transparent'}}
+                                                iconStyle={styles.icon}
+                                                labelPosition={'left'}
+                                                checkedIcon={<BookmarkFilled />}
+                                                uncheckedIcon={<Bookmark/>}
+                                                style={styles.checkbox}
+                                                label={'Add'}
+
+                                            />
+                                            <Checkbox
                                                 labelStyle={{color: 'white'}}
+                                                labelPosition={'left'}
                                                 iconStyle={styles.icon}
                                                 checkedIcon={<FavFilled />}
                                                 uncheckedIcon={<Fav/>}
                                                 label={tile.likes}
                                                 style={styles.checkbox}
                                             />
+
                                         </div>}
                                         actionPosition={'right'}
                                         // subtitle={<span>by <b>{tile.author}</b></span>}
