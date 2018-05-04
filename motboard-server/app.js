@@ -75,7 +75,7 @@ app.post('/logout', function (req, res) {
     res.status(200).send();
 });
 bodyParser = require('body-parser').json();
-app.use('/getmotboard', motboard);
+// app.use('/getmotboard', motboard);
 app.post('/login', login);
 app.post('/signup', users);
 app.post('/motboard',createmotboard);
@@ -83,6 +83,7 @@ app.post('/makePublic',makePublic);
 app.post('/insertImage',insertImage);
 app.post('/getImages',getImages);
 app.post('/updateUserProfilePic',updateUserProfile.updateUserProfilePic);
-app.post('/updateUserData',updateUserProfile.updateUserInfo)
+app.post('/updateUserData',updateUserProfile.updateUserInfo);
 app.post('/signout', updateUserProfile.signout);
+app.get('/getPublicMotboard', motboard.getPublicMotboard);
 module.exports = app;
