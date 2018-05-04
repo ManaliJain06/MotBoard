@@ -163,7 +163,7 @@ class Homepage extends Component {
                     <Route exact path="/Boards" render={() => (
                         <StyleRoot>
                             <div className=" slideInRight mt-5" style={styles.slideInRight}>
-                                <Motboards_List/>
+                                <Board/>
                             </div>
                         </StyleRoot>
                     )}/>

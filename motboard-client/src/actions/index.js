@@ -77,6 +77,13 @@ function updateUser(res){
     }
 }
 
+function publicMotboards(res){
+    return  {
+        type: "PUBLIC_MOTBOARDS",
+        boards: res
+    }
+}
+
 export function signupAction(userdata) {
     return (dispatch) => {
         const request = axios.post(`${ROOT_URL}/signup`, {userdata: userdata}, {withCredentials: true})
@@ -197,5 +204,16 @@ export function sendFiles(payload) {
         }).catch(error => {
             console.log("send error");
         });
+    }
+}
+
+export function getPublicMotBoardAction(){
+    return (dispatch) => {
+        const request = axios.get(`${ROOT_URL}/getPublicMotboard`, {withCredentials: true})
+            .then(response => {
+                dispatch(publicMotboards(response.data.boards));
+            }).catch(error => {
+                dispatch(signinError());
+            });
     }
 }
