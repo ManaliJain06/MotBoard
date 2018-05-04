@@ -21,6 +21,7 @@ import VoiceTest from "./VoiceTest";
 import UserHomePage from './UserHomePage';
 import UpdateUser from './UpdateUser';
 import ColorsGenerator from './ColorsGenerator';
+import UserAfterLogin from './UserAfterLogin';
 import ProfilePic from './ProfilePic';
 import Chat from './Chat';
 
@@ -148,6 +149,11 @@ class Homepage extends Component {
                     <Route exact path="/upload" render={() => (
                         <div>
                             <Upload/>
+                        </div>
+                    )}/>
+                    <Route exact path="/myBoards" render={() => (
+                        <div>
+                            <UserAfterLogin/>
                         </div>
                     )}/>
                     <Route exact path="/voice" render={() => (
