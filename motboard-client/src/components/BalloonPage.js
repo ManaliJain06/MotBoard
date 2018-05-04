@@ -49,17 +49,17 @@ class BalloonPage extends Component {
             <main role="main">
 
                 <section className="jumbotron Questrial" style={{"background": "transparent"}}>
-                    <div className="container" style={{"padding": "100px;"}}>
+                    <div className="container" style={{"padding": "70px;"}}>
 
-                        <h1 style={{
+                        <div style={{
                             "color": '#424242',
                             "padding-top": "30px",
-                            "text-align": "center",
+                            "text-align": "right",
                             "font-size": "7em",
                             'text-transform':"uppercase",
-                            'text-shadow': '0px 1px 2px rgba(0,0,0,0.2)',
-                        }}>Create and Share Your <b>MoodBoards</b>.
-                        </h1>
+                            'text-shadow': '0px 2px 4px rgba(0,0,0,0.2)',
+                        }}><div style={{'font-size':'50px'}}> Create and Share Your </div><b>MoodBoards</b>.
+                        </div>
                     </div>
                 </section>
 
