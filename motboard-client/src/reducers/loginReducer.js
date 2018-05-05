@@ -4,10 +4,11 @@ const loginState = {
     'userData' : '',
     'error': false,
     'msg': '',
-    'profileURL': '',
+    'profileImage': '',
     'profileURLError': false,
     'updateError': '',
-    'signOutError': ''
+    'signOutError': '',
+    'updateUserBoardError': ''
 };
 
 export default function (state=loginState,action){
@@ -31,7 +32,7 @@ export default function (state=loginState,action){
             return errorMsg;
 
         case "UPDATE_USER_PROFILE_PiC":
-            const updateUserProfile = Object.assign({}, state, {profileURL:action.response.fileURL,
+            const updateUserProfile = Object.assign({}, state, {profileImage:action.response.fileURL,
                 profileURLError:false});
             return updateUserProfile;
 
@@ -49,12 +50,18 @@ export default function (state=loginState,action){
 
         case "SIGNOUT_SUCCESSFUL":
             const signOutObject =  Object.assign({},state, {isLogged:false,
-                firstName: '', userData: '', error:false, msg: '',profileURL: '',
-                profileURLError: false,updateError: '',signOutError:false});
+                firstName: '', userData: '', error:false, msg: '',profileImage: '',
+                profileURLError: false,updateError: '',signOutError:false, updateUserBoardError:false});
             return signOutObject;
 
         case "SIGNOUT_ERROR":
             return Object.assign({},state, {signOutError:true});
+
+        case "UPDATED_USER_BOARDS":
+            return Object.assign({}, state, { userData:action.user, updateUserBoardError:false});
+
+        case "UPDATED_USER_BOARDS_ERROR":
+            return Object.assign({}, state, { updateUserBoardError:true});
 
         default :
             return state;

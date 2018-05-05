@@ -81,7 +81,20 @@ function publicMotboards(res){
     return  {
         type: "PUBLIC_MOTBOARDS",
         boards: res
-    }
+    };
+}
+
+function updatedUserBoards(user){
+    return {
+        type:"UPDATED_USER_BOARDS",
+        user:user
+    };
+}
+
+function updatedUserBoardsError(res){
+    return {
+        type:"UPDATED_USER_BOARDS_ERROR",
+    };
 }
 
 export function signupAction(userdata) {
@@ -213,7 +226,29 @@ export function getPublicMotBoardAction(){
             .then(response => {
                 dispatch(publicMotboards(response.data.boards));
             }).catch(error => {
-                dispatch(signinError());
+                // dispatch(signinError());
+            });
+    }
+}
+
+export function postLikesAction(payload){
+    return (dispatch) => {
+        const request = axios.post(`${ROOT_URL}/postLikes`, payload, {withCredentials: true})
+            .then(response => {
+                dispatch(publicMotboards(response.data.boards));
+            }).catch(error => {
+                // dispatch(signinError());
+            });
+    }
+}
+
+export function addPublicBoardToPrivate(payload){
+    return (dispatch) => {
+        const request = axios.post(`${ROOT_URL}/addPublicBoardToPrivate`, payload, {withCredentials: true})
+            .then(response => {
+                dispatch(updatedUserBoards(response.data.user));
+            }).catch(error => {
+                dispatch(updatedUserBoardsError());
             });
     }
 }

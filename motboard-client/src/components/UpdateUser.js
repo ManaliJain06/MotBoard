@@ -43,7 +43,7 @@ class UpdateUser extends Component{
                 ...this.state,
                 messageDivUpdate: "Error Occured in uploading"
             });
-        } else if(state.profileURL !== ''){
+        } else if(state.profileImage !== ''){
             this.setState({
                 // ...this.state,
                 userdata:{
@@ -93,7 +93,8 @@ class UpdateUser extends Component{
                     username: state.userData.username,
                     password: state.userData.password,
                     profileImage : state.userData.profileImage
-                }
+                },
+                messageDivUpdate: ''
             });
         }
     }

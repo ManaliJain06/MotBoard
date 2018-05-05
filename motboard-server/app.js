@@ -86,4 +86,6 @@ app.post('/updateUserProfilePic',updateUserProfile.updateUserProfilePic);
 app.post('/updateUserData',updateUserProfile.updateUserInfo);
 app.post('/signout', updateUserProfile.signout);
 app.get('/getPublicMotboard', motboard.getPublicMotboard);
+app.post('/postLikes', motboard.postLikes);
+app.post('/addPublicBoardToPrivate', motboard.addPublicBoardToPrivate);
 module.exports = app;
