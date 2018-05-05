@@ -23,6 +23,11 @@ import ColorsGenerator from './ColorsGenerator';
 import UserAfterLogin from './UserAfterLogin';
 import ProfilePic from './ProfilePic';
 import Chat from './Chat';
+import RaisedButton from 'material-ui/RaisedButton';
+import Popover from 'material-ui/Popover';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
+import { translate, Trans } from 'react-i18next';
 
 const styles = {
     slideInRight: {
@@ -44,12 +49,35 @@ class Homepage extends Component {
         super(props);
         let userState = this.props.loginStateProp;
         this.state={
-            "userstate":userState.isLogged
+            "userstate":userState.isLogged,
+            open: false,
         };
     }
+    handleClick = (event) => {
+        // This prevents ghost click.
+        event.preventDefault();
+
+        this.setState({
+            open: true,
+            anchorEl: event.currentTarget,
+        });
+    };
+
+    handleRequestClose = () => {
+        this.setState({
+            open: false,
+        });
+    };
 
     render() {
         let userState = this.props.loginStateProp;
+        const { t, i18n } = this.props;
+
+        const changeLanguage = (lng) => {
+            alert('changing the language to:'+lng);
+            i18n.changeLanguage(lng);
+            this.handleRequestClose();
+        };
         return (
             <div>
                 <div>
@@ -58,8 +86,11 @@ class Homepage extends Component {
                         <a className="navbar-brand d-flex align-items-center " onClick={() => {
                             this.props.history.push("/");
                         }}>
-                            <span className="megrim blackColor pt-3 pl-5 pointer motboardlogo">MOtBOARD
-                            {userState.isLogged ? <span className="megrim userGreeting">Hello {userState.firstName}</span>: ''}
+                            <span className="megrim blackColor pt-3 pl-5 pointer motboardlogo">
+                                <Trans name={'React.js'}>
+                                MOtBOARD
+                                </Trans>
+                                {userState.isLogged ? <span className="megrim userGreeting">Hello {userState.firstName}</span>: ''}
                             </span>
                         </a>
                         <ul className="navbar-nav text-uppercase ml-auto">
@@ -89,6 +120,26 @@ class Homepage extends Component {
                                        this.props.history.push("/Team");
                                    }}>Team</a>
                             </li>
+                            <li className="nav-item">
+                                <a className="nav-link js-scroll-trigger pointer" style={{'font-size': '1.4em'}}><div>
+                                    <RaisedButton
+                                        onClick={this.handleClick}
+                                        label="Lan"
+                                    />
+                                    <Popover
+                                        open={this.state.open}
+                                        anchorEl={this.state.anchorEl}
+                                        anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+                                        targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                                        onRequestClose={this.handleRequestClose}
+                                    >
+                                        <Menu>
+                                            <MenuItem primaryText="el" onClick={() => changeLanguage('el')}/>
+                                            <MenuItem primaryText="en" onClick={() => changeLanguage('en')}/>
+                                        </Menu>
+                                    </Popover>
+                                </div></a>
+                            </li>
                             {userState.isLogged ? <ProfilePic/>: '' }
                         </ul>
                     </nav>
@@ -116,9 +167,9 @@ class Homepage extends Component {
                     )}/>
                     <Route exact path="/ColorsGenerator" render={() => (
                         <StyleRoot>
-                        <div className=" fadeInUp" style={styles.fadeInUp}>
-                            <ColorsGenerator/>
-                        </div>
+                            <div className=" fadeInUp" style={styles.fadeInUp}>
+                                <ColorsGenerator/>
+                            </div>
                         </StyleRoot>
                     )}/>
                     <Route exact path="/About" render={() => (
@@ -170,7 +221,7 @@ class Homepage extends Component {
                     <Route exact path="/home" render={()=>(
                         <div>
                             <React.Fragment>
-                            {/*<UserHomePage/>*/}
+                                {/*<UserHomePage/>*/}
                                 <div className="content">
                                     <UserAfterLogin/>
                                 </div>
