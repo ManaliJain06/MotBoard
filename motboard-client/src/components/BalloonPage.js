@@ -14,13 +14,16 @@ import Featured_Motboards_List from "./Featured_Motboards_List";
 import $ from 'jquery';
 import {jQuery} from 'jquery';
 import Anime from "./Anime";
-
+import Artyom from 'artyom.js';
+const artyom = new Artyom();
 class BalloonPage extends Component {
     constructor(props) {
         super(props);
     }
 
-
+    componentWillMount(){
+        artyom.say("Hey there! welcome to the world of inspiration!");
+    }
     render() {
         return <div>
             <div className="row">
@@ -54,7 +57,7 @@ class BalloonPage extends Component {
                         <div style={{
                             "color": '#424242',
                             "padding-top": "30px",
-                            "text-align": "right",
+                            "text-align": "center",
                             "font-size": "7em",
                             'text-transform':"uppercase",
                             'text-shadow': '0px 2px 4px rgba(0,0,0,0.2)',

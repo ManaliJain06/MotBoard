@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import {Route, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import '../css/colorgen.css';
+import VoiceTest from "./VoiceTest";
+import Artyom from 'artyom.js';
+const artyom = new Artyom();
+
 class ColorsGenerator extends Component{
     constructor(props){
         super(props);
@@ -14,7 +18,9 @@ class ColorsGenerator extends Component{
             RandomColor6:'#b2dfdb',
         }
     }
-
+    componentWillMount(){
+        artyom.say("Hello. My name is Rainbow ! I can help you choose colors");
+    }
     generateColors = () =>{
         console.log('Random color generator');
         var letters = '0123456789ABCDEF';
@@ -60,6 +66,7 @@ class ColorsGenerator extends Component{
                 <div className="col-md-2 onecolumn Questrial" style={{'background-color': this.state.RandomColor5}}>{this.state.RandomColor5}</div>
                 <div className="col-md-2 onecolumn Questrial" style={{'background-color': this.state.RandomColor6}}>{this.state.RandomColor6}</div>
             </div>
+                <VoiceTest/>
             </div>
         )
     }

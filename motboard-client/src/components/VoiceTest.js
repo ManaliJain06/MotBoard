@@ -10,7 +10,7 @@ const artyom = new Artyom();
 // Start the commands !
 artyom.initialize({
     lang: "en-US", // GreatBritain english
-    continuous: false, // Listen forever
+    continuous: true, // Listen forever
     soundex: true,// Use the soundex algorithm to increase accuracy
     debug: true, // Show messages in the console
     executionKeyword: "Do it now",
@@ -25,7 +25,7 @@ artyom.initialize({
     console.error("Artyom couldn't be initialized: ", err);
 });
 
-artyom.say("Hello. My name is Rainbow ! I can help you choose colors");
+//artyom.say("Hello. My name is Rainbow ! I can help you choose colors");
 
 artyom.on(['Good morning','Good afternoon']).then((i) => {
     switch (i) {
