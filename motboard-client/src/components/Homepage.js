@@ -28,6 +28,7 @@ import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import { translate, Trans } from 'react-i18next';
+import PropTypes from 'prop-types';
 
 const styles = {
     slideInRight: {
@@ -74,9 +75,7 @@ class Homepage extends Component {
         const { t, i18n } = this.props;
 
         const changeLanguage = (lng) => {
-            alert('changing the language to:'+lng);
             i18n.changeLanguage(lng);
-            this.handleRequestClose();
         };
         return (
             <div>
@@ -86,12 +85,12 @@ class Homepage extends Component {
                         <a className="navbar-brand d-flex align-items-center " onClick={() => {
                             this.props.history.push("/");
                         }}>
-                            <span className="megrim blackColor pt-3 pl-5 pointer motboardlogo">
-                                <Trans name={'React.js'}>
-                                MOtBOARD
-                                </Trans>
-                                {userState.isLogged ? <span className="megrim userGreeting">Hello {userState.firstName}</span>: ''}
+                            <span className="megrim blackColor pt-3 pl-5 pointer motboardlogo">MOtBOARD
+                            {userState.isLogged ? <span className="megrim userGreeting">Hello {userState.firstName}</span>: ''}
                             </span>
+                            {/*<Trans name={'React.js'}>*/}
+                                {/*React makes it*/}
+                            {/*</Trans>*/}
                         </a>
                         <ul className="navbar-nav text-uppercase ml-auto">
                             <li className="nav-item">
@@ -167,9 +166,9 @@ class Homepage extends Component {
                     )}/>
                     <Route exact path="/ColorsGenerator" render={() => (
                         <StyleRoot>
-                            <div className=" fadeInUp" style={styles.fadeInUp}>
-                                <ColorsGenerator/>
-                            </div>
+                        <div className=" fadeInUp" style={styles.fadeInUp}>
+                            <ColorsGenerator/>
+                        </div>
                         </StyleRoot>
                     )}/>
                     <Route exact path="/About" render={() => (
@@ -221,7 +220,7 @@ class Homepage extends Component {
                     <Route exact path="/home" render={()=>(
                         <div>
                             <React.Fragment>
-                                {/*<UserHomePage/>*/}
+                            {/*<UserHomePage/>*/}
                                 <div className="content">
                                     <UserAfterLogin/>
                                 </div>
