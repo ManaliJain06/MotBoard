@@ -17,7 +17,6 @@ import MotBoardImages_Arrange from "./MotBoardImages_Arrange";
 import Motboards_List from "./Motboards_List";
 import Radium, {StyleRoot} from 'radium';
 import {slideInRight, slideInLeft, fadeInUp} from 'react-animations';
-import VoiceTest from "./VoiceTest";
 import UserHomePage from './UserHomePage';
 import UpdateUser from './UpdateUser';
 import ColorsGenerator from './ColorsGenerator';
@@ -98,7 +97,7 @@ class Homepage extends Component {
                     <Route exact path="/" render={() => (
 
                         <StyleRoot>
-                            <div className=" slideInLeft mt-5" style={styles.slideInLeft}>
+                            <div className=" slideInLeft" style={styles.slideInLeft}>
                                 <BalloonPage/>
                             </div>
                         </StyleRoot>
@@ -154,11 +153,6 @@ class Homepage extends Component {
                     <Route exact path="/myBoards" render={() => (
                         <div>
                             <UserAfterLogin/>
-                        </div>
-                    )}/>
-                    <Route exact path="/voice" render={() => (
-                        <div>
-                            <VoiceTest/>
                         </div>
                     )}/>
                     <Route exact path="/blogs" render={() => (

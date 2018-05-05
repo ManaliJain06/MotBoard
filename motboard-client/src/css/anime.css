@@ -1,15 +1,16 @@
 .animebody {
     display: flex;
-    justify-content: left;
-    align-items: left;
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
-    width: 800px;
+    width: 100%;
     margin: 0;
     padding: 0;
 }
 .wrap {
     position: relative;
-    width: 100%; height: auto;
+    width: 100%;
+    height: 100vh;
     overflow: hidden;
 }
 .scene-1 {
