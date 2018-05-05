@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import {Route, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {Button, Modal} from 'react-bootstrap';
 import {GridList, GridTile} from 'material-ui/GridList';
 import '../css/single-motboard.css';
 import Fav from 'material-ui/svg-icons/action/favorite-border';
 import FavFilled from 'material-ui/svg-icons/action/favorite';
 import Checkbox from 'material-ui/Checkbox';
-import {getPublicMotBoardAction} from '../actions';
+import Bookmark from 'material-ui/svg-icons/action/bookmark-border';
+import BookmarkFilled from 'material-ui/svg-icons/action/bookmark';
+import {getPublicMotBoardAction, postLikesAction, addPublicBoardToPrivate} from '../actions';
 const styles = {
     root: {
         display: 'flex',
@@ -21,8 +24,8 @@ const styles = {
         maxWidth: 250,
     },
     checkbox: {
-        marginBottom: 16,
-        fontSize: '30px',
+        marginBottom: 5,
+        fontSize: '20px',
         iconSize: '30px',
     },
     icon:{
@@ -31,55 +34,35 @@ const styles = {
         height: 30,
     }
 };
-
+const customStyles = {
+    content : {
+        top                   : '80%',
+        left                  : '50%',
+        right                 : 'auto',
+        width                 : '50%',
+        bottom                : 'auto',
+        marginRight           : '-50%',
+        transform             : 'translate(-50%, -50%)',
+        opacity: 0.5
+    }
+};
 const iconStyles = {
     marginRight: 24,
 };
-// const ListOfMotBoards = [
-//     {
-//         url:'https://images.unsplash.com/photo-1502767089025-6572583495f9?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c395251a00dc113cdcb63d59e0505e62&auto=format&fit=crop&w=1050&q=80',
-//         description:'',
-//         likes:112,
-//     },
-//     {
-//         url:'https://images.unsplash.com/photo-1508257599793-5a200cf82b07?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a4b040befc23b61e1b38d524a1aff564&auto=format&fit=crop&w=1050&q=80',
-//         description:'Texture is good',
-//         likes:207,
-//     },
-//     {
-//         url:'https://images.unsplash.com/photo-1510007552638-e1c0c4c67ee0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=95ed13af4e929ecf4617003a8e056214&auto=format&fit=crop&w=1050&q=80',
-//         description:'',
-//         likes:345,
-//     },
-//     {
-//         url:'https://images.unsplash.com/photo-1512810730836-1a7cde39c455?ixlib=rb-0.3.5&s=71bf7a9ce922def0c36a3facd04195c6&auto=format&fit=crop&w=1950&q=80',
-//         description:'',
-//         likes:567,
-//     },
-//     {
-//         url:'https://images.unsplash.com/photo-1504392022767-a8fc0771f239?ixlib=rb-0.3.5&s=b7f4bc9efbf3d1ae81537360cca704f3&auto=format&fit=crop&w=675&q=80',
-//         description:'',
-//         likes:27,
-//     },
-//     {
-//         url:'https://images.unsplash.com/photo-1502787530428-11cf61d6ba18?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=ee60964c06a30ae7596dce9f7380a391&auto=format&fit=crop&w=750&q=80',
-//         description:'',
-//         likes:456,
-//     },
-//     {
-//         url:'https://images.unsplash.com/photo-1510046651888-1be61805a114?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=231f12926b338b70673ea107b2c78ca3&auto=format&fit=crop&w=700&q=80',
-//         description:'',
-//         likes:12,
-//     },
-// ];
+
 class Board extends Component{
 
     constructor(props){
         super(props);
         this.state = {
-            ListOfMotBoards : []
+            ListOfMotBoards : [],
+            checked: false,
+            oldState: false
         };
         this.setBoards = this.setBoards.bind(this);
+        this.handleLikes = this.handleLikes.bind(this);
+        // this.handleCheck = this.handleCheck.bind(this);
+        this.updateCheck = this.updateCheck.bind(this);
     }
     state = {
         checked: false,
@@ -99,16 +82,16 @@ class Board extends Component{
         ]
     };
 
-    updateCheck() {
-        this.setState((oldState) => {
-            return {
-                checked: !oldState.checked,
-            };
-        });
-    }
     componentDidMount(){
         this.props.getPublicMotBoardAction();
         setTimeout(this.setBoards, 1000);
+    }
+    updateCheck(callback) {
+        let isChecked = !this.state.checked;
+        this.setState({
+            ...this.state,
+                checked: isChecked
+        }, callback);
     }
     setBoards(){
         let publicBoards = this.props.publicMotBoard;
@@ -117,9 +100,141 @@ class Board extends Component{
             ListOfMotBoards: publicBoards.boards
         })
     }
+    // handleCheck(event, isInputChecked){
+    //     if(isInputChecked){
+    //         return true;
+    //     } else{
+    //         return false;
+    //     }
+    // }
+    openModalError(){
+        this.setState({
+            showError: true });
+    }
+    closeModalError(){
+        this.setState({
+            showError: false });
+    }
+    openModalSignUpError(){
+        this.setState({
+            showModalError: true });
+        // setTimeout(this.props.history.push('/signUp'),10000)
+    }
+    closeModalSignUpError(){
+        this.setState({ showModalError: false });
+    }
+    showSignInPage(){
+        this.setState({ showModalError: false });
+        this.props.history.push('/SignIn');
+    }
+    openModalBillingSuccess() {
+        this.setState({ showModalSuccess: true });
+    }
+
+    closeModalBillingSuccess() {
+        this.setState({ showModalSuccess: true });
+        this.props.history.push('/home');
+    }
+    addBoardToPersonal(tile){
+        //API to add to personal motboard
+        let state = this.props.loginStateProp;
+        if(state.isLogged){
+            let payload={
+                "board": tile,
+                "user": state.userData
+            }
+            this.props.addPublicBoardToPrivate(payload, function(err, result){
+                let state = this.props.loginStateProp;
+                if(state.updateUserBoardError){
+                    this.openModalError();
+                } else{
+                    this.openModalBillingSuccess();
+                }
+            });
+        } else{
+            this.openModalSignUpError();
+        }
+
+    }
+
+    showUserPrivateBoards(){
+        this.props.history.push('/home')
+    }
+    handleLikes = (name, likes) =>{
+        var payload={
+            "name": name,
+            "likes":likes
+        }
+        this.props.postLikesAction(payload, function(err, result){
+            console.log("action has been successfully returned");
+            let publicBoards = this.props.publicMotBoard;
+            this.setState({
+                ...this.state,
+                ListOfMotBoards: publicBoards.boards
+            })
+        });
+        console.log("inside handlelikes");
+    }
     render(){
         return (
             <div>
+                <Modal backdrop="true" dialogClassName={customStyles} show={this.state.showModalError} onHide={() => this.closeModalSignUpError()}>
+                    <Modal.Header closeButton>
+                        {/*<Modal.Title>Bookmarked Success</Modal.Title>*/}
+                    </Modal.Header>
+                    <Modal.Body>
+                        <div className="row justify-content-md-center">
+                            <div className="form-group row">
+                                <div className="col-sm-offset-1 col-sm-10 col-sm-offset-1">
+                                    <div className="alert alert-success text-center" role="alert">You first need to sign
+                                        in before adding a public board to your private boards.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick={() => this.showSignInPage()}>Sign In</Button>
+                        <Button onClick={() => this.closeModalSignUpError()}>Close</Button>
+                    </Modal.Footer>
+                </Modal>
+
+                <Modal dialogClassName={customStyles} show={this.state.showModalSuccess} onHide={() => this.closeModalBillingSuccess()}>
+                    <Modal.Header closeButton>
+                        {/*<Modal.Title>Payment Success</Modal.Title>*/}
+                    </Modal.Header>
+                    <Modal.Body>
+                        <div className="row justify-content-md-center">
+                            <div className="form-group row">
+                                <div className="col-sm-offset-1 col-sm-10 col-sm-offset-1">
+                                    <div className="alert alert-success text-center" role="alert"> Added Successfully. To see all your private boards click 'My Boards' else close </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick={() => this.showUserPrivateBoards()}>My Boards</Button>
+                        <Button onClick={() => this.closeModalBillingSuccess()}>Close</Button>
+                    </Modal.Footer>
+                </Modal>
+
+                <Modal backdrop="true" dialogClassName={customStyles} show={this.state.showError} onHide={() => this.closeModalError()}>
+                    <Modal.Header closeButton>
+                        {/*<Modal.Title>Bookmarked Success</Modal.Title>*/}
+                    </Modal.Header>
+                    <Modal.Body>
+                        <div className="row justify-content-md-center">
+                            <div className="form-group row">
+                                <div className="col-sm-offset-1 col-sm-10 col-sm-offset-1">
+                                    <div className="alert alert-success text-center" role="alert">BookMarking failed. Please try again</div>
+                                </div>
+                            </div>
+                        </div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button onClick={() => this.closeModalError()}>Close</Button>
+                    </Modal.Footer>
+                </Modal>
+
                 <div className="row justify-content-center">
                     <div class="col-md-11 mt-5 pt-5">
                         <div style={styles.root}>
@@ -129,9 +244,9 @@ class Board extends Component{
                                 padding={25}
                                 cols={4}
                             >
-                                {this.state.ListOfMotBoards.map((tile) => (
+                                {this.state.ListOfMotBoards.map((tile, index) => (
                                     <GridTile
-                                        key={tile.img}
+                                        key={index}
                                         title={
                                             <div>
                                                 {tile.name}
@@ -139,12 +254,29 @@ class Board extends Component{
                                         }
                                         actionIcon={<div>
                                             <Checkbox
-                                                labelStyle={{color: 'white'}}
+                                                labelStyle={{color: 'transparent'}}
                                                 iconStyle={styles.icon}
-                                                checkedIcon={<FavFilled />}
+                                                labelPosition={'left'}
+                                                checkedIcon={<BookmarkFilled />}
+                                                uncheckedIcon={<Bookmark/>}
+                                                style={styles.checkbox}
+                                                label={'Add'}
+                                                onClick={(event) => {
+                                                    this.addBoardToPersonal(tile);
+                                                }}
+                                            />
+                                            <Checkbox
+                                                labelStyle={{color: 'white'}}
+                                                labelPosition={'left'}
+                                                iconStyle={styles.icon}
+                                                checkedIcon={<FavFilled/>}
                                                 uncheckedIcon={<Fav/>}
                                                 label={tile.likes}
                                                 style={styles.checkbox}
+                                                onClick={(event) => {
+                                                    tile.likes = tile.likes +1;
+                                                    this.handleLikes(tile.name, tile.likes);
+                                                }}
                                             />
                                         </div>}
                                         actionPosition={'right'}
@@ -188,6 +320,7 @@ function mapStateToProps(state) {
     console.log("state App", state)
     return{
         publicMotBoard : state.publicMotBoardData,
+        loginStateProp: state.loginStateData
     };
 }
-export default withRouter(connect(mapStateToProps,{getPublicMotBoardAction})(Board));
+export default withRouter(connect(mapStateToProps,{postLikesAction, getPublicMotBoardAction, addPublicBoardToPrivate})(Board));

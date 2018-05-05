@@ -41,15 +41,28 @@ exports.getPublicMotboard = function(req,res){
                     _id: 0
                 }}
             ],function(err,result){
+                let seen = [];
                 let response = {
                     boards: []
                 };
                 result.map(data =>{
                     var motboards = data.motboards;
                     motboards.map(board =>{
-                          response.boards.push(board);
+                        if (seen.indexOf(board.name) === -1){
+                            response.boards.push(board);
+                            seen.push(board.name);
+                        }
+
                     });
                 });
+                // let seen = [];
+                // let uniqueBoards = [];
+                // response.boards.filter(function(x) {
+                //     if (seen.indexOf(x.name) === -1){
+                //         uniqueBoards.push(x);
+                //         seen.push(x.name);
+                //     }
+                // }, );
                 res.status(201).json({'boards':response.boards});
             });
         });
@@ -59,17 +72,142 @@ exports.getPublicMotboard = function(req,res){
     }
 }
 
+exports.postLikes = function(req,res){
+    try {
+        mongo.connect(mongoURL, function () {
+            let coll = mongo.collection('users');
 
-// coll.findOneAndUpdate({ "username" : req.body.userdata.username},
-//     {$set:{"firstname": req.body.userdata.firstname ,
-//         "lastname": req.body.userdata.lastname,
-//         "password": req.body.userdata.password,
-//         "profileImage": req.body.userdata.profileImage}}, function (err, result) {
-//         console.log("result is", result);
-//         if (result.ok > 0) {
-//             res.status(201).json({'user':req.body.userdata,'msg':"update success"});
-//         }
-//         else {
-//             res.status(400).send("Error occured");
-//         }
-//     });
+            // coll.find({"motboards.name" : req.body.name}).forEach(function(plan) {
+            //     plan.motboards.forEach(function(board) {
+            //         if(board.name === req.body.name) {
+            //             board.likes = req.body.likes;
+            //         }
+            //     });
+            //     coll.save(plan);
+            // });
+
+            coll.find({"motboards.name": req.body.name}).toArray(function (err, result) {
+
+                result.forEach(function (obj) {
+                    obj.motboards.forEach(function (board) {
+                        if (board.name === req.body.name) {
+                            board.likes = req.body.likes;
+                        }
+                    });
+                })
+
+                //
+                // result[0].motboards.forEach(function(board) {
+                //     if(board.name === req.body.name) {
+                //         board.likes = req.body.likes;
+                //     }
+                // });
+                result.forEach(function (doc) {
+                    coll.save(doc);
+                });
+
+                coll.aggregate([
+                    {$match: {'motboards.access': 'public'}},
+                    {
+                        $project: {
+                            motboards: {
+                                $filter: {
+                                    input: '$motboards',
+                                    as: 'motboard',
+                                    cond: {$eq: ['$$motboard.access', 'public']}
+                                }
+                            },
+                            _id: 0
+                        }
+                    }
+                ], function (err, result) {
+                    let seen = [];
+                    let response = {
+                        boards: []
+                    };
+                    result.map(data => {
+                        var motboards = data.motboards;
+                        motboards.map(board => {
+                            if (seen.indexOf(board.name) === -1) {
+                                response.boards.push(board);
+                                seen.push(board.name);
+                            }
+
+                        });
+                    });
+                    res.status(201).json({'boards': response.boards});
+                });
+
+                // coll.insertMany(result, function(err, savedResult){
+                //     if(savedResult.result.nModified>0){
+                //             coll.aggregate([
+                //                 {$match: {'motboards.access': 'public'}},
+                //                 {$project: {
+                //                     motboards: {$filter: {
+                //                         input: '$motboards',
+                //                         as: 'motboard',
+                //                         cond: {$eq: ['$$motboard.access', 'public']}
+                //                     }},
+                //                     _id: 0
+                //                 }}
+                //             ],function(err,result){
+                //                 let seen = [];
+                //                 let response = {
+                //                     boards: []
+                //                 };
+                //                 result.map(data =>{
+                //                     var motboards = data.motboards;
+                //                     motboards.map(board =>{
+                //                         if (seen.indexOf(board.name) === -1){
+                //                             response.boards.push(board);
+                //                             seen.push(board.name);
+                //                         }
+                //
+                //                     });
+                //                 });
+                //                 res.status(201).json({'boards':response.boards});
+                //             });
+                //         }
+                //         // res.status(201).json();
+                //     });
+                // });
+            });
+        });
+    }
+    catch (e) {
+        console.log(e);
+    }
+}
+
+exports.addPublicBoardToPrivate = function(req,res,next){
+    try {
+        mongo.connect(mongoURL, function () {
+            let coll = mongo.collection('users');
+
+            let board={
+                name: req.body.board.name,
+                access: req.body.board.access,
+                likes: req.body.board.likes,
+                images: req.body.board.images,
+            }
+
+            coll.update({ username: req.body.user.username },
+                {$push: { motboards: board }}, function(err, result){
+                    if(result.result.nModified>0){
+                        coll.find({username: req.body.user.username}).toArray(function (err, user){
+                            if (user) {
+                                res.status(200).json({'user':user});
+                            } else {
+                                res.status(400).send();
+                            }
+                        });
+                    }else{
+                        res.status(400).send();
+                    }
+                });
+        });
+    }
+    catch (e) {
+        console.log(e);
+    }
+}
