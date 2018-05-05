@@ -5,7 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Homepage from './components/Homepage'
 import { I18nextProvider } from 'react-i18next';
-import i18n from './components/il8n';
+import i18n from './il8n';
 
 
 const muiTheme = getMuiTheme({
@@ -19,11 +19,11 @@ class App extends Component {
         return (
             <div>
                 <MuiThemeProvider muiTheme={muiTheme}>
-                    <BrowserRouter>
-                        <I18nextProvider i18n={ i18n }>
+                    <I18nextProvider i18n={ i18n }>
+                        <BrowserRouter>
                             <Homepage/>
-                        </I18nextProvider>
-                    </BrowserRouter>
+                        </BrowserRouter>
+                    </I18nextProvider>
                 </MuiThemeProvider>
             </div>
         );
