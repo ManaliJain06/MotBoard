@@ -4,7 +4,7 @@ import {BrowserRouter} from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import Homepage from './components/Homepage'
-import ErrorBoundary from './components/ErrorBoundaryPage';
+
 
 
 const muiTheme = getMuiTheme({
@@ -14,19 +14,21 @@ const muiTheme = getMuiTheme({
 });
 
 class App extends Component {
-  render() {
-    return (
-          <div>
-              <ErrorBoundary>
-              <MuiThemeProvider muiTheme={muiTheme}>
-              <BrowserRouter>
-                  <Homepage/>
-              </BrowserRouter>
-              </MuiThemeProvider>
-              </ErrorBoundary>
-          </div>
-    );
-  }
+    render() {
+        return (
+            <div>
+
+
+                <MuiThemeProvider muiTheme={muiTheme}>
+                    <BrowserRouter>
+                        <Homepage/>
+                    </BrowserRouter>
+                </MuiThemeProvider>
+
+
+            </div>
+        );
+    }
 }
 
 export default App;
