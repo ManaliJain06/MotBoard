@@ -1,7 +1,7 @@
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-//alert('in Inter');
+alert('in Inter');
 //FROM: https://phraseapp.com/blog/posts/react-i18n-best-libraries/
 i18n
     .use(LanguageDetector)
@@ -12,7 +12,7 @@ i18n
                 translations: {
                     "Welcome to React.js": "Welcome to React.js",
                     "Declarative": "Declarative",
-                    "React makes it": "MOtBOARD",
+                    "React makes it": "MOtBOARD!!",
                     "Declarative views make your code more predictable and easier to debug.": "Declarative views make your code more predictable and easier to debug."
                 }
             },
