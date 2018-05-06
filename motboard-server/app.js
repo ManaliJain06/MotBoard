@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var cors = require('cors');
 var createmotboard=require('./routes/createmotboard');
+var popularmotboard=require('./routes/popularmotboard');
 var makePublic=require('./routes/makePublic');
 var motboard = require('./routes/motboard');
 var routes = require('./routes/index');
@@ -18,6 +19,10 @@ var mongoSessionURL = "mongodb://localhost:27017/sessions";
 var expressSessions = require("express-session");
 var mongoStore = require("connect-mongo")(expressSessions);
 var getuserboards=require('./routes/getusermotboards');
+var getBlogs=require('./routes/getBlogs');
+var postblog=require('./routes/postblog');
+
+
 
 var app = express();
 
@@ -91,4 +96,9 @@ app.get('/getPublicMotboard', motboard.getPublicMotboard);
 app.post('/postLikes', motboard.postLikes);
 app.post('/addPublicBoardToPrivate', motboard.addPublicBoardToPrivate);
 app.get('/getuserboards',getuserboards);
+app.get('/getBlogs',getBlogs);
+app.post('/postblog',postblog);
+app.use('/getPopularMotboards',popularmotboard);
+
+
 module.exports = app;
