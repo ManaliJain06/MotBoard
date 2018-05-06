@@ -9,6 +9,8 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import video from '../Images/droplets.mp4';
+import {getBlogs,postblog} from "../actions/index";
+
 const style = {
     marginRight: 20,
 
@@ -29,39 +31,25 @@ class Blogs extends Component{
         console.log('blog-text-to-submit: '+this.refs.blogContent.getValue());
         var blogJSONtoSend ={
             'text': this.refs.blogContent.getValue()
-        }
+        };
         //TODO: Call to backend here - to post the blogs
+        this.props.postblog(blogJSONtoSend);
+        setTimeout(this.props.getBlogs,200);
+
+
     };
-    componentWillMount(){
+    componentDidMount(){
         //TODO: Call to backend here - to retrieve the blogs
+        this.props.getBlogs();
     }
     constructor(props){
         super(props);
         this.state={
-            open: false,
-            blogs : [
-                {
-                    'text':'When ever I get a creative block, MotBoard will be the first place I turn to.'
-                },
-                {
-                    'text':'I was once asked to create a kids website and was confused about eh colors. MotBoard to the rescue!'
-                },
-                {
-                    'text':'When ever I get a creative block, MotBoard will be the first place I turn to.'
-                },
-                {
-                    'text':'I was once asked to create a kids website and was confused about eh colors. MotBoard to the rescue!'
-                },
-                {
-                    'text':'When ever I get a creative block, MotBoard will be the first place I turn to.'
-                },
-                {
-                    'text':'I wI was once asked to create a kids website and was confused about eh colors. MotBoard to the rescue!Board to the rescue!Board to the rescue!I wI was once asked to create a kids website and was confused about eh colors.'
-                }
-            ]
+            open: false
         }
     }
     render(){
+        console.log(this.props.blogs);
         const actions = [
             <FlatButton
                 label="Cancel"
@@ -100,12 +88,11 @@ class Blogs extends Component{
                             </div>
                             <FloatingActionButton>
                                 <ContentAdd
-                                onClick={this.handleOpen}/>
+                                    onClick={this.handleOpen}/>
                             </FloatingActionButton>
                             <div className="row justify-content-center">
-
                                 {
-                                    this.state.blogs.map((blog,index) => (
+                                    this.props.blogs.map((blog,index) => (
                                         <div className="card cardboxBottom m-2 Questrial cardboxWidth"
                                              style={{"width": "30rem"}}>
                                             <div className="card-body">
@@ -154,4 +141,10 @@ class Blogs extends Component{
     }
 }
 
-export default withRouter(Blogs);
+function mapStateToProps(state) {
+    return{
+        blogs : state.blogsdata
+    };
+}
+
+export default connect(mapStateToProps,{getBlogs,postblog})(withRouter(Blogs));

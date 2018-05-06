@@ -4,6 +4,7 @@ import signUpReducer from './signupReducer';
 import imagesReducer from './imagesReducer';
 import publicMotBoardReducer from './publicBoardsReducer';
 import getuserboards from './getuserboards';
+import getblogs from './getblogs';
 
 
 const allReducers = combineReducers({
@@ -11,7 +12,8 @@ const allReducers = combineReducers({
     signUpData:signUpReducer,
     imageData:imagesReducer,
     publicMotBoardData: publicMotBoardReducer,
-    getuserboards:getuserboards
+    getuserboards:getuserboards,
+    blogsdata:getblogs
 });
 
 export default allReducers;

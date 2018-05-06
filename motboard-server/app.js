@@ -18,6 +18,10 @@ var mongoSessionURL = "mongodb://localhost:27017/sessions";
 var expressSessions = require("express-session");
 var mongoStore = require("connect-mongo")(expressSessions);
 var getuserboards=require('./routes/getusermotboards');
+var getBlogs=require('./routes/getBlogs');
+var postblog=require('./routes/postblog');
+
+
 
 var app = express();
 
@@ -91,4 +95,8 @@ app.get('/getPublicMotboard', motboard.getPublicMotboard);
 app.post('/postLikes', motboard.postLikes);
 app.post('/addPublicBoardToPrivate', motboard.addPublicBoardToPrivate);
 app.get('/getuserboards',getuserboards);
+app.get('/getBlogs',getBlogs);
+app.post('/postblog',postblog);
+
+
 module.exports = app;

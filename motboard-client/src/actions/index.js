@@ -118,6 +118,32 @@ function updatedUserBoardsError(res){
     };
 }
 
+
+export function getBlogs(){
+    return (dispatch) => {
+        const request = axios.get(`${ROOT_URL}/getBlogs`, {withCredentials: true})
+            .then(response => {
+                dispatch(handleBlogs(response));
+            }).catch(error => {
+                alert("errt");
+                dispatch(signinError());
+            });
+    }
+}
+
+
+export function postblog(temp) {
+    return (dispatch) => {
+        const request = axios.post(`${ROOT_URL}/postblog`, {temp: temp}, {withCredentials: true})
+            .then(response => {
+
+            }).catch(error => {
+                dispatch(signinError());
+            });
+    }
+}
+
+
 export function signupAction(userdata) {
     return (dispatch) => {
         const request = axios.post(`${ROOT_URL}/signup`, {userdata: userdata}, {withCredentials: true})
@@ -271,5 +297,12 @@ export function addPublicBoardToPrivate(payload){
             }).catch(error => {
                 dispatch(updatedUserBoardsError());
             });
+    }
+}
+
+function handleBlogs(res) {
+    return  {
+        type: "GET_BLOGS",
+        payload: res.data
     }
 }
