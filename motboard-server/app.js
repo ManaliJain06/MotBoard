@@ -17,6 +17,8 @@ var insertImage=require('./routes/insertImage');
 var mongoSessionURL = "mongodb://localhost:27017/sessions";
 var expressSessions = require("express-session");
 var mongoStore = require("connect-mongo")(expressSessions);
+var getuserboards=require('./routes/getusermotboards');
+
 var app = express();
 
 var corsPrefetch=require('cors-prefetch-middleware');
@@ -88,4 +90,5 @@ app.post('/signout', updateUserProfile.signout);
 app.get('/getPublicMotboard', motboard.getPublicMotboard);
 app.post('/postLikes', motboard.postLikes);
 app.post('/addPublicBoardToPrivate', motboard.addPublicBoardToPrivate);
+app.get('/getuserboards',getuserboards);
 module.exports = app;

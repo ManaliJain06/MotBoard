@@ -91,6 +91,27 @@ function updatedUserBoards(user){
     };
 }
 
+function getBoards(res){
+    return  {
+        type: "ALL_USER_MOTBOARDS",
+        payload: res
+    }
+}
+
+export function getuserallboards(){
+    return (dispatch) => {
+        const request = axios.get(`${ROOT_URL}/getuserboards`, {withCredentials: true})
+            .then(response => {
+                console.log(response);
+                dispatch(getBoards(response.data));
+            }).catch(error => {
+                alert("errt");
+                dispatch(signinError());
+            });
+    }
+}
+
+
 function updatedUserBoardsError(res){
     return {
         type:"UPDATED_USER_BOARDS_ERROR",
