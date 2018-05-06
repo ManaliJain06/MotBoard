@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var cors = require('cors');
 var createmotboard=require('./routes/createmotboard');
+var popularmotboard=require('./routes/popularmotboard');
 var makePublic=require('./routes/makePublic');
 var motboard = require('./routes/motboard');
 var routes = require('./routes/index');
@@ -97,6 +98,7 @@ app.post('/addPublicBoardToPrivate', motboard.addPublicBoardToPrivate);
 app.get('/getuserboards',getuserboards);
 app.get('/getBlogs',getBlogs);
 app.post('/postblog',postblog);
+app.use('/getPopularMotboards',popularmotboard);
 
 
 module.exports = app;

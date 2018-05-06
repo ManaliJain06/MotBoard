@@ -143,6 +143,27 @@ export function postblog(temp) {
     }
 }
 
+function getPopular(response) {
+    //console.log("--------------------");
+    console.log(response.data);
+    console.log("--------------------");
+    return{
+        type: 'POPULAR_MOTBOARDS',
+        payload:response.data
+    };
+}
+
+export function getPopularMotboards() {
+    return (dispatch) => {
+        const request = axios.post(`${ROOT_URL}/getPopularMotboards`, {withCredentials: true}
+        ).then(response => {
+            dispatch(getPopular(response));
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+}
+
 
 export function signupAction(userdata) {
     return (dispatch) => {
