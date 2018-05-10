@@ -7,6 +7,7 @@ import Team from './Team';
 import Upload from './uploadImages';
 import BalloonPage from './BalloonPage';
 import SignUp from './SignUp';
+import User_Boards from './User_Boards';
 import SignIn from './SignIn';
 import Single_Motboard from './Single_Motboard';
 import Blogs from './Blogs';
@@ -213,6 +214,15 @@ class Homepage extends Component {
                             <UserAfterLogin/>
                         </div>
                     )}/>
+
+
+                    <Route exact path="/userboards" render={() => (
+                            <div>
+                                <User_Boards/>
+                            </div>
+                    )}/>
+
+
                     <Route exact path="/blogs" render={() => (
                         <div>
                             <Blogs/>
@@ -225,6 +235,7 @@ class Homepage extends Component {
                             </div>
                         </StyleRoot>
                     )}/>
+
                     <Route exact path="/home" render={()=>(
                         <div>
                             <React.Fragment>

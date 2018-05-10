@@ -9,6 +9,7 @@ router.post('/getImages', function (req, res, next) {
         mongo.connect(mongoURL, function () {
             var coll = mongo.collection('users');
             console.log(req.body.motBoardName);
+            req.session.motBoardName=req.body.motBoardName;
             coll.aggregate({$unwind: '$motboards'},
                 {$match: {'motboards.name':req.body.motBoardName}},
                 function (err, data) {

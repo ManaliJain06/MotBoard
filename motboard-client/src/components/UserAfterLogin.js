@@ -104,8 +104,10 @@ class UserAfterLogin extends Component {
             privateMotboards: [],
             publicMotboards: [],
             temp: ''
-        }
+        };
+
     }
+
     //
     // componentDidMount() {
     //     //TODO:Get Motboards of the user - private and public
@@ -237,6 +239,14 @@ class UserAfterLogin extends Component {
         };
     }
 
+    pushimage = (temp) => {
+
+        this.props.history.push({
+            pathname: '/userboards',
+            state: {motBoardName: temp}
+        })
+    };
+
     setMotBoards = (boards) => {
         console.log("inside");
         var privateMotboards = boards.motboards.filter((board) => board.access == 'private');
@@ -282,7 +292,9 @@ class UserAfterLogin extends Component {
                                             class={'motboard-single-image-card'}
                                             titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.4) 70%,rgba(0,0,0,0) 100%)"
                                         >
-                                            <img src={tile.images[0][0].url}/>
+                                            <img src={tile.images[0][0].url}
+                                                 onClick={this.pushimage.bind(this, tile.name)}
+                                            />
                                         </GridTile>
                                     ))}
                                 </GridList>
@@ -311,7 +323,9 @@ class UserAfterLogin extends Component {
                                             class={'motboard-single-image-card'}
                                             titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.4) 70%,rgba(0,0,0,0) 100%)"
                                         >
-                                            <img src={tile.images[0][0].url}/>
+                                            <img src={tile.images[0][0].url}
+                                                 onClick={this.pushimage.bind(this, tile.name)}
+                                            />
                                         </GridTile>
                                     ))}
                                 </GridList>
