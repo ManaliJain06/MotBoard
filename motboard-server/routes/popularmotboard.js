@@ -9,9 +9,9 @@ router.post('/', function (req, res, next) {
         mongo.connect(mongoURL, function () {
             var coll = mongo.collection('users');
 
-
             coll.aggregate({$unwind: '$motboards'},
-                {$sort: {'motboards.likes': -1}}, {$limit: 5}, function (err, motboards) {
+                    {$sort: {'motboards.likes': -1}
+                }, {$limit: 5}, function (err, motboards) {
                     if (motboards) {
                         var popular = [];
                         for (let i = 0; i < motboards.length; i++) {
