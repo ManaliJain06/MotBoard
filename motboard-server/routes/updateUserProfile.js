@@ -67,3 +67,4 @@ exports.signout = function(req,res){
     console.log('Session Destroyed');
     res.status(200).send();
 }
+

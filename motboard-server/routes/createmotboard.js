@@ -3,11 +3,12 @@ var router = express.Router();
 var mongo = require("./mongo");
 var mongoURL = "mongodb://localhost:27017/motboard";
 var multer = require('multer');
+var path = require('path');
 var glob = require('glob');
 var imagesArray = [];
 var storage2 = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './public/images')
+        cb(null, path.join(__dirname, "/../public/images"))
     },
     filename: function (req, file, cb) {
         var temp = {};
