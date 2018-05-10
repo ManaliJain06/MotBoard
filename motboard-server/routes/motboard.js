@@ -187,7 +187,8 @@ exports.addPublicBoardToPrivate = function(req,res,next){
                 name: req.body.board.name,
                 access: req.body.board.access,
                 likes: req.body.board.likes,
-                images: req.body.board.images,
+                bookmarks: req.body.board.bookmarks,
+                images: req.body.board.images
             }
 
             coll.update({ username: req.body.user.username },
@@ -220,7 +221,8 @@ exports.savePrivateMotboardName = function(req, res){
             let board = {
                 name: req.body.motboardboardname,
                 access: "private",
-                likes: '',
+                likes: 0,
+                bookmarks:0,
                 images: [[]]
             }
 
@@ -233,6 +235,46 @@ exports.savePrivateMotboardName = function(req, res){
                         res.status(400).send();
                     }
                 });
+        });
+    }
+    catch (e) {
+        console.log(e);
+    }
+}
+
+exports.getChartsData = function(req,res){
+    try {
+        mongo.connect(mongoURL, function () {
+            let coll = mongo.collection('users');
+
+            coll.aggregate({$unwind: '$motboards'},
+                {$match: {'motboards.access': 'public'} }, function (err, motboards) {
+                    if (motboards) {
+                        let seenM = [];
+                        var likes = [];
+                        var bookmarks = [];
+                        for (let i = 0; i < motboards.length; i++) {
+
+                            if(seenM.indexOf(motboards[i].motboards.name) === -1){
+                                let temp1 = {};
+                                temp1.label =motboards[i].motboards.name;
+                                temp1.likes = motboards[i].motboards.likes;
+                                let temp2 = {};
+                                temp2.label =motboards[i].motboards.name;
+                                temp2.bookmarks = motboards[i].motboards.bookmarks;
+
+                                likes.push(temp1);
+                                bookmarks.push(temp2);
+
+                                seenM.push(motboards[i].motboards.name);
+                            }
+                        }
+                        res.status(200).send({"likes": likes, "bookmarks": bookmarks});
+                    }
+                    else {
+                        res.status(400).send("failed");
+                    }
+                })
         });
     }
     catch (e) {

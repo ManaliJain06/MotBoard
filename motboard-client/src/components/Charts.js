@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import axios from 'axios';
+import * as API from './API';
 import {Route, withRouter} from 'react-router-dom';
 import Radium, {StyleRoot} from 'radium';
 import { fadeInLeft } from 'react-animations';
@@ -66,37 +68,55 @@ class Charts extends Component{
         super(props);
         this.state={
             activeIndex: 0,
-            likes: [
-                {
-                    label:'Colorful',
-                    likes:200
-                },
-                {
-                    label:'Black Nad White',
-                    likes:350
-                },
-                {
-                    label:'White',
-                    likes:1000
-                }],
-            bookmarks: [
-                {
-                    label:'Colorful',
-                    bookmarks:30
-                },
-                {
-                    label:'Black Nad White',
-                    bookmarks:200
-                },
-                {
-                    label:'White',
-                    bookmarks:100
-                }],}
+            likes: '',
+                // {
+                //     label:'Colorful',
+                //     likes:200
+                // },
+                // {
+                //     label:'Black Nad White',
+                //     likes:350
+                // },
+                // {
+                //     label:'White',
+                //     likes:1000
+                // }],
+            bookmarks: ''
+                // {
+                //     label:'Colorful',
+                //     bookmarks:30
+                // },
+                // {
+                //     label:'Black Nad White',
+                //     bookmarks:200
+                // },
+                // {
+                //     label:'White',
+                //     bookmarks:100
+                // }]
+        }
     }
     onPieEnter = (data, index) => {
         this.setState({
             activeIndex: index,
         });
+    }
+
+    componentWillMount (){
+
+        API.charts(this.state)
+            .then((response) => {
+                if (response.status === 200) {
+                    console.log(response);
+                    this.setState({
+                        ...this.state,
+                        likes: response.data.likes,
+                        bookmarks: response.data.bookmarks
+                    });
+                } else if (response.data.statusCode === 500) {
+                    console.log("error");
+                }
+            });
     }
     render(){
         return (
