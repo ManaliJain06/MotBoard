@@ -7,6 +7,7 @@ router.post('/login', function (req, res, next) {
         mongo.connect(mongoURL, function () {
             console.log('Connected to mongo at: ' + mongoURL);
             var coll = mongo.collection('users');
+            console.log(req.body);
             coll.findOne({username: req.body.userdata.username, password: req.body.userdata.password}, function (err, user) {
                 if (user) {
                     //session initialiaze

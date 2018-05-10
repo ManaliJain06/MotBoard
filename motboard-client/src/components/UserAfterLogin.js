@@ -37,70 +37,6 @@ class UserAfterLogin extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            boards: {
-                "username": "sanjay@gmail.com",
-                "password": "123",
-                "firstname": "sanjay",
-                "lastname": "K",
-                "profileImage": "http://localhost:3300/images/defaultUserImage.jpg",
-                "motboards": [{
-                    "name": "first",
-                    "access": "private",
-                    "likes": "",
-                    "images": [
-                        [{
-                            "description": "",
-                            "url": "http://localhost:3300/images/edgar-castrejon-459807-unsplash.jpg"
-                        },
-                            {
-                                "description": "",
-                                "url": "http://localhost:3300/images/saffu-201111-unsplash.jpg"
-                            },
-                            {
-                                "description": "",
-                                "url": "http://localhost:3300/images/art-by-lonfeldt-635280-unsplash.jpg"
-                            },
-                            {
-                                "description": "",
-                                "url": "http://localhost:3300/images/todd-cravens-119648-unsplash.jpg"
-                            },
-                            {
-                                "description": "",
-                                "url": "http://localhost:3300/images/Capture - Copy.PNG"
-                            }
-                        ]
-                    ]
-                },
-                    {
-                        "name": "second",
-                        "access": "private",
-                        "likes": "",
-                        "images": [
-                            [{
-                                "description": "",
-                                "url": "http://localhost:3300/images/edgar-castrejon-459807-unsplash.jpg"
-                            },
-                                {
-                                    "description": "",
-                                    "url": "http://localhost:3300/images/saffu-201111-unsplash.jpg"
-                                },
-                                {
-                                    "description": "",
-                                    "url": "http://localhost:3300/images/art-by-lonfeldt-635280-unsplash.jpg"
-                                },
-                                {
-                                    "description": "",
-                                    "url": "http://localhost:3300/images/todd-cravens-119648-unsplash.jpg"
-                                },
-                                {
-                                    "description": "",
-                                    "url": "http://localhost:3300/images/Capture - Copy.PNG"
-                                }
-                            ]
-                        ]
-                    }
-                ]
-            },
             privateMotboards: [],
             publicMotboards: [],
             temp: ''
@@ -117,147 +53,27 @@ class UserAfterLogin extends Component {
     componentDidMount() {
         //TODO:Get Motboards of the user - private and public
         this.props.getuserallboards();
-        boards = {
-            "username": "sanjay@gmail.com",
-            "password": "123",
-            "firstname": "sanjay",
-            "lastname": "K",
-            "profileImage": "http://localhost:3300/images/defaultUserImage.jpg",
-            "motboards": [{
-                "name": "first",
-                "access": "private",
-                "likes": "",
-                "images":
-                    [{
-                        "description": "",
-                        "url": "https://images.unsplash.com/photo-1511547876233-3710a28eb30a?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=22f767f18b0b0f11a5a1b6f3926cbcd3&auto=format&fit=crop&w=700&q=80"
-                    },
-                        {
-                            "description": "",
-                            "url": "http://localhost:3300/images/saffu-201111-unsplash.jpg"
-                        },
-                        {
-                            "description": "",
-                            "url": "http://localhost:3300/images/art-by-lonfeldt-635280-unsplash.jpg"
-                        },
-                        {
-                            "description": "",
-                            "url": "http://localhost:3300/images/todd-cravens-119648-unsplash.jpg"
-                        },
-                        {
-                            "description": "",
-                            "url": "http://localhost:3300/images/Capture - Copy.PNG"
-                        }
-                    ]
-
-            },
-                {
-                    "name": "second",
-                    "access": "public",
-                    "likes": "",
-                    "images":
-                        [{
-                            "description": "",
-                            "url": "http://localhost:3300/images/edgar-castrejon-459807-unsplash.jpg"
-                        },
-                            {
-                                "description": "",
-                                "url": "http://localhost:3300/images/saffu-201111-unsplash.jpg"
-                            },
-                            {
-                                "description": "",
-                                "url": "http://localhost:3300/images/art-by-lonfeldt-635280-unsplash.jpg"
-                            },
-                            {
-                                "description": "",
-                                "url": "http://localhost:3300/images/todd-cravens-119648-unsplash.jpg"
-                            },
-                            {
-                                "description": "",
-                                "url": "http://localhost:3300/images/Capture - Copy.PNG"
-                            }
-                        ]
-
-                },
-                {
-                    "name": "third",
-                    "access": "public",
-                    "likes": "",
-                    "images":
-                        [{
-                            "description": "",
-                            "url": "http://localhost:3300/images/saffu-201111-unsplash.jpg"
-                        },
-                            {
-                                "description": "",
-                                "url": "http://localhost:3300/images/saffu-201111-unsplash.jpg"
-                            },
-                            {
-                                "description": "",
-                                "url": "http://localhost:3300/images/art-by-lonfeldt-635280-unsplash.jpg"
-                            },
-                            {
-                                "description": "",
-                                "url": "http://localhost:3300/images/todd-cravens-119648-unsplash.jpg"
-                            },
-                            {
-                                "description": "",
-                                "url": "http://localhost:3300/images/Capture - Copy.PNG"
-                            }
-                        ]
-
-                },
-                {
-                    "name": "third",
-                    "access": "public",
-                    "likes": "",
-                    "images":
-                        [{
-                            "description": "",
-                            "url": "http://localhost:3300/images/Capture - Copy.PNG"
-                        },
-                            {
-                                "description": "",
-                                "url": "http://localhost:3300/images/saffu-201111-unsplash.jpg"
-                            },
-                            {
-                                "description": "",
-                                "url": "http://localhost:3300/images/art-by-lonfeldt-635280-unsplash.jpg"
-                            },
-                            {
-                                "description": "",
-                                "url": "http://localhost:3300/images/todd-cravens-119648-unsplash.jpg"
-                            },
-                            {
-                                "description": "",
-                                "url": "http://localhost:3300/images/Capture - Copy.PNG"
-                            }
-                        ]
-
-                }
-            ]
-        };
     }
 
     pushimage = (temp) => {
-
+      //  alert("asdasd");
         this.props.history.push({
             pathname: '/userboards',
             state: {motBoardName: temp}
         })
     };
 
-    setMotBoards = (boards) => {
-        console.log("inside");
-        var privateMotboards = boards.motboards.filter((board) => board.access == 'private');
-        var publicMotboards = boards.motboards.filter((board) => board.access == 'public');
-        console.log('privateMotboards' + privateMotboards[0].name);
-        console.log('publicMotboards' + publicMotboards);
-        this.setState({
-            privateMotboards: privateMotboards,
-            publicMotboards: publicMotboards
-        })
-    };
+    // setMotBoards = (boards) => {
+    //     console.log("inside");
+    //     var privateMotboards = boards.motboards.filter((board) => board.access == 'private');
+    //     var publicMotboards = boards.motboards.filter((board) => board.access == 'public');
+    //     console.log('privateMotboards' + privateMotboards[0].name);
+    //     console.log('publicMotboards' + publicMotboards);
+    //     this.setState({
+    //         privateMotboards: privateMotboards,
+    //         publicMotboards: publicMotboards
+    //     })
+    // };
 
     render() {
         console.log(this.props.boards);
@@ -324,6 +140,7 @@ class UserAfterLogin extends Component {
                                             titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.4) 70%,rgba(0,0,0,0) 100%)"
                                         >
                                             <img src={tile.images[0][0].url}
+
                                                  onClick={this.pushimage.bind(this, tile.name)}
                                             />
                                         </GridTile>
