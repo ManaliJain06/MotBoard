@@ -160,7 +160,7 @@ class Chat extends Component {
         return (
             <div className="chat-sticky">
                 {this.state.chatOpen ?
-                    <div className="chat-bg">
+                    <div className="chat-bg chat-sticky-width">
                         <ThemeProvider theme={theme}>
                             <ChatBot steps={steps}
                                      headerTitle="Speech Recognition"
