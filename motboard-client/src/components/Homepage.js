@@ -42,6 +42,7 @@ import BlogsIcon from 'material-ui/svg-icons/action/speaker-notes';
 import PublicBoards from 'material-ui/svg-icons/action/dashboard';
 import Home from 'material-ui/svg-icons/action/home';
 import ColorsIcon from 'material-ui/svg-icons/image/color-lens';
+import Charts from "./Charts";
 
 
 const blogsIcon = <BlogsIcon/>;
@@ -338,6 +339,13 @@ class Homepage extends Component {
                         <StyleRoot>
                             <div className=" slideInRight mt-5" style={styles.slideInRight}>
                                 <Board/>
+                            </div>
+                        </StyleRoot>
+                    )}/>
+                    <Route exact path="/Charts" render={() => (
+                        <StyleRoot>
+                            <div className=" slideInRight mt-5" style={styles.slideInRight}>
+                                <Charts/>
                             </div>
                         </StyleRoot>
                     )}/>
