@@ -5,6 +5,7 @@ import '../css/signup.css';
 import {signupAction} from '../actions';
 import signup from '../Images/signup4.jpg';
 import Radium, {StyleRoot} from 'radium';
+import signupimage from '../Images/chilling.gif';
 import {pulse} from 'react-animations';
 import * as validation from '../validation/LoginValidation';
 const styles = {
@@ -78,7 +79,7 @@ class SignUp extends Component {
                     <div className="pulse" style={styles.pulse}>
                         <div className="row justify-content-center">
                             <div className="col-md-6 indexZ" >
-                                <img src={signup} alt="hello" style={{'opacity':'0.7','height':'40vw','object-fit':'contain','transform':'rotateY(180deg)'}} className={"indexZ"}/>
+                                <img src={signupimage} alt="hello" style={{'opacity':'1','height':'40vw','object-fit':'contain','transform':'rotateY(180deg)'}} className={"indexZ"}/>
                             </div>
                             <div className="col-md-4 cardbox">
                                 {messageSignUp}
