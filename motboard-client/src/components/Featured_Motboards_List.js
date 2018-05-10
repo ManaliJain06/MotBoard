@@ -76,6 +76,13 @@ class Motboards_List extends Component {
         // console.log(this.props.popularMotboards);
     }
 
+    pushimage(temp) {
+        this.props.history.push({
+            pathname: '/singlemotboard',
+            state: {motBoardName: temp}
+        })
+    }
+
 
     render() {
         return (
@@ -107,13 +114,11 @@ class Motboards_List extends Component {
                                         class={'motboard-single-image-card'}
                                         titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.4) 70%,rgba(0,0,0,0) 100%)"
                                     >
-                                        <img src={tile.url} onClick={() => this.props.history.push(
-                                            {
-                                                pathname: '/upload',
-                                                state: {description: tile.description}
-
-                                            }
-                                        )}/>
+                                        <img src={tile.url}
+                                             onClick={() => {
+                                                 this.pushimage(tile.description);
+                                             }}
+                                        />
                                     </GridTile>
                                 ))}
                             </GridList>
@@ -129,4 +134,4 @@ function mapStateToProps(state) {
     return {popularMotboards: state.popularData}
 }
 
-export default connect( mapStateToProps,{getPopularMotboards})(withRouter(Motboards_List));
+export default connect(mapStateToProps, {getPopularMotboards})(withRouter(Motboards_List));
