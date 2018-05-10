@@ -14,9 +14,8 @@ class MyUploader extends Component {
         for (let i = 0; i < event.target.files.length; i++) {
             payload.append('mypic', event.target.files[i]);
         }
-        //console.log(payload);
         this.props.sendFiles(payload);
-        var motBoardName = "first";
+
     };
 
 

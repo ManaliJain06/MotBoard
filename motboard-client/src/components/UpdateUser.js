@@ -19,7 +19,7 @@ class UpdateUser extends Component{
                 profileImage : (userData)? userData.profileImage : '',
             },
             messageDivUpdate: ''
-        }
+        };
         this.updateUserProfilePicResponse = this.updateUserProfilePicResponse.bind(this);
         this.updateUserProfilePicCall = this.updateUserProfilePicCall.bind(this);
         this.handleFileUpload = this.handleFileUpload.bind(this);

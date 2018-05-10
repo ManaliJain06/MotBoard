@@ -271,10 +271,11 @@ export function getImages(value) {
     }
 }
 
-export function sendFiles(payload) {
+export function sendFiles(payload,motBoardName) {
     return (dispatch) => {
-     //   alert("sanjay");
+        console.log("---------------------");
         console.log(payload);
+        console.log("---------------------");
         const request = axios.post(`${ROOT_URL}/motboard`,payload, {withCredentials: true}
             ,{headers: {
                 'accept': 'application/json',
