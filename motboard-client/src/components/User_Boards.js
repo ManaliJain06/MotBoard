@@ -87,7 +87,8 @@ class User_Boards extends Component {
 
     state = {
         open: false,
-        ListOfImages: []
+        ListOfImages: [],
+        motBoardName:''
     };
     handleClose = () => {
         this.setState({open: false});
@@ -99,6 +100,7 @@ class User_Boards extends Component {
     };
 
     componentWillMount() {
+
         this.props.getImages(this.props.location.state.motBoardName);
     }
     componentDidMount(){
@@ -118,7 +120,7 @@ class User_Boards extends Component {
 
     abc = (payload,callback) =>{
         this.props.sendFiles(payload);
-        setTimeout(callback,200);
+        setTimeout(callback,2000);
     };
 
     def = (payload) =>{
@@ -136,6 +138,18 @@ class User_Boards extends Component {
     //     setTimeout(this.setBoards, 1000);
     // }
 
+arrangeImages=()=>{
+    //alert(this.props.location.state.motBoardName);
+    //alert(this.state.motBoardName);
+    // this.setState({
+    //     motboardName:this.props.location.state.motBoardName
+    // });
+    alert("inside");
+    this.props.history.push({
+        pathname: '/Arrange',
+        state: {motBoardName: this.props.location.state.motBoardName}
+    })
+};
 
     render() {
         console.log(this.props.images);
@@ -161,6 +175,7 @@ class User_Boards extends Component {
                                     secondary={true}
                                     icon={<ArrangeIcon />}
                                     style={styles.button}
+                                    onClick={this.arrangeImages}
                                 />
 
                             </div>
@@ -221,4 +236,4 @@ function mapStateToProps(state) {
 }
 
 
-export default withRouter(connect(mapStateToProps, {sendFiles,getImages})(User_Boards));
+export default (connect(mapStateToProps, {sendFiles,getImages})(withRouter(User_Boards)));
