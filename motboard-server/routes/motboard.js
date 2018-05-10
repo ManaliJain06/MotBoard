@@ -210,3 +210,32 @@ exports.addPublicBoardToPrivate = function(req,res,next){
         console.log(e);
     }
 }
+
+
+exports.savePrivateMotboardName = function(req, res){
+    try {
+        mongo.connect(mongoURL, function () {
+            let coll = mongo.collection('users');
+
+            let board = {
+                name: req.body.motboardboardname,
+                access: "private",
+                likes: '',
+                images: [[]]
+            }
+
+            coll.update({username: req.body.user.username},
+                {$push: {motboards: board}}, function (err, result) {
+                    if (result.result.nModified > 0) {
+                        req.session.motBoardName = req.body.motBoardName;
+                        res.status(200).json({message: "inserted"});
+                    } else {
+                        res.status(400).send();
+                    }
+                });
+        });
+    }
+    catch (e) {
+        console.log(e);
+    }
+}

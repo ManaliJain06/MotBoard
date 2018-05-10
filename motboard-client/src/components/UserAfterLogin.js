@@ -3,8 +3,13 @@ import {Route, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {GridList, GridTile} from 'material-ui/GridList';
 import {jQuery} from 'jquery';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import TextField from 'material-ui/TextField';
 import '../css/userafterlogin.css';
-import {getuserallboards} from '../actions';
+import {getuserallboards, savePrivateMotboardName} from '../actions';
 
 
 var boards;
@@ -32,24 +37,70 @@ const styles = {
         height: 30,
     }
 };
-
+const customContentStyle = {
+    width: '30%',
+    maxWidth: 'none',
+};
 class UserAfterLogin extends Component {
     constructor(props) {
         super(props);
         this.state = {
             privateMotboards: [],
             publicMotboards: [],
-            temp: ''
+            temp: '',
+            openDialog: false,
+            motboardName: ''
         };
 
     }
 
-    //
-    // componentDidMount() {
-    //     //TODO:Get Motboards of the user - private and public
-    //
-    // }
+    handleOpen = () => {
+        this.setState({
+            openDialog: true
+        });
+    };
+    handleSubmit = () => {
+        this.setState({
+            openDialog: false
+        });
+        console.log('blog-text-to-submit: '+this.refs.blogContent.getValue());
+        // var blogJSONtoSend ={
+        //     'text': this.refs.blogContent.getValue()
+        // };
 
+
+        let state = this.props.loginStateProp;
+        if(state.isLogged){
+            let payload={
+                "motboardboardname": this.refs.blogContent.getValue(),
+                "user": state.userData
+            }
+            this.privateMaction(payload, this.privateMresponse(this.refs.blogContent.getValue()));
+        }
+
+
+
+
+        // this.props.postblog(blogJSONtoSend);
+        // setTimeout(this.props.getBlogs,200);
+    };
+
+    privateMaction=(payload, callback) =>{
+        this.props.savePrivateMotboardName(payload);
+        setTimeout(callback, 1000);
+    };
+
+    privateMresponse = (name) => {
+        this.props.history.push({
+            pathname: '/userboards',
+            state: {motBoardName:name}
+        })
+    }
+    handleCloseDialog=()=>{
+        this.setState({
+            openDialog: false
+        });
+    }
     componentDidMount() {
         //TODO:Get Motboards of the user - private and public
         this.props.getuserallboards();
@@ -79,7 +130,18 @@ class UserAfterLogin extends Component {
         console.log(this.props.boards);
         //  if(this.props.boards.motboards)
         //    {this.setMotBoards(this.props.boards)}
-
+        const actions = [
+            <FlatButton
+                label="Cancel"
+                primary={true}
+                onClick={this.handleCloseDialog}
+            />,
+            <FlatButton
+                label="Next"
+                primary={true}
+                onClick={this.handleSubmit}
+            />,
+        ];
         if (this.props.boards.data) {
             return (
                 <div>
@@ -115,7 +177,12 @@ class UserAfterLogin extends Component {
                                     ))}
                                 </GridList>
                             </div>
-
+                            <div className="col-md-1">
+                                <FloatingActionButton>
+                                    <ContentAdd
+                                        onClick={this.handleOpen}/>
+                                </FloatingActionButton>
+                            </div>
                             <div className="col-md-5 mr-5 EachBoardBox">
                                 <h1 className="Questrial" style={{'text-align': 'center'}}>Public MotBoards</h1>
                                 <div className="row">
@@ -147,6 +214,23 @@ class UserAfterLogin extends Component {
                                     ))}
                                 </GridList>
                             </div>
+                            <Dialog
+                                title="What name would you like to give to your MoodBoard?"
+                                actions={actions}
+                                modal={true}
+                                contentStyle={customContentStyle}
+                                open={this.state.openDialog}
+                            >
+                                <TextField
+                                    style={{'border-top':'0.1px #424242 solid','border-radius':'5px'}}
+                                    multiLine={true}
+                                    rows={1}
+                                    rowsMax={5}
+                                    fullWidth={true}
+                                    maxLength="220"
+                                    ref="blogContent"
+                                /><br />
+                            </Dialog>
                         </div>
                     </div>
                 </div>)
@@ -160,8 +244,11 @@ class UserAfterLogin extends Component {
 
 
 function mapStateToProps(state) {
-    return {boards: state.getuserboards}
+    return {
+        boards: state.getuserboards,
+        loginStateProp : state.loginStateData
+    }
 }
 
 
-export default connect(mapStateToProps, {getuserallboards})(withRouter(UserAfterLogin));
+export default connect(mapStateToProps, {getuserallboards,savePrivateMotboardName})(withRouter(UserAfterLogin));

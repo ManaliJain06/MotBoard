@@ -322,6 +322,17 @@ export function addPublicBoardToPrivate(payload){
     }
 }
 
+export function savePrivateMotboardName(payload){
+    return (dispatch) => {
+        const request = axios.post(`${ROOT_URL}/savePrivateMotboardName`, payload, {withCredentials: true})
+            .then(response => {
+                dispatch(updatedUserBoards(response.data.user[0]));
+            }).catch(error => {
+                dispatch(updatedUserBoardsError());
+            });
+    }
+}
+
 function handleBlogs(res) {
     return  {
         type: "GET_BLOGS",

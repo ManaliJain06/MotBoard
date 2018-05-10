@@ -98,7 +98,8 @@ app.post('/addPublicBoardToPrivate', motboard.addPublicBoardToPrivate);
 app.get('/getuserboards',getuserboards);
 app.get('/getBlogs',getBlogs);
 app.post('/postblog',postblog);
-app.use('/getPopularMotboards',popularmotboard);
+app.post('/savePrivateMotboardName', motboard.savePrivateMotboardName);
+app.post('/getPopularMotboards',popularmotboard);
 
 
 module.exports = app;
