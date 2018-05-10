@@ -37,19 +37,15 @@ class Arrange extends React.PureComponent {
     };
 
 
-
     componentDidMount() {
         this.setState({mounted: true});
-        let motBoardName = "first";
+        let motBoardName = "Birthday";
         this.props.getImagesArrange(motBoardName);
-
         //this.props.ge(motBoardName);
     }
 
 
-
     generateDOM() {
-
         console.log(this.props.images);
         if(this.props.images)
             return _.map(this.props.images, function (item,i) {

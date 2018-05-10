@@ -56,7 +56,7 @@ class UserAfterLogin extends Component {
     }
 
     pushimage = (temp) => {
-      //  alert("asdasd");
+       alert("inside push image");
         this.props.history.push({
             pathname: '/userboards',
             state: {motBoardName: temp}
