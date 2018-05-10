@@ -26,27 +26,23 @@ describe('http tests', function() {
     //     true
     //         assert.equal(400, response.status);
     //         done();
+    //
+    //
     //     });
     // });
-
-    it('SHOULD NOT LOGIN', function(done) {
-
-
-        var userdata={
-            "username":"sanjay",
-                "password":"asdasd"
-        };
-
-        request.post('http://localhost:3300/login', {
-            form:{
-          userdata:userdata
-            }
-        }, function(error, response, body) {
-            assert.equal(404, response.status);
-            done();
-        });
-    });
-
+    //
+    // it('SHOULD NOT LOGIN', function(done) {
+    //     request.post('http://localhost:3300/users/doLogin', {
+    //
+    //         form:{
+    //             email : 'sanju',
+    //             password:'14'
+    //         }
+    //     }, function(error, response, body) {
+    //         assert.equal(401, response.statusCode);
+    //         done();
+    //     });
+    // });
     // it('ACCOUNT CREATED', function(done) {
     //     request.post('http://localhost:3001/usigin', {
     //
