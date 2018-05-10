@@ -42,6 +42,8 @@ import BlogsIcon from 'material-ui/svg-icons/action/speaker-notes';
 import PublicBoards from 'material-ui/svg-icons/action/dashboard';
 import Home from 'material-ui/svg-icons/action/home';
 import ColorsIcon from 'material-ui/svg-icons/image/color-lens';
+import ArrangeIcon from 'material-ui/svg-icons/action/language';
+import Charts from "./Charts";
 
 
 const blogsIcon = <BlogsIcon/>;
@@ -66,8 +68,7 @@ const styles = {
 const ChartStyle ={
     height: 30,
     width:30,
-    color:'#424242',
-    marginLeft:10,
+    color:'#e1bee7',
 
 };
 class Homepage extends Component {
@@ -162,6 +163,7 @@ class Homepage extends Component {
 
 
                         <ul className="navbar-nav text-uppercase ml-auto" id="for-big-screen">
+
                             <li className="nav-item">
                                 <a className="nav-link" style={{'font-size': '1.4em'}} onClick={() => {
                                     this.props.history.push("/Boards");
@@ -190,9 +192,9 @@ class Homepage extends Component {
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link js-scroll-trigger pointer" style={{'font-size': '1.4em'}}><div>
-                                    <RaisedButton
-                                        onClick={this.handleClick}
-                                        label="Lan"
+                                    <ArrangeIcon style={ChartStyle}
+                                                 className="pointer"
+                                                 onClick={this.handleClick}
                                     />
                                     <Popover
                                         open={this.state.open}
@@ -213,7 +215,7 @@ class Homepage extends Component {
 
                     </nav>
                 </div>
-                <div className="for-small-screen footer-blogs">
+                <div className="footer-blogs" id={"bottomNav"}>
                     <Paper zDepth={1}>
                         <BottomNavigation selectedIndex={this.state.selectedIndex}>
                             <BottomNavigationItem
@@ -338,6 +340,13 @@ class Homepage extends Component {
                         <StyleRoot>
                             <div className=" slideInRight mt-5" style={styles.slideInRight}>
                                 <Board/>
+                            </div>
+                        </StyleRoot>
+                    )}/>
+                    <Route exact path="/Charts" render={() => (
+                        <StyleRoot>
+                            <div className=" slideInRight mt-5" style={styles.slideInRight}>
+                                <Charts/>
                             </div>
                         </StyleRoot>
                     )}/>

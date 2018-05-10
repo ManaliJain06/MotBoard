@@ -7,7 +7,8 @@ import '../css/signup.css';
 import '../css/homepage.css';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-
+import RaisedButton from 'material-ui/RaisedButton';
+import ArrangeIcon from 'material-ui/svg-icons/action/dashboard';
 const styles = {
     root: {
         display: 'flex',
@@ -18,7 +19,11 @@ const styles = {
         width: 'auto',
         height: 'auto',
     },
+    button: {
+        margin: 12,
+    }
 };
+
 
 const iconStyles = {
     marginRight: 24,
@@ -130,6 +135,8 @@ class User_Boards extends Component {
     // componentDidMount(){
     //     setTimeout(this.setBoards, 1000);
     // }
+
+
     render() {
         console.log(this.props.images);
         const actions = [
@@ -143,8 +150,20 @@ class User_Boards extends Component {
             <div>
                 <div className="row justify-content-center">
                     <div>
-                        <div className="container  uploadbox">
+                        <div className={"row"}>
+                        <div className="container col-md-6 uploadbox">
                             <input type="file" className="uploadFile" multiple onChange={this.handleFileUpload}/>
+                        </div>
+                            <div className="col-md-6">
+                                <RaisedButton
+                                    label="Arrange"
+                                    labelPosition="before"
+                                    secondary={true}
+                                    icon={<ArrangeIcon />}
+                                    style={styles.button}
+                                />
+
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-11 mt-5 pt-5">
