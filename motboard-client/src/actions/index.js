@@ -316,7 +316,7 @@ export function addPublicBoardToPrivate(payload){
     return (dispatch) => {
         const request = axios.post(`${ROOT_URL}/addPublicBoardToPrivate`, payload, {withCredentials: true})
             .then(response => {
-                dispatch(updatedUserBoards(response.data.user));
+                dispatch(updatedUserBoards(response.data.user[0]));
             }).catch(error => {
                 dispatch(updatedUserBoardsError());
             });
