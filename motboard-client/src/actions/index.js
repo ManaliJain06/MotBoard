@@ -254,7 +254,6 @@ export function getImagesArrange(value) {
 }
 
 export function getImages(value) {
-  alert(value);
     let motBoardName={
         "motBoardName":value
     };

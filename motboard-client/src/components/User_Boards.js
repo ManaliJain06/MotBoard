@@ -107,8 +107,18 @@ class User_Boards extends Component {
             payload.append('mypic', event.target.files[i]);
         }
 //         payload.motBoardName=this.props.location.state.motBoardName;
+        this.abc(payload, this.def);
+        //setTimeout( this.props.getImages(this.props.location.state.motBoardName),2000);
+    };
+
+    abc = (payload,callback) =>{
         this.props.sendFiles(payload);
-        setTimeout( this.props.getImages(this.props.location.state.motBoardName),2000);
+        setTimeout(callback,200);
+    };
+
+    def = (payload) =>{
+        this.props.getImages(this.props.location.state.motBoardName);
+     //   setTimeout(callback,2000);
     };
 
     // setBoards(){
