@@ -259,7 +259,10 @@ class Homepage extends Component {
                                     </Popover>
                                 </div></a>
                             </li>
-                            {userState.isLogged ? <ProfilePic/>: '' }
+                            <li className="nav-item pointer ml-2">
+                                {userState.isLogged ? <ProfilePic/>: '' }
+                            </li>
+
                         </ul>
 
                     </nav>

@@ -64,16 +64,24 @@ class ProfilePic extends React.Component{
                     useLayerForClickAway={true}
                     canAutoPosition={true}
                     autoCloseWhenOffScreen={true}>
-                    onChange={this.handleCloseDropDown}
                     <Menu>
                         <MenuItem primaryText="My Motboards" onClick={() => {
                             this.props.history.push("/home");
+                            this.setState({
+                                openMenu: false
+                            });
                         }}/>
                         <MenuItem primaryText="My Account" onClick={() => {
                             this.props.history.push("/myAccount");
+                            this.setState({
+                                openMenu: false
+                            });
                         }}/>
                         <MenuItem primaryText="Sign out" onClick={() => {
                             this.handleSignOut();
+                            this.setState({
+                                openMenu: false
+                            });
                         }}/>
                     </Menu>
                 </Popover>

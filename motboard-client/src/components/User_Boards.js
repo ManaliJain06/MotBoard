@@ -113,7 +113,7 @@ arrangeImages=()=>{
     // this.setState({
     //     motboardName:this.props.location.state.motBoardName
     // });
-    alert("inside");
+  //  alert("inside");
     this.props.history.push({
         pathname: '/Arrange',
         state: {motBoardName: this.props.location.state.motBoardName}
