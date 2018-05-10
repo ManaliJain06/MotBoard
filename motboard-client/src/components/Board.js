@@ -148,6 +148,7 @@ class Board extends Component{
     addBoardToPersonal(tile){
         //API to add to personal motboard
         let state = this.props.loginStateProp;
+        tile.bookmarks = tile.bookmarks + 1;
         if(state.isLogged){
             let payload3={
                 "board": tile,

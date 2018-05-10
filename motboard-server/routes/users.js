@@ -26,6 +26,7 @@ router.post('/signup', function (req, res, next) {
                         motboards: motboards
                     }, function (err, newuser) {
                         if (newuser) {
+                            req.session.user=req.body.userdata.username;
                             res.status(201).json({'user':newuser.ops[0],'msg':"sigunup success"});
                         }
                         else {

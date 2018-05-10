@@ -326,7 +326,7 @@ export function savePrivateMotboardName(payload){
     return (dispatch) => {
         const request = axios.post(`${ROOT_URL}/savePrivateMotboardName`, payload, {withCredentials: true})
             .then(response => {
-                dispatch(updatedUserBoards(response.data.user[0]));
+                // dispatch(updatedUserBoards(response.data.user[0]));
             }).catch(error => {
                 dispatch(updatedUserBoardsError());
             });

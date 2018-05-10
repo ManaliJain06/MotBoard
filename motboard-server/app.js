@@ -100,6 +100,6 @@ app.get('/getBlogs',getBlogs);
 app.post('/postblog',postblog);
 app.post('/savePrivateMotboardName', motboard.savePrivateMotboardName);
 app.post('/getPopularMotboards',popularmotboard);
-
+app.post('/getChartsData', motboard.getChartsData)
 
 module.exports = app;
