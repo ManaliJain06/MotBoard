@@ -67,7 +67,7 @@ class Blogs extends Component{
                 onClick={this.handleClose}
             />,
         ];
-        return <div className="row">
+        return <div>
             <div className="row Justify-content-center" id={"blogs-video"}>
                 <video className="fullscreen-bg__video" muted autoPlay loop>
                     <source src={video} type="video/mp4"/>
