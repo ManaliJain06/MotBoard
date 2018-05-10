@@ -61,7 +61,10 @@ class ProfilePic extends React.Component{
                     targetOrigin={{horizontal: 'left', vertical: 'top'}}
                     onRequestClose={this.handleCloseDropDown}
                     animation={PopoverAnimationVertical}
-                    useLayerForClickAway={true}>
+                    useLayerForClickAway={true}
+                    canAutoPosition={true}
+                    autoCloseWhenOffScreen={true}>
+                    onChange={this.handleCloseDropDown}
                     <Menu>
                         <MenuItem primaryText="My Motboards" onClick={() => {
                             this.props.history.push("/home");

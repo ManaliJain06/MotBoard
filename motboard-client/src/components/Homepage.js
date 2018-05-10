@@ -63,7 +63,10 @@ const styles = {
     fadeInUp: {
         animation: 'x 0.8s',
         animationName: Radium.keyframes(fadeInUp, 'fadeInUp'),
-    }
+    },
+    customWidth: {
+        width: 150,
+    },
 }
 const ChartStyle ={
     height: 30,
@@ -80,8 +83,25 @@ class Homepage extends Component {
             open: false,
             drawerOpen:false,
             selectedIndex: 0,
+            mainmenu: false,
         };
     }
+
+    handleMainMenuClick = (event) => {
+        // This prevents ghost click.
+        event.preventDefault();
+        this.setState({
+            mainmenu: true,
+            anchorE2: event.currentTarget,
+        });
+    };
+
+    handleRequestMainMenuClose = () => {
+        this.setState({
+            mainmenu: false,
+        });
+    };
+
     handleClick = (event) => {
         // This prevents ghost click.
         event.preventDefault();
@@ -113,15 +133,53 @@ class Homepage extends Component {
                 <div>
                     <nav style={{'background-color': '#ffffff'}}
                          className="navbar navbar-expand-lg navbar-dark fixed-top mb-5" id="mainNav">
-
+                        <Popover
+                            open={this.state.mainmenu}
+                            anchorEl={this.state.anchorE2}
+                            anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+                            targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                            onRequestClose={this.handleRequestMainMenuClose}
+                            onChange={this.handleRequestMainMenuClose}
+                        >
+                            <Menu>
+                                <MenuItem >
+                                    <a className="nav-link" onClick={() => {
+                                        this.props.history.push("/ColorsGenerator");
+                                        this.setState({
+                                            mainmenu: false,
+                                        });
+                                    }}>colors</a>
+                                </MenuItem>
+                                <MenuItem >
+                                    <a className="nav-link" onClick={() => {
+                                        this.props.history.push("/blogs");
+                                        this.setState({
+                                            mainmenu: false,
+                                        });
+                                    }}>Blogs</a>
+                                </MenuItem>
+                                <MenuItem >
+                                    <a className="nav-link" onClick={() => {
+                                        this.props.history.push("/Charts");
+                                        this.setState({
+                                            mainmenu: false,
+                                        });
+                                    }}>Analytics</a>
+                                </MenuItem>
+                                <MenuItem >
+                                    <a className="nav-link" onClick={() => {
+                                        this.props.history.push("/Team");
+                                        this.setState({
+                                            mainmenu: false,
+                                        });
+                                    }}>Team</a>
+                                </MenuItem>
+                            </Menu>
+                        </Popover>
                         <div  id={"for-small-screen"} className={"align-items-left"}>
                             <ul className="navbar-nav text-uppercase ml-auto">
                                 <li className="nav-item">
                                     <a className="nav-link js-scroll-trigger pointer" style={{'font-size': '1.4em'}}><div>
-                                        {/*<RaisedButton*/}
-                                        {/*onClick={this.handleClick}*/}
-                                        {/*label="Ln"*/}
-                                        {/*/>*/}
                                         <Popover
                                             open={this.state.open}
                                             anchorEl={this.state.anchorEl}
@@ -171,24 +229,14 @@ class Homepage extends Component {
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" style={{'font-size': '1.4em'}} onClick={() => {
-                                    this.props.history.push("/ColorsGenerator");
-                                }}>colors</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" style={{'font-size': '1.4em'}} onClick={() => {
                                     this.props.history.push("/About");
                                 }}>About</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" style={{'font-size': '1.4em'}} onClick={() => {
-                                    this.props.history.push("/blogs");
-                                }}>blogs</a>
-                            </li>
-                            <li className="nav-item">
                                 <a className="nav-link js-scroll-trigger pointer" style={{'font-size': '1.4em'}}
-                                   onClick={() => {
-                                       this.props.history.push("/Team");
-                                   }}>Team</a>
+                                   onClick={
+                                       this.handleMainMenuClick
+                                   }>features</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link js-scroll-trigger pointer" style={{'font-size': '1.4em'}}><div>
@@ -202,6 +250,7 @@ class Homepage extends Component {
                                         anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
                                         targetOrigin={{horizontal: 'left', vertical: 'top'}}
                                         onRequestClose={this.handleRequestClose}
+                                        oncChange={this.handleRequestClose}
                                     >
                                         <Menu>
                                             <MenuItem primaryText="el" onClick={() => changeLanguage('el')}/>
