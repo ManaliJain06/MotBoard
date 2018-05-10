@@ -135,7 +135,7 @@ class SignUp extends Component {
                                     <DatePicker className="inputfield"
                                                 hintText="Date of Birth"
                                                 mode="landscape"
-                                                style={{'underline':'none'}}
+                                                style={{'text-decoration':'none'}}
                                     />
                                 </div><br/>
                                 <div className="row justify-content-center">

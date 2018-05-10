@@ -277,16 +277,27 @@ ul.userMenu {
   #for-big-screen {
     display: none;
   }
+  #bottomNav {
+    display: block;
+  }
 }
 
 @media only screen and (min-width: 501px) {
   #for-small-screen {
     display: none;
   }
-  .for-small-screen {
+  #bottomNav {
     display: none;
   }
   #for-big-screen {
     display: block;
   }
+}
+
+#bottomNav{
+
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index:15;
 }

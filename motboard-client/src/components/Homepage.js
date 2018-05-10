@@ -42,6 +42,7 @@ import BlogsIcon from 'material-ui/svg-icons/action/speaker-notes';
 import PublicBoards from 'material-ui/svg-icons/action/dashboard';
 import Home from 'material-ui/svg-icons/action/home';
 import ColorsIcon from 'material-ui/svg-icons/image/color-lens';
+import ArrangeIcon from 'material-ui/svg-icons/action/language';
 import Charts from "./Charts";
 
 
@@ -67,8 +68,7 @@ const styles = {
 const ChartStyle ={
     height: 30,
     width:30,
-    color:'#424242',
-    marginLeft:10,
+    color:'#e1bee7',
 
 };
 class Homepage extends Component {
@@ -163,26 +163,7 @@ class Homepage extends Component {
 
 
                         <ul className="navbar-nav text-uppercase ml-auto" id="for-big-screen">
-                            <li className="nav-item">
-                                <a className="nav-link js-scroll-trigger pointer" style={{'font-size': '1.4em'}}><div>
-                                    <RaisedButton
-                                        onClick={this.handleClick}
-                                        label="Lan"
-                                    />
-                                    <Popover
-                                        open={this.state.open}
-                                        anchorEl={this.state.anchorEl}
-                                        anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-                                        targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                                        onRequestClose={this.handleRequestClose}
-                                    >
-                                        <Menu>
-                                            <MenuItem primaryText="el" onClick={() => changeLanguage('el')}/>
-                                            <MenuItem primaryText="en" onClick={() => changeLanguage('en')}/>
-                                        </Menu>
-                                    </Popover>
-                                </div></a>
-                            </li>
+
                             <li className="nav-item">
                                 <a className="nav-link" style={{'font-size': '1.4em'}} onClick={() => {
                                     this.props.history.push("/Boards");
@@ -209,12 +190,32 @@ class Homepage extends Component {
                                        this.props.history.push("/Team");
                                    }}>Team</a>
                             </li>
+                            <li className="nav-item">
+                                <a className="nav-link js-scroll-trigger pointer" style={{'font-size': '1.4em'}}><div>
+                                    <ArrangeIcon style={ChartStyle}
+                                                 className="pointer"
+                                                 onClick={this.handleClick}
+                                    />
+                                    <Popover
+                                        open={this.state.open}
+                                        anchorEl={this.state.anchorEl}
+                                        anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+                                        targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                                        onRequestClose={this.handleRequestClose}
+                                    >
+                                        <Menu>
+                                            <MenuItem primaryText="el" onClick={() => changeLanguage('el')}/>
+                                            <MenuItem primaryText="en" onClick={() => changeLanguage('en')}/>
+                                        </Menu>
+                                    </Popover>
+                                </div></a>
+                            </li>
                             {userState.isLogged ? <ProfilePic/>: '' }
                         </ul>
 
                     </nav>
                 </div>
-                <div className="for-small-screen footer-blogs">
+                <div className="footer-blogs" id={"bottomNav"}>
                     <Paper zDepth={1}>
                         <BottomNavigation selectedIndex={this.state.selectedIndex}>
                             <BottomNavigationItem
