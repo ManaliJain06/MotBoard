@@ -143,7 +143,7 @@ class Homepage extends Component {
                         </ul>
                     </nav>
                 </div>
-                <div className="pt-5">
+                <div className="mt-5 pt-5">
                     <Route exact path="/" render={() => (
 
                         <StyleRoot>
