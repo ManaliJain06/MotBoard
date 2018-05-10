@@ -270,7 +270,7 @@ ul.userMenu {
   color: purple;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 500px) {
   #for-small-screen {
     display: block;
   }
@@ -279,8 +279,11 @@ ul.userMenu {
   }
 }
 
-@media only screen and (min-width: 401px) {
+@media only screen and (min-width: 501px) {
   #for-small-screen {
+    display: none;
+  }
+  .for-small-screen {
     display: none;
   }
   #for-big-screen {

@@ -35,6 +35,20 @@ import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui/svg-icons/navigation/menu';
+import FontIcon from 'material-ui/FontIcon';
+import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
+import Paper from 'material-ui/Paper';
+import BlogsIcon from 'material-ui/svg-icons/action/speaker-notes';
+import PublicBoards from 'material-ui/svg-icons/action/dashboard';
+import Home from 'material-ui/svg-icons/action/home';
+import ColorsIcon from 'material-ui/svg-icons/image/color-lens';
+
+
+const blogsIcon = <BlogsIcon/>;
+const homeIcon = <Home/>;
+const publicBoards = <PublicBoards/>;
+const colorsIcon = <ColorsIcon/>;
+
 const styles = {
     slideInRight: {
         animation: 'x 0.5s',
@@ -64,6 +78,7 @@ class Homepage extends Component {
             "userstate":userState.isLogged,
             open: false,
             drawerOpen:false,
+            selectedIndex: 0,
         };
     }
     handleClick = (event) => {
@@ -83,7 +98,7 @@ class Homepage extends Component {
         });
     };
     handleToggle = () => this.setState({drawerOpen: !this.state.drawerOpen});
-
+    select = (index) => this.setState({selectedIndex: index});
     handleClose = () => this.setState({drawerOpen: false});
     render() {
         let userState = this.props.loginStateProp;
@@ -97,6 +112,7 @@ class Homepage extends Component {
                 <div>
                     <nav style={{'background-color': '#ffffff'}}
                          className="navbar navbar-expand-lg navbar-dark fixed-top mb-5" id="mainNav">
+
                         <div  id={"for-small-screen"} className={"align-items-left"}>
                             <ul className="navbar-nav text-uppercase ml-auto">
                                 <li className="nav-item">
@@ -120,7 +136,7 @@ class Homepage extends Component {
                                     </div></a>
                                 </li>
                                 <li className="nav-item">
-                                    <IconButton tooltip="Close Survey" touch={true} tooltipPosition="top-right">
+                                    <IconButton tooltip="Options" touch={true} tooltipPosition="top-right">
                                         <MenuIcon style={ChartStyle}
                                                   className="pointer"
                                                   onClick={this.handleToggle}
@@ -130,6 +146,7 @@ class Homepage extends Component {
                                 </li>
                                 {userState.isLogged ? <ProfilePic/>: '' }
                             </ul>
+
                         </div>
                         <a className="navbar-brand d-flex align-items-left " onClick={() => {
                             this.props.history.push("/");
@@ -195,6 +212,44 @@ class Homepage extends Component {
                         </ul>
 
                     </nav>
+                </div>
+                <div className="for-small-screen footer-blogs">
+                    <Paper zDepth={1}>
+                        <BottomNavigation selectedIndex={this.state.selectedIndex}>
+                            <BottomNavigationItem
+                                label="Home"
+                                icon={homeIcon}
+                                onClick={() => {
+                                    this.select(0);
+                                    this.props.history.push("/");
+                                }}
+                            />
+                            <BottomNavigationItem
+                                label="Public Boards"
+                                icon={publicBoards}
+                                onClick={() => {
+                                    this.select(1);
+                                    this.props.history.push("/Boards");
+                                }}
+                            />
+                            <BottomNavigationItem
+                                label="Colors"
+                                icon={colorsIcon}
+                                onClick={() => {
+                                    this.select(2);
+                                    this.props.history.push("/ColorsGenerator");
+                                }}
+                            />
+                            <BottomNavigationItem
+                                label="Blogs"
+                                icon={blogsIcon}
+                                onClick={() => {
+                                    this.select(3);
+                                    this.props.history.push("/blogs");
+                                }}
+                            />
+                        </BottomNavigation>
+                    </Paper>
                 </div>
                 <div className="mt-5 pt-5">
                     <Route exact path="/" render={() => (
@@ -319,7 +374,7 @@ class Homepage extends Component {
                         style={{ ' font-family': 'Questrial, sans-serif'}}
                         onRequestChange={(drawerOpen) => this.setState({drawerOpen})}
                     >
-                        <AppBar title="AppBar" />
+                        <AppBar title="MotBoard" />
                         <MenuItem onClick={this.handleClose}>
                             <div className="nav-item">
                                 <a className="nav-link" style={{'font-size': '1.4em'}} onClick={() => {
@@ -358,6 +413,7 @@ class Homepage extends Component {
                         </MenuItem>
                     </Drawer>
                 </div>
+
             </div>
         )
     }

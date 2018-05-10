@@ -42,6 +42,11 @@ class Blogs extends Component{
         //TODO: Call to backend here - to retrieve the blogs
         this.props.getBlogs();
     }
+    handleCloseDialog=()=>{
+    this.setState({
+                      open: false
+                  });
+}
     constructor(props){
         super(props);
         this.state={
@@ -54,7 +59,7 @@ class Blogs extends Component{
             <FlatButton
                 label="Cancel"
                 primary={true}
-                onClick={this.handleClose}
+                onClick={this.handleCloseDialog}
             />,
             <FlatButton
                 label="Submit"
@@ -62,8 +67,8 @@ class Blogs extends Component{
                 onClick={this.handleClose}
             />,
         ];
-        return <div>
-            <div>
+        return <div className="row">
+            <div className="row Justify-content-center" id={"blogs-video"}>
                 <video className="fullscreen-bg__video" muted autoPlay loop>
                     <source src={video} type="video/mp4"/>
                 </video>
