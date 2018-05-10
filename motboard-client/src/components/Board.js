@@ -57,10 +57,11 @@ class Board extends Component{
         this.state = {
             ListOfMotBoards : [],
             checked: false,
-            oldState: false
+            oldState: false,
+            boardLike: ''
         };
         this.setBoards = this.setBoards.bind(this);
-        this.handleLikes = this.handleLikes.bind(this);
+        // this.handleLikes = this.handleLikes.bind(this);
         // this.handleCheck = this.handleCheck.bind(this);
         this.updateCheck = this.updateCheck.bind(this);
     }
@@ -108,16 +109,13 @@ class Board extends Component{
     //     }
     // }
     openModalError(){
-        this.setState({
-            showError: true });
+        this.setState({showError: true });
     }
     closeModalError(){
-        this.setState({
-            showError: false });
+        this.setState({showError: false });
     }
     openModalSignUpError(){
-        this.setState({
-            showModalError: true });
+        this.setState({showModalError: true });
         // setTimeout(this.props.history.push('/signUp'),10000)
     }
     closeModalSignUpError(){
@@ -131,9 +129,13 @@ class Board extends Component{
         this.setState({ showModalSuccess: true });
     }
 
-    closeModalBillingSuccess() {
-        this.setState({ showModalSuccess: true });
-        this.props.history.push('/home');
+    closeModalSuccess() {
+        this.setState({ showModalSuccess: false });
+        // this.props.history.push('/home');
+    }
+    showUserPrivateBoards(){
+        this.setState({ showModalSuccess: false });
+        this.props.history.push('/home')
     }
 
     pushimage(temp) {
@@ -147,42 +149,100 @@ class Board extends Component{
         //API to add to personal motboard
         let state = this.props.loginStateProp;
         if(state.isLogged){
-            let payload={
+            let payload3={
                 "board": tile,
                 "user": state.userData
-            };
-            this.props.addPublicBoardToPrivate(payload, function(err, result){
-                let state = this.props.loginStateProp;
-                if(state.updateUserBoardError){
-                    this.openModalError();
-                } else{
-                    this.openModalBillingSuccess();
-                }
-            });
+            }
+
+            this.addBoardAction(payload3, this.addBoardResponse);
+            // this.props.addPublicBoardToPrivate(payload, function(err, result){
+            //     let state = this.props.loginStateProp;
+            //     if(state.updateUserBoardError){
+            //         this.openModalError();
+            //     } else{
+            //         this.openModalBillingSuccess();
+            //     }
+            // });
         } else{
             this.openModalSignUpError();
         }
 
     }
-
-    showUserPrivateBoards(){
-        this.props.history.push('/home')
+    addBoardAction=(payload3,callback)=>{
+        this.props.addPublicBoardToPrivate(payload3);
+        setTimeout(callback, 1000);
     }
-    handleLikes = (name, likes) =>{
-        var payload={
-            "name": name,
-            "likes":likes
+    addBoardResponse =()=>{
+        let state = this.props.loginStateProp;
+        if(state.updateUserBoardError){
+            this.openModalError();
+        } else{
+            this.openModalBillingSuccess();
         }
-        this.props.postLikesAction(payload, function(err, result){
-            console.log("action has been successfully returned");
-            let publicBoards = this.props.publicMotBoard;
-            this.setState({
-                ...this.state,
-                ListOfMotBoards: publicBoards.boards
-            })
-        });
-        console.log("inside handlelikes");
     }
+    handleLikesToggle = (event, isInputChecked, tile) => {
+        if(isInputChecked){
+            tile.likes = tile.likes +1;
+            var payload1={
+                "name": tile.name,
+                "likes":tile.likes
+            }
+            this.likeAction(payload1, this.likeResponse);
+            // this.props.postLikesAction(payload1, function(err, result){ });
+            //     console.log("action has been successfully returned");
+            //     let publicBoards = this.props.publicMotBoard;
+            //     this.setState({
+            //         ...this.state,
+            //         ListOfMotBoards: publicBoards.boards
+            //     })
+            //
+            // console.log("inside handlelikes");
+            // this.handleLikes(tile.name, tile.likes+1);
+        } else{
+            tile.likes = tile.likes -1;
+            var payload2={
+                "name": tile.name,
+                "likes":tile.likes
+            }
+            this.likeAction(payload2, this.likeResponse);
+            // this.props.postLikesAction(payload2, function(err, result){});
+            //     console.log("action has been successfully returned");
+            //     let publicBoards = this.props.publicMotBoard;
+            //     this.setState({
+            //         ...this.state,
+            //         ListOfMotBoards: publicBoards.boards
+            //     })
+            //
+            // console.log("inside handlelikes");
+            // this.handleLikes(tile.name, tile.likes-1)
+        }
+    }
+    likeAction = (payload, callback) => {
+        this.props.postLikesAction(payload);
+        setTimeout(callback, 1000);
+    }
+    likeResponse =() =>{
+        let publicBoards = this.props.publicMotBoard;
+        this.setState({
+            ...this.state,
+            ListOfMotBoards: publicBoards.boards
+        })
+    }
+    // handleLikes = (name, likes) =>{
+    //     var payload={
+    //         "name": name,
+    //         "likes":likes
+    //     }
+    //     this.props.postLikesAction(payload, function(err, result){
+    //         console.log("action has been successfully returned");
+    //         let publicBoards = this.props.publicMotBoard;
+    //         this.setState({
+    //             ...this.state,
+    //             ListOfMotBoards: publicBoards.boards
+    //         })
+    //     });
+    //     console.log("inside handlelikes");
+    // }
     render(){
         return (
             <div>
@@ -206,7 +266,7 @@ class Board extends Component{
                     </Modal.Footer>
                 </Modal>
 
-                <Modal dialogClassName={customStyles} show={this.state.showModalSuccess} onHide={() => this.closeModalBillingSuccess()}>
+                <Modal dialogClassName={customStyles} show={this.state.showModalSuccess} onHide={() => this.closeModalSuccess()}>
                     <Modal.Header closeButton>
                         {/*<Modal.Title>Payment Success</Modal.Title>*/}
                     </Modal.Header>
@@ -221,7 +281,7 @@ class Board extends Component{
                     </Modal.Body>
                     <Modal.Footer>
                         <Button onClick={() => this.showUserPrivateBoards()}>My Boards</Button>
-                        <Button onClick={() => this.closeModalBillingSuccess()}>Close</Button>
+                        <Button onClick={() => this.closeModalSuccess()}>Close</Button>
                     </Modal.Footer>
                 </Modal>
 
@@ -281,10 +341,9 @@ class Board extends Component{
                                                 uncheckedIcon={<Fav/>}
                                                 label={tile.likes}
                                                 style={styles.checkbox}
-                                                onClick={(event) => {
-                                                    tile.likes = tile.likes +1;
-                                                    this.handleLikes(tile.name, tile.likes);
-                                                }}
+                                                onCheck={(event,isInputChecked) => {
+                                                    this.handleLikesToggle(event,isInputChecked, tile)
+                                                 }}
                                             />
                                         </div>}
                                         actionPosition={'right'}
@@ -336,3 +395,14 @@ function mapStateToProps(state) {
     };
 }
 export default withRouter(connect(mapStateToProps,{postLikesAction, getPublicMotBoardAction, addPublicBoardToPrivate})(Board));
+
+
+// onClick={(event) => {
+//     var x = this.handleLikesToggle;
+//     if(x){
+//         tile.likes = tile.likes +1;
+//     }else{
+//         tile.likes = tile.likes -1;
+//     }
+//     this.handleLikes(tile.name, tile.likes);
+// }}

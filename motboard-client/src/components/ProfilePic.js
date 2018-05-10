@@ -40,7 +40,7 @@ class ProfilePic extends React.Component{
         let state = this.props.loginStateProp;
         if( state.signOutError === true){
            alert("Logout error occured. Please logout again");
-        } else if( state.signOutError === ''){
+        } else {
             this.props.history.push("/");
         }
     }
