@@ -9,6 +9,7 @@ import signupimage from '../Images/chilling.gif';
 import {pulse} from 'react-animations';
 import * as validation from '../validation/LoginValidation';
 import swal from 'sweetalert';
+import DatePicker from 'material-ui/DatePicker';
 
 const styles = {
     pulse: {
@@ -130,6 +131,13 @@ class SignUp extends Component {
                                            });
                                        }}
                                 /><br/>
+                                <div>
+                                    <DatePicker className="inputfield"
+                                                hintText="Date of Birth"
+                                                mode="landscape"
+                                                style={{'underline':'none'}}
+                                    />
+                                </div><br/>
                                 <div className="row justify-content-center">
                                     <button className="ybutton" onClick={() => {
                                         this.handleSignUpSubmit();

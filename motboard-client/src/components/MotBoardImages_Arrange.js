@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 import {withRouter} from "react-router-dom";
 import {Responsive, WidthProvider} from "react-grid-layout";
 import {getImagesArrange} from '../actions/index';
-
+import '../css/arrange.css';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -109,14 +109,12 @@ class Arrange extends React.PureComponent {
                 }{" "}
                     columns)
                 </div>
-                <div>
-                    Compaction type:{" "}
-                    {_.capitalize(this.state.compactType) || "No Compaction"}
+                <div className={"row mt-1 justify-content-center Questrial"}>
+                    <button className={"ArrangeButton mr-3"} onClick={this.onNewLayout}>Generate New Layout</button>
+                    <button className={"ArrangeButton mr-3"} onClick={this.onCompactTypeChange}>
+                        Change Compaction Type from {this.state.compactType}
+                    </button>
                 </div>
-                <button onClick={this.onNewLayout}>Generate New Layout</button>
-                <button onClick={this.onCompactTypeChange}>
-                    Change Compaction Type
-                </button>
                 <ResponsiveReactGridLayout
                     {...this.props}
                     layouts={this.state.layouts}

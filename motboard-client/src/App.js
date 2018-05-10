@@ -10,7 +10,11 @@ import i18n from './il8n';
 
 const muiTheme = getMuiTheme({
     palette: {
-        primary1Color: '#FFF176',
+
+        primary1Color: '#ba68c8',
+        pickerHeaderColor: '#d1c4e9',
+        clockCircleColor: '#d1c4e9',
+        primary2Color: '#d1c4e9',
     },
 });
 
