@@ -36,12 +36,14 @@ class Arrange extends React.PureComponent {
         layouts: {lg: this.props.initialLayout}
     };
 
+
+
     componentDidMount() {
         this.setState({mounted: true});
         let motBoardName = "first";
         this.props.getImagesArrange(motBoardName);
-        //this.props.ge(motBoardName);
 
+        //this.props.ge(motBoardName);
     }
 
 
@@ -49,15 +51,14 @@ class Arrange extends React.PureComponent {
     generateDOM() {
 
         console.log(this.props.images);
-        if(this.props.images.images)
-            return _.map(this.props.images.images, function (item,i) {
+        if(this.props.images)
+            return _.map(this.props.images, function (item,i) {
                 return (
                     <div key={i} className="container arrange_image_card m-5" style={{"height":"100%","width":"100%","background-color":"white"}}>
                         <img src={item.url}   alt="Mountain View" style={{'height': '100%', 'width': '100%'}}/>
                     </div>
                 );
             });
-
     }
 
     onBreakpointChange = breakpoint => {

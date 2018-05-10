@@ -14,17 +14,16 @@ router.post('/getImages', function (req, res, next) {
                 {$match: {'motboards.name':req.body.motBoardName}},
                 function (err, data) {
                     if (data) {
-                        console.log(data[0].motboards.images);
+            //            console.log(data[0].motboards.images);
                         res.status(200).send(data[0].motboards.images);
                     }
                     else {
-                        console.log("insied error");
+              //          console.log("insied error");
                         res.status(400).send("login failed");
                     }
                 })
         })
     }
-
     catch (e) {
         console.log(e);
     }

@@ -3,6 +3,7 @@ import {Route, withRouter} from 'react-router-dom';
 import {getImages,sendFiles} from '../actions/index';
 import {connect} from 'react-redux';
 import {GridList, GridTile} from 'material-ui/GridList';
+import '../css/signup.css';
 import '../css/homepage.css';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -95,6 +96,10 @@ class User_Boards extends Component {
     componentWillMount() {
         this.props.getImages(this.props.location.state.motBoardName);
     }
+    componentDidMount(){
+        //TODO: Call to backend here - to retrieve the blogs
+        this.props.getImages(this.props.location.state.motBoardName);
+    }
 
     handleFileUpload = (event) => {
         let payload = new FormData();
@@ -103,8 +108,7 @@ class User_Boards extends Component {
         }
 //         payload.motBoardName=this.props.location.state.motBoardName;
         this.props.sendFiles(payload);
-        setTimeout( this.props.getImages(this.props.location.state.motBoardName),1000);
-
+        setTimeout( this.props.getImages(this.props.location.state.motBoardName),2000);
     };
 
     // setBoards(){
