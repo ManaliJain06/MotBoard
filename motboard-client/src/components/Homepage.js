@@ -163,6 +163,26 @@ class Homepage extends Component {
 
                         <ul className="navbar-nav text-uppercase ml-auto" id="for-big-screen">
                             <li className="nav-item">
+                                <a className="nav-link js-scroll-trigger pointer" style={{'font-size': '1.4em'}}><div>
+                                    <RaisedButton
+                                        onClick={this.handleClick}
+                                        label="Lan"
+                                    />
+                                    <Popover
+                                        open={this.state.open}
+                                        anchorEl={this.state.anchorEl}
+                                        anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+                                        targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                                        onRequestClose={this.handleRequestClose}
+                                    >
+                                        <Menu>
+                                            <MenuItem primaryText="el" onClick={() => changeLanguage('el')}/>
+                                            <MenuItem primaryText="en" onClick={() => changeLanguage('en')}/>
+                                        </Menu>
+                                    </Popover>
+                                </div></a>
+                            </li>
+                            <li className="nav-item">
                                 <a className="nav-link" style={{'font-size': '1.4em'}} onClick={() => {
                                     this.props.history.push("/Boards");
                                 }}>boards</a>
@@ -187,26 +207,6 @@ class Homepage extends Component {
                                    onClick={() => {
                                        this.props.history.push("/Team");
                                    }}>Team</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link js-scroll-trigger pointer" style={{'font-size': '1.4em'}}><div>
-                                    <RaisedButton
-                                        onClick={this.handleClick}
-                                        label="Lan"
-                                    />
-                                    <Popover
-                                        open={this.state.open}
-                                        anchorEl={this.state.anchorEl}
-                                        anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-                                        targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                                        onRequestClose={this.handleRequestClose}
-                                    >
-                                        <Menu>
-                                            <MenuItem primaryText="el" onClick={() => changeLanguage('el')}/>
-                                            <MenuItem primaryText="en" onClick={() => changeLanguage('en')}/>
-                                        </Menu>
-                                    </Popover>
-                                </div></a>
                             </li>
                             {userState.isLogged ? <ProfilePic/>: '' }
                         </ul>
