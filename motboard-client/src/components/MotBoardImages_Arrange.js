@@ -82,9 +82,15 @@ class Arrange extends React.PureComponent {
 
 
     onNewLayout = () => {
+        console.log("------------------------");
+        console.log(this.state.layouts);
+        console.log("-------------------------");
         this.setState({
             layouts: {lg: generateLayout()}
         });
+        console.log("------------------------");
+        console.log(this.state.layouts);
+        console.log("-------------------------");
     };
 
     // constructor(props) {
