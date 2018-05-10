@@ -269,3 +269,21 @@ ul.userMenu {
   padding-left: 10px;
   color: purple;
 }
+
+@media only screen and (max-width: 400px) {
+  #for-small-screen {
+    display: block;
+  }
+  #for-big-screen {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 401px) {
+  #for-small-screen {
+    display: none;
+  }
+  #for-big-screen {
+    display: block;
+  }
+}

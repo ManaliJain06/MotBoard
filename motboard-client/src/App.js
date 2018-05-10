@@ -10,7 +10,7 @@ import i18n from './il8n';
 
 const muiTheme = getMuiTheme({
     palette: {
-        primary1Color: '#FFD639',
+        primary1Color: '#FFF176',
     },
 });
 
