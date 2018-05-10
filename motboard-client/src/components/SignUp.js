@@ -8,6 +8,8 @@ import Radium, {StyleRoot} from 'radium';
 import signupimage from '../Images/chilling.gif';
 import {pulse} from 'react-animations';
 import * as validation from '../validation/LoginValidation';
+import swal from 'sweetalert';
+
 const styles = {
     pulse: {
         animation: 'x 0.5s ease-in-out',
@@ -47,6 +49,7 @@ class SignUp extends Component {
     signUpResponse(){
         let state = this.props.loginStateProp;
         if( state.isLogged === true){
+            swal("Congratulations","We are excited to have you aboard.","success");
             this.props.history.push("/home");
         } else if(state.isLogged === false && state.msg !== ''){
             this.setState({
