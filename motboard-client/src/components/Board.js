@@ -90,7 +90,7 @@ class Board extends Component{
         let isChecked = !this.state.checked;
         this.setState({
             ...this.state,
-                checked: isChecked
+            checked: isChecked
         }, callback);
     }
     setBoards(){
@@ -135,6 +135,14 @@ class Board extends Component{
         this.setState({ showModalSuccess: true });
         this.props.history.push('/home');
     }
+
+    pushimage(temp) {
+        this.props.history.push({
+            pathname: '/singlemotboard',
+            state: {motBoardName: temp}
+        })
+    }
+
     addBoardToPersonal(tile){
         //API to add to personal motboard
         let state = this.props.loginStateProp;
@@ -142,7 +150,7 @@ class Board extends Component{
             let payload={
                 "board": tile,
                 "user": state.userData
-            }
+            };
             this.props.addPublicBoardToPrivate(payload, function(err, result){
                 let state = this.props.loginStateProp;
                 if(state.updateUserBoardError){
@@ -285,28 +293,32 @@ class Board extends Component{
                                         class={'motboard-single-image-card'}
                                         titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.4) 70%,rgba(0,0,0,0) 100%)"
                                     >
-                                        <img src={tile.images[0][0].url} />
+                                        <img src={tile.images[0][0].url}
+                                             onClick={() => {
+                                                 this.pushimage(tile.name);
+                                             }}
+                                        />
                                     </GridTile>
                                 ))}
                             </GridList>
                             {/*<div className="container row justify-content-center">*/}
-                                {/*<nav aria-label="...">*/}
-                                    {/*<ul className="pagination">*/}
-                                        {/*<li className="page-item disabled">*/}
-                                            {/*<span className="page-link">Previous</span>*/}
-                                        {/*</li>*/}
-                                        {/*{*/}
-                                            {/*this.state.pagination.map((page,index) => (*/}
-                                                {/*<div>*/}
-                                                    {/*<li className={page.ActiveStatus}><a className="page-link" href="#">{index+1}</a></li>*/}
-                                                {/*</div>*/}
-                                            {/*))*/}
-                                        {/*}*/}
-                                        {/*<li className="page-item">*/}
-                                            {/*<a className="page-link" href="#">Next</a>*/}
-                                        {/*</li>*/}
-                                    {/*</ul>*/}
-                                {/*</nav>*/}
+                            {/*<nav aria-label="...">*/}
+                            {/*<ul className="pagination">*/}
+                            {/*<li className="page-item disabled">*/}
+                            {/*<span className="page-link">Previous</span>*/}
+                            {/*</li>*/}
+                            {/*{*/}
+                            {/*this.state.pagination.map((page,index) => (*/}
+                            {/*<div>*/}
+                            {/*<li className={page.ActiveStatus}><a className="page-link" href="#">{index+1}</a></li>*/}
+                            {/*</div>*/}
+                            {/*))*/}
+                            {/*}*/}
+                            {/*<li className="page-item">*/}
+                            {/*<a className="page-link" href="#">Next</a>*/}
+                            {/*</li>*/}
+                            {/*</ul>*/}
+                            {/*</nav>*/}
                             {/*</div>*/}
 
                         </div>

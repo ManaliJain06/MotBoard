@@ -8,6 +8,7 @@ import Upload from './uploadImages';
 import BalloonPage from './BalloonPage';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
+import Single_Motboard from './Single_Motboard';
 import Blogs from './Blogs';
 import '../css/landingPage.css';
 import '../css/animate.css';
@@ -185,6 +186,13 @@ class Homepage extends Component {
                             </div>
                         </StyleRoot>
                     )}/>
+
+                    <Route exact path="/singlemotboard" render={() => (
+                        <div>
+                            <Single_Motboard/>
+                        </div>
+                    )}/>
+
                     <Route exact path="/signUp" render={() => (
                         <div>
                             <SignUp/>

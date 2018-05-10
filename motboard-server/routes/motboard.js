@@ -29,7 +29,6 @@ exports.getPublicMotboard = function(req,res){
     try {
         mongo.connect(mongoURL, function () {
             let coll = mongo.collection('users');
-
             coll.aggregate([
                 {$match: {'motboards.access': 'public'}},
                 {$project: {

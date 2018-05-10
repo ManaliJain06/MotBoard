@@ -8,24 +8,22 @@ router.post('/getImages', function (req, res, next) {
     try {
         mongo.connect(mongoURL, function () {
             var coll = mongo.collection('users');
-
-            coll.findOne({username: 'sanjay'}, function (err, user) {
-                if (user) {
-                    for (let i = 0; i < user.motboards.length; i++) {
-                        if (user.motboards[i].name === req.body.motBoardName) {
-                            var images = user.motboards[i].images;
-                            res.status(201).json({
-                                images: images[0]
-                            })
-                        }
+            console.log(req.body.motBoardName);
+            coll.aggregate({$unwind: '$motboards'},
+                {$match: {'motboards.name':req.body.motBoardName}},
+                function (err, data) {
+                    if (data) {
+                        console.log(data[0].motboards.images);
+                        res.status(200).send(data[0].motboards.images);
                     }
-                }
-                else {
-                    res.status(400).send(null);
-                }
-            });
-        });
+                    else {
+                        console.log("insied error");
+                        res.status(400).send("login failed");
+                    }
+                })
+        })
     }
+
     catch (e) {
         console.log(e);
     }

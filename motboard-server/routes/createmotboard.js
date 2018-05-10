@@ -27,12 +27,14 @@ router.post('/motboard', type2, function (req, res, next) {
             var coll = mongo.collection('users');
             //changing filenames to the name which we created.
             //var get the motboard name while inserting the all images
-            coll.findOne({username: 'sanjay'}, function (err, user) {
+
+            coll.findOne({username: req.session.user}, function (err, user) {
                 var temp;
                 var images;
                 if (user) {
+                    console.log(req.body.motBoardName);
                     for (var i = 0; i < user.motboards.length; i++) {
-                        if (user.motboards[i].name === "first") {
+                        if (user.motboards[i].name == req.body.motBoardName.motBoardName) {
                             if (user.motboards[i].images.length === 0)
                                 user.motboards[i].images.push(imagesArray);
                             else {

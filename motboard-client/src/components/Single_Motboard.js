@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Route, withRouter} from 'react-router-dom';
+import {getImages} from '../actions/index';
 import {connect} from 'react-redux';
 import {GridList, GridTile} from 'material-ui/GridList';
 import '../css/single-motboard.css';
@@ -79,9 +80,8 @@ class Single_Motboard extends Component {
 
     state = {
         open: false,
+        ListOfImages : []
     };
-
-
     handleClose = () => {
         this.setState({open: false});
     };
@@ -91,6 +91,19 @@ class Single_Motboard extends Component {
         this.setState({open: true});
     };
 
+    componentWillMount(){
+        this.props.getImages(this.props.location.state.motBoardName);
+    }
+
+    // setBoards(){
+    //     let publicBoards = this.props.images;
+    //     this.setState({
+    //         ListOfImages:publicBoards
+    //     })
+    // }
+    // componentDidMount(){
+    //     setTimeout(this.setBoards, 1000);
+    // }
     render() {
         console.log(this.props.images);
         const actions = [
@@ -149,14 +162,13 @@ class Single_Motboard extends Component {
                     </div>
                 </div>
             </div>
-
         )
     }
 }
 
 function mapStateToProps(state) {
-    return {images: state.imageData.images}
+    return {images: state.imageData}
 }
 
 
-export default withRouter(connect(mapStateToProps)(Single_Motboard));
+export default withRouter(connect(mapStateToProps,{getImages})(Single_Motboard));

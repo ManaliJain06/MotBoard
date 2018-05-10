@@ -45,9 +45,10 @@ function signOutError(){
 }
 
 function receivedImages(response) {
+    console.log(response.data);
     return{
         type:'RECEIVED_IMAGES',
-        payload:response.data
+        payload:response.data[0]
     };
 }
 
@@ -105,7 +106,7 @@ export function getuserallboards(){
                 console.log(response);
                 dispatch(getBoards(response.data));
             }).catch(error => {
-                alert("errt");
+               // alert("errt");
                 dispatch(signinError());
             });
     }
@@ -125,7 +126,7 @@ export function getBlogs(){
             .then(response => {
                 dispatch(handleBlogs(response));
             }).catch(error => {
-                alert("errt");
+            //    alert("errt");
                 dispatch(signinError());
             });
     }
@@ -235,7 +236,7 @@ export function updateUserData(payload){
 }
 
 export function getImagesArrange(value) {
-    alert("inside arrange images");
+ //   alert("inside arrange images");
     let motBoardName={
         "motBoardName":value
     };
@@ -253,7 +254,7 @@ export function getImagesArrange(value) {
 }
 
 export function getImages(value) {
-  alert("inside images");
+ // alert(value);
     let motBoardName={
         "motBoardName":value
     };
@@ -272,7 +273,7 @@ export function getImages(value) {
 
 export function sendFiles(payload) {
     return (dispatch) => {
-        alert("sanjay");
+     //   alert("sanjay");
         console.log(payload);
         const request = axios.post(`${ROOT_URL}/motboard`,payload, {withCredentials: true}
             ,{headers: {
