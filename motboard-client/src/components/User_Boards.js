@@ -108,17 +108,13 @@ class User_Boards extends Component {
     // }
 
 arrangeImages=()=>{
-    //alert(this.props.location.state.motBoardName);
-    //alert(this.state.motBoardName);
-    // this.setState({
-    //     motboardName:this.props.location.state.motBoardName
-    // });
-  //  alert("inside");
     this.props.history.push({
         pathname: '/Arrange',
         state: {motBoardName: this.props.location.state.motBoardName}
     })
 };
+
+
 
 
     render() {
