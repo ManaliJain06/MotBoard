@@ -27,7 +27,7 @@ class SignUp extends Component {
                 "password": "",
                 "firstname": "",
                 "lastname": "",
-                "profileImage" : "http://localhost:3300/images/defaultUserImage.jpg",
+                "profileImage" : "http://localhost:3300/images/user.png",
             },
             messageSignUp: ''
         }

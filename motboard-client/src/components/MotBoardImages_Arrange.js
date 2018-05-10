@@ -39,7 +39,7 @@ class Arrange extends React.PureComponent {
 
     componentDidMount() {
         this.setState({mounted: true});
-        let motBoardName = "Birthday";
+        let motBoardName = this.props.location.state.motBoardName;
         this.props.getImagesArrange(motBoardName);
         //this.props.ge(motBoardName);
     }
@@ -151,4 +151,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default  (connect(mapStateToProps,{getImagesArrange})(Arrange));
+export default  (connect(mapStateToProps,{getImagesArrange})(withRouter(Arrange)));
