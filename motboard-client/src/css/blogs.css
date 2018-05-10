@@ -4,7 +4,7 @@
 
 .blogfont{
     color: white;
-    font-size:1.8em;
+    font-size:90px;
     margin-top: 100px;
     margin-left: 400px;
 
@@ -22,25 +22,4 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     Z-index:-1;
-}
-
-@media only screen and (max-width: 500px) {
-    #blogs-video{
-        display: none;
-    }
-
-}
-
-@media only screen and (min-width: 501px) {
-
-}
-
-.footer-blogs{
-    position: fixed;
-    z-index:10;
-    margin-bottom: 0;
-    bottom: 0;
-    width: 100%;
-    left: 0;
-    right: 0;
 }
