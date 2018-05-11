@@ -124,21 +124,15 @@ class Single_Motboard extends Component {
                                 padding={25}
                                 cols={4}
                             >
-                                {this.props.images.map((tile) => (
+                                {this.props.images.map((tile,index) => (
                                     <GridTile
                                         onClick={(event) => {
                                             this.getFullImage(tile.url)
                                         }}
                                         key={tile.img}
-                                        title={
-                                            <div>
-                                                <input type={"text"}
-                                                       placeholder={"Add Comment"}
-                                                       className={'motboard-single-image-comment'}
-                                                />
-                                            </div>}
+                                        title={index+1}
                                         // subtitle={<span>by <b>{tile.author}</b></span>}
-                                        titleBackground={'rgba(255, 255, 255, 1)'}
+                                        // titleBackground={'rgba(255, 255, 255, 1)'}
                                         class={'motboard-single-image-card'}
                                     >
                                         <img src={tile.url}/>

@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import '../css/signup.css';
 import '../css/smiley.css';
 import {signinAction} from '../actions';
-import signin from '../Images/signin.jpg';
+import signin from '../Images/chilling.gif';
 import Radium, {StyleRoot} from 'radium';
 import {pulse} from 'react-animations';
 import * as validation from '../validation/LoginValidation';

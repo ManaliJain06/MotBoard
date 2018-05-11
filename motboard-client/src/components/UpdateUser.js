@@ -117,7 +117,7 @@ class UpdateUser extends Component{
         }
         const image = this.state.userdata.profileImage;
         return (
-            <div className="row justify-content-center">
+            <div className="row justify-content-center Questrial">
                 <div className="col-md-11 mt-5 pt-5">
                     <div className="col-md-6 indexZ" >
                         <img src={image} alt="hello" style={{'height':'24vw','object-fit':'contain','border-radius': '15%','margin-left': '70px'}} className={"indexZ"}/>
@@ -186,7 +186,7 @@ class UpdateUser extends Component{
                             <label className="col-sm-3 col-form-label labelColor">Profile Picture</label>
                             <div className="col-sm-9">
                                 <div className="upload-button">
-                                    <div>Upload Files</div>
+                                    <div>Upload Profile Picture</div>
                                     <input className="upload" type="file" name="file"
                                            onChange={
                                                this.handleFileUpload

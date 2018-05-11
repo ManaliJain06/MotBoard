@@ -133,11 +133,11 @@ class User_Boards extends Component {
         ];
         return (
             <div>
-                <div className="row justify-content-center">
+                <div className="row mt-5 justify-content-center">
                     <div>
                         <div className={"row"}>
                             <div className="col-md-3">
-                                <p>Colorful</p>
+                                <p className={"Questrial"} style={{'font-size':'2.5em','text-align':'center'}}>{this.props.location.state.motBoardName}</p>
                             </div>
                             <div className="container col-md-6 uploadbox">
                                 <UploadIcon style={ChartStyle}/>
@@ -151,6 +151,7 @@ class User_Boards extends Component {
                                     icon={<ArrangeIcon/>}
                                     style={styles.button}
                                     onClick={this.arrangeImages}
+                                    labelColor={'#fff'}
                                 />
                                 <RaisedButton
                                     label="Public"
@@ -158,6 +159,7 @@ class User_Boards extends Component {
                                     backgroundColor={'#BA68C8'}
                                     icon={<ShareIcon/>}
                                     style={styles.button}
+                                    labelColor={'#fff'}
                                     onClick={this.makePublic}
                                 />
 

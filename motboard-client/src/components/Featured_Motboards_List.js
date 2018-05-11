@@ -104,11 +104,6 @@ class Motboards_List extends Component {
                                                 {tile.description}
                                             </div>
                                         }
-                                        actionIcon={<div>
-                                            <Fav style={iconStyles} color={fullWhite}/>
-                                            <span>{tile.likes}</span>
-                                        </div>}
-                                        actionPosition={'right'}
                                         // subtitle={<span>by <b>{tile.author}</b></span>}
                                         titleBackground={'rgba(255, 255, 255, 1)'}
                                         class={'motboard-single-image-card'}
