@@ -97,14 +97,7 @@ class ColorsGenerator extends Component{
                         while (currentTime + 500 >= new Date().getTime()) {
                         }
                     this.generateColors();
-                    var currentTime = new Date().getTime();
-                    while (currentTime + 500 >= new Date().getTime()) {
-                    }
-                    this.generateColors();
-                    var currentTime = new Date().getTime();
-                    while (currentTime + 500 >= new Date().getTime()) {
-                    }
-                    this.generateColors();
+
                     artyom.fatality().then(() => {
                         artyom.say("There you go!!");
                     });

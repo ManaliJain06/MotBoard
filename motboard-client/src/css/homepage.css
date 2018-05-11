@@ -37,10 +37,15 @@
 }
 .uploadbox {
     border: 2px dashed #cccccc;
-    width: 300px;
-    height: 150px;
+    width: auto;
+    height: 50px;
     cursor: pointer;
     display: table;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 .uploadbox:hover{
     border: 2px dashed #0090ff;

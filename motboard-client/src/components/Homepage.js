@@ -132,7 +132,7 @@ class Homepage extends Component {
             <div>
                 <div>
                     <nav style={{'background-color': '#ffffff'}}
-                         className="navbar navbar-expand-lg navbar-dark fixed-top mb-5" id="mainNav">
+                         className="navbar navbar-expand-lg navbar-dark fixed-top mb-1" id="mainNav">
                         <Popover
                             open={this.state.mainmenu}
                             anchorEl={this.state.anchorE2}
@@ -210,7 +210,7 @@ class Homepage extends Component {
                         <a className="navbar-brand d-flex align-items-left " onClick={() => {
                             this.props.history.push("/");
                         }}>
-                            <span className="megrim blackColor pt-3 pl-5 pointer motboardlogo">MOtBOARD
+                            <span className="megrim blackColor pl-5 pointer motboardlogo">MOtBOARD
                                 {userState.isLogged ? <span className="megrim userGreeting">Hello {userState.firstName}</span>: ''}
                             </span>
 
