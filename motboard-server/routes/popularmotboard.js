@@ -8,11 +8,10 @@ router.post('/getPopularMotboards', function (req, res, next) {
     try {
         mongo.connect(mongoURL, function () {
             var coll = mongo.collection('users');
-
             coll.aggregate({$unwind: '$motboards'},
                 {
                     $sort: {'motboards.likes': -1}
-                }, {$match: {'motboards.access': 'public'}}, {$limit: 5}, function (err, motboards) {
+                }, {$match: {'motboards.access': 'public'}}, {$limit: 4}, function (err, motboards) {
                     if (motboards) {
                         var popular = [];
                         for (let i = 0; i < motboards.length; i++) {

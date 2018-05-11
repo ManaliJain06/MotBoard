@@ -68,7 +68,6 @@ class UserAfterLogin extends Component {
         //     'text': this.refs.blogContent.getValue()
         // };
 
-
         let state = this.props.loginStateProp;
         if(state.isLogged){
             let payload={
@@ -77,10 +76,6 @@ class UserAfterLogin extends Component {
             }
             this.privateMaction(payload, this.privateMresponse(this.refs.blogContent.getValue()));
         }
-
-
-
-
         // this.props.postblog(blogJSONtoSend);
         // setTimeout(this.props.getBlogs,200);
     };
@@ -100,7 +95,7 @@ class UserAfterLogin extends Component {
         this.setState({
             openDialog: false
         });
-    }
+    };
     componentDidMount() {
         //TODO:Get Motboards of the user - private and public
         this.props.getuserallboards();
