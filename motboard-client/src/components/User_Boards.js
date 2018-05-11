@@ -159,11 +159,8 @@ class User_Boards extends Component {
                                     backgroundColor={'#BA68C8'}
                                     icon={<ShareIcon/>}
                                     style={styles.button}
-<<<<<<< HEAD
                                     labelColor={'#fff'}
-=======
                                     onClick={this.makePublic}
->>>>>>> 11edb5496d102e1be4b0f0965f267bcf4ab74336
                                 />
 
                             </div>
