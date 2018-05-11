@@ -194,12 +194,26 @@ exports.addPublicBoardToPrivate = function(req,res,next){
             coll.update({ username: req.body.user.username },
                 {$push: { motboards: board }}, function(err, result){
                     if(result.result.nModified>0){
-                        coll.find({username: req.body.user.username}).toArray(function (err, user){
-                            if (user) {
-                                res.status(200).json({'user':user});
-                            } else {
-                                res.status(400).send();
-                            }
+
+                        coll.find({"motboards.name": req.body.board.name}).toArray(function (err, result) {
+                            result.forEach(function (obj) {
+                                obj.motboards.forEach(function (board) {
+                                    if (board.name === req.body.board.name) {
+                                        board.bookmarks= req.body.board.bookmarks;
+                                    }
+                                });
+                            })
+                            result.forEach(function (doc) {
+                                coll.save(doc);
+                            });
+                        }, function(err, res){
+                            coll.find({username: req.body.user.username}).toArray(function (err, user){
+                                if (user) {
+                                    res.status(200).json({'user':user});
+                                } else {
+                                    res.status(400).send();
+                                }
+                            });
                         });
                     }else{
                         res.status(400).send();
@@ -253,6 +267,7 @@ exports.getChartsData = function(req,res){
                         let seenM = [];
                         var likes = [];
                         var bookmarks = [];
+
                         for (let i = 0; i < motboards.length; i++) {
 
                             if(seenM.indexOf(motboards[i].motboards.name) === -1){
@@ -274,7 +289,7 @@ exports.getChartsData = function(req,res){
                     else {
                         res.status(400).send("failed");
                     }
-                })
+                });
         });
     }
     catch (e) {

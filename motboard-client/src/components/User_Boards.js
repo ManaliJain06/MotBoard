@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Route, withRouter} from 'react-router-dom';
-import {getImages,sendFiles} from '../actions/index';
+import {makepublish,getImages, sendFiles} from '../actions/index';
 import {connect} from 'react-redux';
 import {GridList, GridTile} from 'material-ui/GridList';
 import '../css/signup.css';
@@ -11,6 +11,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import ArrangeIcon from 'material-ui/svg-icons/action/dashboard';
 import UploadIcon from 'material-ui/svg-icons/file/cloud-upload';
 import ShareIcon from 'material-ui/svg-icons/social/share';
+
 const styles = {
     root: {
         display: 'flex',
@@ -35,10 +36,10 @@ const customContentStyle = {
     maxWidth: '20',
 };
 
-const ChartStyle ={
+const ChartStyle = {
     height: 50,
-    width:50,
-    color:'#424242',
+    width: 50,
+    color: '#424242',
 
 };
 
@@ -57,7 +58,7 @@ class User_Boards extends Component {
     state = {
         open: false,
         ListOfImages: [],
-        motBoardName:''
+        motBoardName: ''
     };
     handleClose = () => {
         this.setState({open: false});
@@ -72,7 +73,8 @@ class User_Boards extends Component {
 
         this.props.getImages(this.props.location.state.motBoardName);
     }
-    componentDidMount(){
+
+    componentDidMount() {
         //TODO: Call to backend here - to retrieve the blogs
         this.props.getImages(this.props.location.state.motBoardName);
     }
@@ -87,14 +89,14 @@ class User_Boards extends Component {
         //setTimeout( this.props.getImages(this.props.location.state.motBoardName),2000);
     };
 
-    abc = (payload,callback) =>{
+    abc = (payload, callback) => {
         this.props.sendFiles(payload);
-        setTimeout(callback,2000);
+        setTimeout(callback, 2000);
     };
 
-    def = (payload) =>{
+    def = (payload) => {
         this.props.getImages(this.props.location.state.motBoardName);
-     //   setTimeout(callback,2000);
+        //   setTimeout(callback,2000);
     };
 
     // setBoards(){
@@ -107,18 +109,17 @@ class User_Boards extends Component {
     //     setTimeout(this.setBoards, 1000);
     // }
 
-arrangeImages=()=>{
-    //alert(this.props.location.state.motBoardName);
-    //alert(this.state.motBoardName);
-    // this.setState({
-    //     motboardName:this.props.location.state.motBoardName
-    // });
-  //  alert("inside");
-    this.props.history.push({
-        pathname: '/Arrange',
-        state: {motBoardName: this.props.location.state.motBoardName}
-    })
-};
+    arrangeImages = () => {
+        this.props.history.push({
+            pathname: '/Arrange',
+            state: {motBoardName: this.props.location.state.motBoardName}
+        })
+    };
+
+    makePublic = () => {
+        var temp = {motBoardName:this.props.location.state.motBoardName};
+        this.props.makepublish(temp)
+    };
 
 
     render() {
@@ -138,16 +139,16 @@ arrangeImages=()=>{
                             <div className="col-md-3">
                                 <p className={"Questrial"} style={{'font-size':'2.5em','text-align':'center'}}>{this.props.location.state.motBoardName}</p>
                             </div>
-                        <div className="container col-md-6 uploadbox">
-                            <UploadIcon style={ChartStyle}/>
-                            <input type="file" className="uploadFile" multiple onChange={this.handleFileUpload}/>
-                        </div>
+                            <div className="container col-md-6 uploadbox">
+                                <UploadIcon style={ChartStyle}/>
+                                <input type="file" className="uploadFile" multiple onChange={this.handleFileUpload}/>
+                            </div>
                             <div className="col-md-3">
                                 <RaisedButton
                                     label="Arrange"
                                     labelPosition="before"
                                     backgroundColor={'#BA68C8'}
-                                    icon={<ArrangeIcon />}
+                                    icon={<ArrangeIcon/>}
                                     style={styles.button}
                                     onClick={this.arrangeImages}
                                     labelColor={'#fff'}
@@ -156,9 +157,13 @@ arrangeImages=()=>{
                                     label="Public"
                                     labelPosition="before"
                                     backgroundColor={'#BA68C8'}
-                                    icon={<ShareIcon />}
+                                    icon={<ShareIcon/>}
                                     style={styles.button}
+<<<<<<< HEAD
                                     labelColor={'#fff'}
+=======
+                                    onClick={this.makePublic}
+>>>>>>> 11edb5496d102e1be4b0f0965f267bcf4ab74336
                                 />
 
                             </div>
@@ -219,4 +224,4 @@ function mapStateToProps(state) {
 }
 
 
-export default (connect(mapStateToProps, {sendFiles,getImages})(withRouter(User_Boards)));
+export default (connect(mapStateToProps, {makepublish,sendFiles, getImages})(withRouter(User_Boards)));
