@@ -8,12 +8,15 @@ router.post('/makePublic', function (req, res, next) {
         mongo.connect(mongoURL, function () {
             var coll = mongo.collection('users');
             //coll.update({name})
-            var motboardName=req.body.motboardName;
-            coll.update({username: req.body.username,"motboards.name":motboardName}, {
+            console.log("motbaord name");
+            var motboardName=req.body.motBoardName;
+            coll.update({"motboards.name":motboardName}, {
                 $set: {
                     'motboards.$.access': "public"
                 }
             });
+
+
             res.status(200).send("made public");
         });
     }
