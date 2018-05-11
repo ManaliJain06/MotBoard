@@ -58,7 +58,7 @@ class ColorsGenerator extends Component{
 
 // or add some commandsDemostrations in the normal way
 
-        artyom.say("Hello. My name is Rainbow ! I can help you choose colors");
+        artyom.say("Good Evening Creative people. My name is Rainbow ! I can help you choose colors");
         artyom.addCommands([
             {
                 indexes: ['Hello','Hi','is someone there'],
@@ -93,13 +93,20 @@ class ColorsGenerator extends Component{
                 indexes: ['Magic'],
                 action: (i,wildcard) => {
                     this.generateColors();
-                        var currentTime = new Date().getTime();
-                        while (currentTime + 500 >= new Date().getTime()) {
-                        }
+                    var currentTime = new Date().getTime();
+                    while (currentTime + 500 >= new Date().getTime()) {
+                    }
                     this.generateColors();
-
+                    var currentTime = new Date().getTime();
+                    while (currentTime + 500 >= new Date().getTime()) {
+                    }
+                    this.generateColors();
+                    var currentTime = new Date().getTime();
+                    while (currentTime + 500 >= new Date().getTime()) {
+                    }
+                    this.generateColors();
                     artyom.fatality().then(() => {
-                        artyom.say("There you go!!");
+                        artyom.say("Tadaaa!! There you go!!");
                     });
                 }
             },
@@ -143,14 +150,14 @@ class ColorsGenerator extends Component{
                     }}>Show me some magic
                     </button>
                 </div>
-            <div class="row">
-                <div className="col-md-2 onecolumn Questrial" style={{'background-color': this.state.RandomColor1}}>{this.state.RandomColor1}</div>
-                <div className="col-md-2 onecolumn Questrial" style={{'background-color': this.state.RandomColor2}}>{this.state.RandomColor2}</div>
-                <div className="col-md-2 onecolumn Questrial" style={{'background-color': this.state.RandomColor3}}>{this.state.RandomColor3}</div>
-                <div className="col-md-2 onecolumn Questrial" style={{'background-color': this.state.RandomColor4}}>{this.state.RandomColor4}</div>
-                <div className="col-md-2 onecolumn Questrial" style={{'background-color': this.state.RandomColor5}}>{this.state.RandomColor5}</div>
-                <div className="col-md-2 onecolumn Questrial" style={{'background-color': this.state.RandomColor6}}>{this.state.RandomColor6}</div>
-            </div>
+                <div class="row">
+                    <div className="col-md-2 onecolumn Questrial" style={{'background-color': this.state.RandomColor1}}>{this.state.RandomColor1}</div>
+                    <div className="col-md-2 onecolumn Questrial" style={{'background-color': this.state.RandomColor2}}>{this.state.RandomColor2}</div>
+                    <div className="col-md-2 onecolumn Questrial" style={{'background-color': this.state.RandomColor3}}>{this.state.RandomColor3}</div>
+                    <div className="col-md-2 onecolumn Questrial" style={{'background-color': this.state.RandomColor4}}>{this.state.RandomColor4}</div>
+                    <div className="col-md-2 onecolumn Questrial" style={{'background-color': this.state.RandomColor5}}>{this.state.RandomColor5}</div>
+                    <div className="col-md-2 onecolumn Questrial" style={{'background-color': this.state.RandomColor6}}>{this.state.RandomColor6}</div>
+                </div>
             </div>
         )
     }
