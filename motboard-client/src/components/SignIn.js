@@ -95,7 +95,7 @@ class SignIn extends Component {
                     <div className="pulse" style={styles.pulse}>
                         <div className="row justify-content-center">
                             <div className="col-md-6 indexZ" style={{'height':'40vw','object-fit':'contain','margin-right':'20px','margin-top':'20px'}} >
-                                {/*<img src={signin} alt="hello" style={{'height':'40vw','object-fit':'contain','margin-right':'20px'}} className={"indexZ"}/>*/}
+                                <img src={signin} alt="hello" style={{'height':'40vw','object-fit':'contain','margin-right':'20px'}} className={"indexZ"}/>
                                 {/*<div>*/}
                                     {/*<form>*/}
                                     {/*<p>*/}
@@ -112,15 +112,15 @@ class SignIn extends Component {
                                     {/*</p>*/}
                                     {/*</form>*/}
                                 {/*</div>*/}
-                                <div className="smiley">
-                                    <div className="eyes">
-                                        <div className="eye"></div>
-                                        <div className="eye"></div>
-                                    </div>
-                                    <div className="mouth"></div>
-                                    <div className="lefthand"></div>
-                                    <div className="righthand"></div>
-                                </div>
+                                {/*<div className="smiley">*/}
+                                    {/*<div className="eyes">*/}
+                                        {/*<div className="eye"></div>*/}
+                                        {/*<div className="eye"></div>*/}
+                                    {/*</div>*/}
+                                    {/*<div className="mouth"></div>*/}
+                                    {/*<div className="lefthand"></div>*/}
+                                    {/*<div className="righthand"></div>*/}
+                                {/*</div>*/}
                             </div>
                             <div className="col-md-4 cardbox">
                                 {messageDivLogin}

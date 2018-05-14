@@ -8,8 +8,8 @@ import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recha
 import '../css/team.css';
 import {PieChart, Pie, Sector} from 'recharts';
 
-const data = [{name: 'Group A', value: 400}, {name: 'Group B', value: 300},
-    {name: 'Group C', value: 300}, {name: 'Group D', value: 200}];
+const data = [{label: 'Colorful', value: 400}, {label: 'Group B', value: 300},
+    {label: 'Group C', value: 300}, {label: 'Group D', value: 200}];
 
 const renderActiveShape = (props) => {
     const RADIAN = Math.PI / 180;
@@ -122,7 +122,7 @@ class Charts extends Component{
         return (
             <div className="container" style={{"padding-bottom":"55px"}}>
                 <div className="row">
-                    <div className="col-md-6 justify-content-center">
+                    <div className="col-md-12 justify-content-center">
                         <div className={" row col-md-12"}>
                             <BarChart width={600} height={300} data={this.state.likes}
                                       margin={{top: 5, right: 30, left: 20, bottom: 5}}>
@@ -147,21 +147,21 @@ class Charts extends Component{
                             </BarChart>
                         </div>
                     </div>
-                    <div className="col-md-6 justify-content-center">
-                        <PieChart width={1000} height={700}>
-                            <Pie
-                                activeIndex={this.state.activeIndex}
-                                activeShape={renderActiveShape}
-                                data={data}
-                                cx={300}
-                                cy={200}
-                                innerRadius={60}
-                                outerRadius={80}
-                                fill="#ba68c8"
-                                onMouseEnter={this.onPieEnter}
-                            />
-                        </PieChart>
-                    </div>
+                    {/*<div className="col-md-6 justify-content-center">*/}
+                        {/*<PieChart width={1000} height={700}>*/}
+                            {/*<Pie*/}
+                                {/*activeIndex={this.state.activeIndex}*/}
+                                {/*activeShape={renderActiveShape}*/}
+                                {/*data={this.state.bookmarks}*/}
+                                {/*cx={300}*/}
+                                {/*cy={200}*/}
+                                {/*innerRadius={60}*/}
+                                {/*outerRadius={80}*/}
+                                {/*fill="#ba68c8"*/}
+                                {/*onMouseEnter={this.onPieEnter}*/}
+                            {/*/>*/}
+                        {/*</PieChart>*/}
+                    {/*</div>*/}
                 </div>
 
 

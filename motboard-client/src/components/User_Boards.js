@@ -11,6 +11,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import ArrangeIcon from 'material-ui/svg-icons/action/dashboard';
 import UploadIcon from 'material-ui/svg-icons/file/cloud-upload';
 import ShareIcon from 'material-ui/svg-icons/social/share';
+import swal from 'sweetalert';
 
 const styles = {
     root: {
@@ -118,7 +119,8 @@ class User_Boards extends Component {
 
     makePublic = () => {
         var temp = {motBoardName:this.props.location.state.motBoardName};
-        this.props.makepublish(temp)
+        this.props.makepublish(temp);
+        swal("Bravo! ","Your MotBoard has been shared. Thanks for sharing the inspiration.","success")
     };
 
 
